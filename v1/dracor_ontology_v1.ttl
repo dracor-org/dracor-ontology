@@ -13,7 +13,7 @@
     rdfs:label "DraCor Ontology v1"@en ;
     rdfs:seeAlso <https://dracor.org> , <https://doi.org/10.5281/zenodo.7664964> ;
     rdfs:comment "This version (v1) of the DraCor Ontology models the response objects returned by the API 
-    (as 'api response data object' which can be considered an equivalent to CIDOC-CRM's 'E73 Information Object'). 
+    (as 'api response data object' which can be considered an equivalents to CIDOC-CRM's 'E73 Information Object' or 'dig: D1 Digital Object'). 
     It formally defines the features that have been identified in the report D7.1 'On Programmable Corpora' 
     (https://doi.org/10.5281/zenodo.7664964), but already includes the changes made for DraCor API v1. 
     In the report 'On Programmable Corpora' the features are included in the tables Tab.01 Corpus Features, Tab.02 Play Features, Tab.03 Segment Features, 
@@ -57,10 +57,10 @@ dracon:API_Response_Data
     rdfs:comment "Information Object returned by the DraCor API. It provides information *about* entities
     (plays, characters, ...). The subclasses of these class SHOULD not be confused with the digital representations
     of the entities themselves. For example a 'author data object' is NOT representing the author of the play, which
-    would be modeled in CIDOC-CRM as E39 Actor or a subclass thereof, but is equivalent to an 'E73 Information Object'
+    would be modeled in CIDOC-CRM as 'crm: E39 Actor' or a subclass thereof, but is equivalent to an 'crm: E73 Information Object'
     providing information *about* this E39 Actor. The API returns information extracted from TEI files by some
     algorithms and can be considered (subjective) chunks of information about entities relevant to Computational
-    Drama Studies. Formally, it is a sub-class of  'D1 Digital Object' in CRMdig." ;
+    Drama Studies. Formally, it is a sub-class of  'dig: D1 Digital Object' in CRMdig." ;
     rdfs:subClassOf dig:D1_Digital_Object.
 
 
@@ -251,7 +251,7 @@ dracon:corpus_metrics_date_updated
     dracon:feature_id "C19" .
 
 
-dracon:contains_play_data ;
+dracon:contains_play_data 
     a rdf:Property, owl:ObjectProperty ;
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Play ;
@@ -276,7 +276,7 @@ dracon:Corpus_Metrics
 dracon:contains_corpus_metrics_data
     a rdf:Property, owl:ObjectProperty ;
     rdfs:domain dracon:Corpus ;
-    rdfs:range dracon:Corpus_Metrics
+    rdfs:range dracon:Corpus_Metrics ;
     rdfs:label "Links Corpus Data to the metrics data."@en ;
     rdfs:subPropertyOf dracon:contains_data .
 
@@ -832,7 +832,7 @@ dracon:play_network_max_degree
 dracon:play_network_max_degree_character_id
     a rdf:Property, owl:DatatypeProperty ;
     rdfs:domain dracon:Play ;
-    rdfs:range rdfs:range rdfs:Literal;
+    rdfs:range rdfs:Literal;
     rdfs:comment "ID of the character with the highest degree value in a network representing a play. In the report
     'On programmable corpora' the corresponding feature is 'P64'."@en .
 
@@ -1101,7 +1101,7 @@ dracon:character_relation_type
     rdfs:domain dracon:Relation ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Type of social relation: 'parent_of', 'lover_of', 'related_with', 'associated_with', 'siblings',
-    'spouses', 'friends'"."@en .
+    'spouses', 'friends'."@en .
 
 dracon:character_relation_from
     a rdf:Property, owl:DatatypeProperty ;
@@ -1190,21 +1190,21 @@ dracon:service_name
     a rdf:Property, owl:DatatypeProperty ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Name of the service"."@en .
+    rdfs:comment "Name of the service."@en .
 
 
 dracon:service_version
     a rdf:Property, owl:DatatypeProperty ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Version number of the service"."@en .
+    rdfs:comment "Version number of the service."@en .
 
 
 dracon:service_development_stage
     a rdf:Property, owl:DatatypeProperty ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Stage of development in the service development life cicle, e.g. 'alpha', 'beta'"."@en .
+    rdfs:comment "Stage of development in the service development life cicle, e.g. 'alpha', 'beta'."@en .
 
 
 dracon:service_dependency_is_existdb_version
@@ -1212,5 +1212,5 @@ dracon:service_dependency_is_existdb_version
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Version Number of eXist-DB that the service is developed for. Specific to the response of the
-    /info endpoint of the DraCor API"."@en .
+    /info endpoint of the DraCor API."@en .
 
