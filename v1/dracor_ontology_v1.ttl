@@ -10,7 +10,7 @@
 <https://lod.dracor.org/ontology/v1>
     a owl:Ontology ;
     owl:versionInfo "v1.0.0";
-    rdfs:label "DraCor Ontology v1"@en ;
+    rdfs:label "DraCor Ontology"@en ;
     rdfs:seeAlso <https://dracor.org> , <https://doi.org/10.5281/zenodo.7664964> ;
     rdfs:comment "This version (v1) of the DraCor Ontology models the response objects returned by the API 
     (as 'api response data object' which can be considered an equivalents to CIDOC-CRM's 'E73 Information Object' or 'dig: D1 Digital Object'). 
