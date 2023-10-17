@@ -7,20 +7,28 @@
 @prefix dig: <http://www.ics.forth.gr/isl/CRMdig/> .
 
 
-<https://lod.dracor.org/ontology/v1>
+<https://dracor.org/ontology/dracor-api-ontology>
     a owl:Ontology ;
     owl:versionInfo "v1.0.0";
-    rdfs:label "DraCor Ontology"@en ;
+    rdfs:label "DraCor API Ontology"@en ;
     rdfs:seeAlso <https://dracor.org> , <https://doi.org/10.5281/zenodo.7664964> ;
-    rdfs:comment "This version (v1) of the DraCor Ontology models the response objects returned by the API 
-    (as 'api response data object' which can be considered an equivalents to CIDOC-CRM's 'E73 Information Object' or 'dig: D1 Digital Object'). 
-    It formally defines the features that have been identified in the report D7.1 'On Programmable Corpora' 
-    (https://doi.org/10.5281/zenodo.7664964), but already includes the changes made for DraCor API v1. 
-    In the report 'On Programmable Corpora' the features are included in the tables Tab.01 Corpus Features, Tab.02 Play Features, Tab.03 Segment Features, 
-    Tab.04 Character Features as RDF properties. Features representing a single data value are considered owl:DataTypeProperties; 
-    some of the features in the API responses are expressed by nested data structures though (e.g. arrays providing information on
-    characters). These features are here transformed into owl:ObjectProperties, generally following the pattern
-    'contains_{X}_data'" .
+    rdfs:comment "This version (v1) of the DraCor API Ontology models the response objects returned by the DraCor API. 
+ 
+    It formally defines the 'features' that have been identified in the report D7.1 'On Programmable Corpora' 
+    (https://doi.org/10.5281/zenodo.7664964), but already includes the changes made for v1 of the DraCor API. 
+    
+    In the report 'On Programmable Corpora' these features are included in the tables Tab.01 Corpus Features, Tab.02 Play Features, Tab.03 Segment Features, 
+    Tab.04 Character Features. Features representing a single data value are generally considered owl:DataTypeProperties, but 
+    some of the features in the API responses are expressed by nested data structures (e.g. arrays providing information on
+    characters). These features are therefore transformed into owl:ObjectProperties, generally following the pattern
+    'contains_{X}_data'.
+    
+    The purpose of this ontology is to add semantics to the responses specific to the DraCor API. Therefore, conceptually, 
+    the instances of the classes defined should be understood to represent 'information objects' or very specific data structures. 
+    They are all subclasses of the class 'API Response Data'.
+    
+    As an example: An instance of the class 'Author' is information about an author structured in a very specific way. 
+    According to CIDOC-CRM it would be a 'crm: E73 Information Object', not an instance of the class 'crm: E39 Actor'." .
 
 
 ########
@@ -52,7 +60,7 @@ dracon:xpath
 ########
 
 dracon:API_Response_Data
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "API Response Data"@en;
     rdfs:comment "Information Object returned by the DraCor API. It provides information *about* entities
     (plays, characters, ...). The subclasses of these class SHOULD not be confused with the digital representations
@@ -65,7 +73,7 @@ dracon:API_Response_Data
 
 
 dracon:contains_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:label "contains data"@en ;
     rdfs:domain dracon:API_Response_Data ;
     rdfs:range dracon:API_Response_Data ;
@@ -75,7 +83,7 @@ dracon:contains_data
 
 
 dracon:api_response_timestamp
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:API_Response_Data ;
     rdfs:range xsd:dateTime ;
     rdfs:label "Date/Time the data was returned by the API"@en .
@@ -88,7 +96,7 @@ dracon:api_response_timestamp
 
 
 dracon:Corpus
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Corpus Data"@en ;
     rdfs:label "Korpus Daten"@de ;
     rdfs:label "корпус"@ru ;
@@ -98,7 +106,7 @@ dracon:Corpus
 
 
 dracon:corpus_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Name"@en ;
@@ -106,7 +114,7 @@ dracon:corpus_name
 
 
 dracon:corpus_uri
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:anyURI ;
     rdfs:label "Corpus URI"@en ;
@@ -114,7 +122,7 @@ dracon:corpus_uri
 
 
 dracon:corpus_title
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Title"@en ;
@@ -122,7 +130,7 @@ dracon:corpus_title
 
 
 dracon:corpus_acronym
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Acronym"@en ;
@@ -130,7 +138,7 @@ dracon:corpus_acronym
 
 
 dracon:corpus_description
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Description"@en ;
@@ -138,7 +146,7 @@ dracon:corpus_description
 
 
 dracon:corpus_repository
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Repository"@en ;
@@ -146,7 +154,7 @@ dracon:corpus_repository
 
 
 dracon:corpus_licence
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Corpus Licence"@en ;
@@ -154,7 +162,7 @@ dracon:corpus_licence
 
 
 dracon:corpus_licence_url
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:anyURI ;
     rdfs:label "Corpus Licence URL"@en ;
@@ -162,7 +170,7 @@ dracon:corpus_licence_url
 
 
 dracon:corpus_num_of_plays
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Plays in Corpus"@en ;
@@ -171,7 +179,7 @@ dracon:corpus_num_of_plays
 
 
 dracon:corpus_num_of_characters
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Characters in Corpus"@en ;
@@ -180,7 +188,7 @@ dracon:corpus_num_of_characters
 
 
 dracon:corpus_num_of_characters_male
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Male Characters in Corpus"@en ;
@@ -188,7 +196,7 @@ dracon:corpus_num_of_characters_male
 
 
 dracon:corpus_num_of_characters_female
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Female Characters in Corpus"@en ;
@@ -196,7 +204,7 @@ dracon:corpus_num_of_characters_female
 
 
 dracon:corpus_num_of_tei_text_elements
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:text> Elements in the Corpus"@en ;
@@ -204,7 +212,7 @@ dracon:corpus_num_of_tei_text_elements
 
 
 dracon:corpus_num_of_sp
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:sp> Elements in the Corpus"@en ;
@@ -212,7 +220,7 @@ dracon:corpus_num_of_sp
 
 
 dracon:corpus_num_of_stage
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:stage> Elements in the Corpus"@en ;
@@ -220,7 +228,7 @@ dracon:corpus_num_of_stage
 
 
 dracon:corpus_num_of_word_tokens_in_text_elements
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:text> Elements in the Corpus"@en ;
@@ -228,7 +236,7 @@ dracon:corpus_num_of_word_tokens_in_text_elements
 
 
 dracon:corpus_num_of_word_tokens_in_sp
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:sp> Elements in the Corpus"@en ;
@@ -236,7 +244,7 @@ dracon:corpus_num_of_word_tokens_in_sp
 
 
 dracon:corpus_num_of_word_tokens_in_stage
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:stage> Elements in the Corpus"@en ;
@@ -244,7 +252,7 @@ dracon:corpus_num_of_word_tokens_in_stage
 
 
 dracon:corpus_metrics_date_updated
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:dateTime ;
     rdfs:label "Date updated of the Corpus in the DraCor system"@en ;
@@ -252,7 +260,7 @@ dracon:corpus_metrics_date_updated
 
 
 dracon:contains_play_data 
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Play ;
     rdfs:label "Contains play data"@en ;
@@ -266,7 +274,7 @@ dracon:contains_play_data
 ########
 
 dracon:Corpus_Metrics
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Corpus Metrics Data"@en ;
     rdfs:label "Korpusmetriken"@de ;
     rdfs:comment "Corpus Metrics as included in the response of the /corpora endpoint."@en ;
@@ -274,7 +282,7 @@ dracon:Corpus_Metrics
 
 
 dracon:contains_corpus_metrics_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Corpus_Metrics ;
     rdfs:label "Links Corpus Data to the metrics data."@en ;
@@ -282,14 +290,14 @@ dracon:contains_corpus_metrics_data
 
 
 dracon:Corpus_Wordcount
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Wordcounts"@en ;
     rdfs:comment "Object containing the counts of word tokens of a single corpus."@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_corpus_wordcount_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Corpus_Metrics ;
     rdfs:range dracon:Corpus_Wordcount ;
     rdfs:label "Object containing the counts of word tokens for a single corpus included in the response of the
@@ -304,7 +312,7 @@ dracon:contains_corpus_wordcount_data
 
 
 dracon:Play
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Play Data"@en ;
     rdfs:label "Daten zu einem Stück"@de ;
     rdfs:label "пьеса"@ru ;
@@ -312,7 +320,7 @@ dracon:Play
 
 
 dracon:play_corpus_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Name of the Corpus the play is contained in"@en ;
@@ -320,7 +328,7 @@ dracon:play_corpus_name
 
 
 dracon:play_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "DraCor ID of the Play"@en ;
@@ -328,14 +336,14 @@ dracon:play_id
     dracon:xpath "/tei:TEI/@xml:id" .
 
 dracon:play_uri
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:anyURI;
     rdfs:label "URI of the Play"@en .
 
 
 dracon:play_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Name of the Play"@en ;
@@ -343,7 +351,7 @@ dracon:play_name
 
 
 dracon:play_wikidata_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Wikidata ID of the Play"@en ;
@@ -352,7 +360,7 @@ dracon:play_wikidata_id
 
 
 dracon:play_title
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Title of the Play"@en ;
@@ -361,7 +369,7 @@ dracon:play_title
 
 
 dracon:play_subtitle
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Subtitle of the Play"@en ;
@@ -370,7 +378,7 @@ dracon:play_subtitle
 
 
 dracon:play_title_en
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "English Title of the Play"@en ;
@@ -379,7 +387,7 @@ dracon:play_title_en
 
 
 dracon:play_subtitle_en
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "English Subtitle of the Play"@en ;
@@ -388,7 +396,7 @@ dracon:play_subtitle_en
 
 
 dracon:play_author_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Name of the Author of a Play"@en ;
@@ -396,7 +404,7 @@ dracon:play_author_name
 
 
 dracon:play_author_name_en
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "English Name of the Author of a Play"@en ;
@@ -404,7 +412,7 @@ dracon:play_author_name_en
 
 
 dracon:play_author_fullname
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Full Name of the Author of a Play"@en ;
@@ -412,7 +420,7 @@ dracon:play_author_fullname
 
 
 dracon:play_author_fullname_en
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "English Full Name of the Author of a Play"@en ;
@@ -420,7 +428,7 @@ dracon:play_author_fullname_en
 
 
 dracon:play_author_shortname
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Short Name of the Author of a Play"@en ;
@@ -428,7 +436,7 @@ dracon:play_author_shortname
 
 
 dracon:play_author_shortname_en
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "English Short Name of the Author of a Play"@en ;
@@ -436,7 +444,7 @@ dracon:play_author_shortname_en
 
 
 dracon:play_first_author_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Name of the First Author of a Play"@en ;
@@ -444,7 +452,7 @@ dracon:play_first_author_name
 
 
 dracon:play_first_author_shortname
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Short Name of the First Author of a Play"@en ;
@@ -452,7 +460,7 @@ dracon:play_first_author_shortname
 
 
 dracon:play_first_author_deprecation_warning
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Warning that the information on the first author will become deprecated"@en ;
@@ -460,7 +468,7 @@ dracon:play_first_author_deprecation_warning
 
 
 dracon:play_author_also_known_as
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Alternative Name of the Author of a Play"@en ;
@@ -468,7 +476,7 @@ dracon:play_author_also_known_as
 
 
 dracon:play_author_ref_external_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "ID of the Author in an External Reference Resource"@en ;
@@ -476,7 +484,7 @@ dracon:play_author_ref_external_id
 
 
 dracon:play_author_ref_type
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Type of the ID of the Author in an External Reference Resource"@en ;
@@ -484,7 +492,7 @@ dracon:play_author_ref_type
 
 
 dracon:play_num_of_co_authors
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:integer;
     rdfs:label "Number of Co-Authors of a Play"@en ;
@@ -492,7 +500,7 @@ dracon:play_num_of_co_authors
 
 
 dracon:play_genre_normalized
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "Normalized Genre of a Play"@en ;
@@ -500,7 +508,7 @@ dracon:play_genre_normalized
 
 
 dracon:play_is_libretto
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:boolean;
     rdfs:label "Play is a Libretto"@en ;
@@ -508,7 +516,7 @@ dracon:play_is_libretto
 
 
 dracon:play_year_written
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
     rdfs:label "Creation Year"@en ;
@@ -520,7 +528,7 @@ dracon:play_year_written
 
 
 dracon:play_year_printed
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
     rdfs:label "Publication Year"@en ;
@@ -532,7 +540,7 @@ dracon:play_year_printed
 
 
 dracon:play_year_premiered
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
     rdfs:label "Year premiered"@en ;
@@ -544,7 +552,7 @@ dracon:play_year_premiered
 
 
 dracon:play_year_normalized
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
     rdfs:label "Normalized Year"@en ;
@@ -558,7 +566,7 @@ dracon:play_year_normalized
 
 
 dracon:play_digital_source_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal;
     rdfs:label "Name of the Digital Source of a Play"@en ;
@@ -567,7 +575,7 @@ dracon:play_digital_source_name
 
 
 dracon:play_digital_source_url
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:anyURI;
     rdfs:label "URL of the Digital Source of a Play"@en ;
@@ -576,7 +584,7 @@ dracon:play_digital_source_url
 
 
 dracon:play_original_source_full_citation
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal;
     rdfs:label "Full Citation of the Play's Original Source of a Play"@en ;
@@ -584,7 +592,7 @@ dracon:play_original_source_full_citation
 
 
 dracon:play_original_source_publisher
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Full Citation of the Play's Original Source of a Play"@en ;
@@ -592,7 +600,7 @@ dracon:play_original_source_publisher
 
 
 dracon:play_original_source_publication_place
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Place of Publication of the Original Source of a Play"@en ;
@@ -600,7 +608,7 @@ dracon:play_original_source_publication_place
 
 
 dracon:play_original_source_publication_year
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Yer of Publication of the Original Source of a Play"@en ;
@@ -608,7 +616,7 @@ dracon:play_original_source_publication_year
 
 
 dracon:play_original_source_num_of_pages
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Pages of the Original Source of a Play"@en ;
@@ -616,7 +624,7 @@ dracon:play_original_source_num_of_pages
 
 
 dracon:play_num_of_wikipedia_links
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Wikipedia Links of a Play"@en ;
@@ -624,7 +632,7 @@ dracon:play_num_of_wikipedia_links
 
 
 dracon:play_num_of_segments
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Segments of a Play"@en ;
@@ -632,7 +640,7 @@ dracon:play_num_of_segments
 
 
 dracon:play_num_of_acts
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Acts of a Play"@en ;
@@ -642,7 +650,7 @@ dracon:play_num_of_acts
 
 
 dracon:play_num_of_paragraphs
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Paragraphs of a Play"@en ;
@@ -650,7 +658,7 @@ dracon:play_num_of_paragraphs
 
 
 dracon:play_num_of_verse_lines
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Verses of a Play"@en ;
@@ -658,7 +666,7 @@ dracon:play_num_of_verse_lines
 
 
 dracon:play_num_of_word_tokens_in_text_elements
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:text> Elements of a Play"@en ;
@@ -666,7 +674,7 @@ dracon:play_num_of_word_tokens_in_text_elements
 
 
 dracon:play_num_of_word_tokens_in_sp
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:sp> Elements of a Play"@en ;
@@ -674,7 +682,7 @@ dracon:play_num_of_word_tokens_in_sp
 
 
 dracon:play_num_of_word_tokens_in_stage
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:stage> Elements of a Play"@en ;
@@ -682,7 +690,7 @@ dracon:play_num_of_word_tokens_in_stage
 
 
 dracon:play_num_of_speakers
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Speakers"@en ;
@@ -693,7 +701,7 @@ dracon:play_num_of_speakers
 
 
 dracon:play_num_of_speakers_gender_female
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Female Characters of a Play"@en ;
@@ -701,7 +709,7 @@ dracon:play_num_of_speakers_gender_female
 
 
 dracon:play_num_of_speakers_gender_male
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Male Characters of a Play"@en ;
@@ -709,7 +717,7 @@ dracon:play_num_of_speakers_gender_male
 
 
 dracon:play_num_of_speakers_gender_unknown
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Characters of Unknown Gender of a Play"@en ;
@@ -717,7 +725,7 @@ dracon:play_num_of_speakers_gender_unknown
 
 
 dracon:play_num_of_person_groups
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Person Groups in a Play"@en ;
@@ -725,7 +733,7 @@ dracon:play_num_of_person_groups
 
 
 dracon:play_all_in_segment
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "All in Segment of a Play"@en ;
@@ -733,7 +741,7 @@ dracon:play_all_in_segment
 
 
 dracon:play_all_in_index
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "All in Index of a Play"@en ;
@@ -741,7 +749,7 @@ dracon:play_all_in_index
 
 
 dracon:play_network_data_csv_url
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:anyURI ;
     rdfs:label "URL to retrieve Network data of a Play in CSV format"@en ;
@@ -749,7 +757,7 @@ dracon:play_network_data_csv_url
 
 
 dracon:play_network_size
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Size of the Network of a Play"@en ;
@@ -757,7 +765,7 @@ dracon:play_network_size
 
 
 dracon:play_network_num_edges
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Edges"@en ;
@@ -765,7 +773,7 @@ dracon:play_network_num_edges
 
 
 dracon:play_network_average_degree
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "Average Degree"@en ;
@@ -776,7 +784,7 @@ dracon:play_network_average_degree
 
 
 dracon:play_network_density
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "Network Density"@en ;
@@ -787,7 +795,7 @@ dracon:play_network_density
 
 
 dracon:play_network_diameter
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:int ;
     rdfs:label "Diameter of a Network"@en ;
@@ -796,7 +804,7 @@ dracon:play_network_diameter
 
 
 dracon:play_network_average_path_length
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "Average Path Length"@en ;
@@ -806,7 +814,7 @@ dracon:play_network_average_path_length
 
 
 dracon:play_network_average_clustering
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "Average Clustering Coefficient of a Network representing a Play"@en ;
@@ -814,7 +822,7 @@ dracon:play_network_average_clustering
 
 
 dracon:play_network_num_connected_components
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:int ;
     rdfs:label "Number of Connected Components of a Network representing a Play"@en ;
@@ -822,7 +830,7 @@ dracon:play_network_num_connected_components
 
 
 dracon:play_network_max_degree
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:int ;
     rdfs:label "Maximum Degree of a Network representing a Play"@en ;
@@ -830,7 +838,7 @@ dracon:play_network_max_degree
 
 
 dracon:play_network_max_degree_character_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal;
     rdfs:comment "ID of the character with the highest degree value in a network representing a play. In the report
@@ -843,14 +851,14 @@ dracon:play_network_max_degree_character_id
 
 
 dracon:Author
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Author Data"@en ;
     rdfs:label "Daten zu einem Autor"@de ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_play_author_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Author ;
     rdfs:label "Links a Play Response Object to the included data on an author"@en ;
@@ -858,7 +866,7 @@ dracon:contains_play_author_data
 
 
 dracon:contains_play_first_author_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Author ;
     rdfs:label "Links to data on the first Autor of a Play"@en ;
@@ -872,14 +880,14 @@ dracon:contains_play_first_author_data
 
 
 dracon:Segment
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Segment Data"@en ;
     rdfs:label "Segment-Daten"@de ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_play_segment_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Segment ;
     rdfs:label "Segment data of a Play"@en ;
@@ -888,7 +896,7 @@ dracon:contains_play_segment_data
 
 
 dracon:segment_type
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Type of a Segment"@en ;
@@ -896,7 +904,7 @@ dracon:segment_type
 
 
 dracon:segment_number
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of a Segment"@en ;
@@ -904,7 +912,7 @@ dracon:segment_number
 
 
 dracon:segment_title
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Title of a Segment"@en ;
@@ -912,14 +920,14 @@ dracon:segment_title
 
 
 dracon:segment_speaking_characters
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:label "Data on Speaking Characters of a Segment"@en ;
     dracon:feature_id "S4" .
 
 
 dracon:segment_speaking_character_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Speaking Character ID"@en ;
@@ -934,14 +942,14 @@ dracon:segment_speaking_character_id
 
 
 dracon:Character
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Character Data"@en ;
     rdfs:label "Daten zu einer Figur"@de ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_play_character_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Character ;
     rdfs:label "Character data of a Play"@en ;
@@ -950,7 +958,7 @@ dracon:contains_play_character_data
 
 
 dracon:character_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "ID of a Character"@en ;
@@ -958,7 +966,7 @@ dracon:character_id
 
 
 dracon:character_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Name of a Character"@en ;
@@ -966,7 +974,7 @@ dracon:character_name
 
 
 dracon:character_is_group
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:boolean ;
     rdfs:label "Indicates if the Character is a Group"@en ;
@@ -974,7 +982,7 @@ dracon:character_is_group
 
 
 dracon:character_gender
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Gender of a Character"@en ;
@@ -982,7 +990,7 @@ dracon:character_gender
 
 
 dracon:character_wikidata_id
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Wikidata ID of a Character"@en ;
@@ -990,7 +998,7 @@ dracon:character_wikidata_id
 
 
 dracon:character_node_betweenness
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Betweenness Centrality of a Node representing a Character"@en ;
@@ -998,7 +1006,7 @@ dracon:character_node_betweenness
 
 
 dracon:character_node_degree
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Degree of a Node representing a Character"@en ;
@@ -1006,7 +1014,7 @@ dracon:character_node_degree
 
 
 dracon:character_node_closeness
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Closeness Centrality of a Node representing a Character"@en ;
@@ -1014,7 +1022,7 @@ dracon:character_node_closeness
 
 
 dracon:character_node_eigenvector
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Eigenvector Centrality of a Node representing a Character"@en ;
@@ -1022,7 +1030,7 @@ dracon:character_node_eigenvector
 
 
 dracon:character_node_weighted_degree
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Weighted Degree of a Node representing a Character"@en ;
@@ -1030,7 +1038,7 @@ dracon:character_node_weighted_degree
 
 
 dracon:character_num_of_segments
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Segments"@en ;
@@ -1041,7 +1049,7 @@ dracon:character_num_of_segments
 
 
 dracon:character_num_of_sp
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:sp> Elements that are attributed to a Character"@en ;
@@ -1049,7 +1057,7 @@ dracon:character_num_of_sp
 
 
 dracon:character_num_of_word_tokens
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens spoken by a Character"@en ;
@@ -1057,14 +1065,14 @@ dracon:character_num_of_word_tokens
 
 
 dracon:character_role
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Character Roles. Feature 'Ch14' in the report 'On Programmable Corpora'."@en .
 
 
 dracon:character_spoken_text
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:label "Spoken Text of a Character"@en ;
     dracon:feature_id "Ch15" .
@@ -1076,13 +1084,13 @@ dracon:character_spoken_text
 ########
 
 dracon:Relation
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Character Relation Data"@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_character_relation_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Relation ;
     rdfs:comment "Links to a character relation data of a Play. In the report 'On Programmable Corpora' this is
@@ -1091,27 +1099,27 @@ dracon:contains_character_relation_data
 
 
 dracon:character_relation_is_directed
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Relation ;
     rdfs:range xsd:boolean ;
     rdfs:comment "Indicates if a relation is directed (true)."@en .
 
 dracon:character_relation_type
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Relation ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Type of social relation: 'parent_of', 'lover_of', 'related_with', 'associated_with', 'siblings',
     'spouses', 'friends'."@en .
 
 dracon:character_relation_from
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Relation ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Contains the ID/name of a character that is the 'source' of the relation."@en .
 
 
 dracon:character_relation_to
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Relation ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Contains the ID/name of a character that is the 'target' of the relation."@en .
@@ -1122,7 +1130,7 @@ dracon:character_relation_to
 ########
 
 dracon:Network_Node
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Network Node"@en ;
     rdfs:label "Netzwerkknoten"@de ;
     rdfs:comment "Data on a node in a co-presence network derived from a TEI encoded play that represents a character."@en ;
@@ -1130,7 +1138,7 @@ dracon:Network_Node
 
 
 dracon:contains_play_network_node_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:label "Nodes of a Play represented as Network. In the report 'On Programmable Corpora' this is
     feature 'P54'"@en ;
@@ -1143,13 +1151,13 @@ dracon:contains_play_network_node_data
 
 
 dracon:External_Identifier
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "External Identifier"@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_external_ref_id_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:API_Response_Data ;
     rdfs:range dracon:External_Identifier ;
     rdfs:comment "Links to an ID in an external reference resource"@en ;
@@ -1161,13 +1169,13 @@ dracon:contains_external_ref_id_data
 ########
 
 dracon:Digital_Source
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Digital Source"@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:contains_digital_source_data
-    a rdf:Property, owl:ObjectProperty ;
+    a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range dracon:Digital_Source ;
     rdfs:comment "Links a play to its digital source data"@en ;
@@ -1180,35 +1188,35 @@ dracon:contains_digital_source_data
 ########
 
 dracon:Service
-    a rdfs:Class, owl:Class ;
+    a owl:Class, rdfs:Class ;
     rdfs:label "Service Data"@en ;
     rdfs:comment "Data about a service, e.g. the DraCor API"@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
 dracon:service_name
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Name of the service."@en .
 
 
 dracon:service_version
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Version number of the service."@en .
 
 
 dracon:service_development_stage
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Stage of development in the service development life cicle, e.g. 'alpha', 'beta'."@en .
 
 
 dracon:service_dependency_is_existdb_version
-    a rdf:Property, owl:DatatypeProperty ;
+    a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Service ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Version Number of eXist-DB that the service is developed for. Specific to the response of the
