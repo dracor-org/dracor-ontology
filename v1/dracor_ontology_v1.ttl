@@ -16,11 +16,11 @@
     (as 'api response data object' which can be considered an equivalent to CIDOC-CRM's 'E73 Information Object'). 
     It formally defines the features that have been identified in the report D7.1 'On Programmable Corpora' 
     (https://doi.org/10.5281/zenodo.7664964), but already includes the changes made for DraCor API v1. 
-    In the report the features are included in the tables Tab.01 Corpus Features, Tab.02 Play Features, Tab.03 Segment Features, 
+    In the report 'On Programmable Corpora' the features are included in the tables Tab.01 Corpus Features, Tab.02 Play Features, Tab.03 Segment Features, 
     Tab.04 Character Features as RDF properties. Features representing a single data value are considered owl:DataTypeProperties; 
     some of the features in the API responses are expressed by nested data structures though (e.g. arrays providing information on
     characters). These features are here transformed into owl:ObjectProperties, generally following the pattern
-    'includes_{X}_data'" .
+    'contains_{X}_data'" .
 
 
 ########
