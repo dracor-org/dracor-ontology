@@ -2,14 +2,14 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dracon: <https://lod.dracor.org/ontology/v1/> .
+@prefix dracon: <https://dracor.org/ontology/dracor-api-ontology#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dig: <http://www.ics.forth.gr/isl/CRMdig/> .
 
 
 <https://dracor.org/ontology/dracor-api-ontology>
     a owl:Ontology ;
-    owl:versionInfo "v1.0.0";
+    owl:versionInfo "v1";
     rdfs:label "DraCor API Ontology"@en ;
     rdfs:seeAlso <https://dracor.org> , <https://doi.org/10.5281/zenodo.7664964> ;
     rdfs:comment "This version (v1) of the DraCor API Ontology models the response objects returned by the DraCor API. 
@@ -28,7 +28,10 @@
     They are all subclasses of the class 'API Response Data'.
     
     As an example: An instance of the class 'Author' is information about an author structured in a very specific way. 
-    According to CIDOC-CRM it would be a 'crm: E73 Information Object', not an instance of the class 'crm: E39 Actor'." .
+    According to CIDOC-CRM it would be a 'crm: E73 Information Object', not an instance of the class 'crm: E39 Actor'.
+    
+    For this ontology version v1.0.0-beta.1 (https://github.com/dracor-org/dracor-api/releases/tag/v1.0.0-beta.1) of the DraCor API was reviewed.
+    " .
 
 
 ########
@@ -43,15 +46,54 @@ dracon:feature_id
     See column 'No.' in Tab. 01, 02, 03, 04.";
     rdfs:range rdfs:Literal .
 
+
 dracon:xpath
     a owl:AnnotationProperty ;
-    rdfs:label "XPath"@en ;
+    rdfs:label "xPath"@en ;
     rdfs:comment "XPath expression that extracts the information from a DraCor TEI-file starting at the document root.
     It is expected that the encoding adheres to the the DraCor TEI customization documented in the ODD.
     Although it SHOULD return the actual value of the feature, this XPath expression is for reference only.
     It might not be the exact same construct, that is used in the XQuery based implementation of the API
     in the eXist-DB. The extraction algorithm implemented might use a different XPath and/or a combination of
     XQuery functions."@en ;
+    rdfs:range rdfs:Literal .
+
+
+dracon:extractor_in_api_module
+    a owl:AnnotationProperty ;
+    rdfs:label "api module"@en ;
+    rdfs:comment "Name of the xQuery module of the DraCor API eXist-DB application that contains the function(s) which extract the information from the
+    source document."@en ;
+    rdfs:range rdfs:Literal .
+
+
+dracon:extractor_in_api_function
+    a owl:AnnotationProperty ;
+    rdfs:label "extractor in api function"@en ;
+    rdfs:comment "Name of the xQuery function that contains the code that is used to extract the information from the source document ."@en ;
+    rdfs:range rdfs:Literal . 
+
+
+dracon:code_ref
+    a owl:AnnotationProperty ;
+    rdfs:label "code reference"@en ;
+    rdfs:comment "Reference to code lines that contain the relevant code."
+    rdfs:range xsd:anyURI .
+
+
+dracon:operation_id
+    a owl:AnnotationProperty ;
+    rdfs:label "operation id"@en ;
+    rdfs:comment "Operation ID ('operationId') in Open-API Specification Document of the DraCor API."@en ;
+    rdfs:range rdfs:Literal .
+
+
+dracon:field_key
+    a owl:AnnotationProperty ;
+    rdfs:label "key"@en ;
+    rdfs:comment "Key of the field in the JSON response object. Although it is aimed at having the
+    field keys consistent across the endpoints, there might be several keys. Therefore this information should be handled with care
+    and not be used for automatic processing."@en ;
     rdfs:range rdfs:Literal .
 
 
@@ -62,13 +104,13 @@ dracon:xpath
 dracon:API_Response_Data
     a owl:Class, rdfs:Class ;
     rdfs:label "API Response Data"@en;
-    rdfs:comment "Information Object returned by the DraCor API. It provides information *about* entities
+    rdfs:comment "Information Object returned by the DraCor API. It provides information about entities
     (plays, characters, ...). The subclasses of these class SHOULD not be confused with the digital representations
-    of the entities themselves. For example a 'author data object' is NOT representing the author of the play, which
+    of the entities themselves. For example a data object 'author' is NOT representing the author of the play, which
     would be modeled in CIDOC-CRM as 'crm: E39 Actor' or a subclass thereof, but is equivalent to an 'crm: E73 Information Object'
-    providing information *about* this E39 Actor. The API returns information extracted from TEI files by some
-    algorithms and can be considered (subjective) chunks of information about entities relevant to Computational
-    Drama Studies. Formally, it is a sub-class of  'dig: D1 Digital Object' in CRMdig." ;
+    providing information about this E39 Actor in a very specific way to the DraCor API. 
+    The API returns information extracted from TEI files by some algorithms and thus can be considered (subjective) chunks of information about entities relevant to Computational
+    Drama Analysis. Formally, it is a sub-class of  'dig: D1 Digital Object' in CRMdig." ;
     rdfs:subClassOf dig:D1_Digital_Object.
 
 
@@ -77,16 +119,18 @@ dracon:contains_data
     rdfs:label "contains data"@en ;
     rdfs:domain dracon:API_Response_Data ;
     rdfs:range dracon:API_Response_Data ;
-    rdfs:comment "Some API Response Objects do not only contain data fields, but nested data structures. This property
-    links an API response object with its nested parts."@en ;
+    rdfs:comment "Some API Response Objects do not only contain data values, but nested data structures. This auxillary property
+    links an API response object to its nested parts."@en ;
     rdfs:subPropertyOf crm:P106_is_composed_of .
 
 
-dracon:api_response_timestamp
+dracon:timestamp
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:API_Response_Data ;
     rdfs:range xsd:dateTime ;
-    rdfs:label "Date/Time the data was returned by the API"@en .
+    rdfs:label "timestamp"@en ;
+    rdfs:label "Zeitstempel"@de ;
+    rdfs:comment "Date/Time the data was returned by the API.".
 
 
 ########
@@ -97,11 +141,11 @@ dracon:api_response_timestamp
 
 dracon:Corpus
     a owl:Class, rdfs:Class ;
-    rdfs:label "Corpus Data"@en ;
-    rdfs:label "Korpus Daten"@de ;
+    rdfs:label "Corpus"@en ;
+    rdfs:label "Korpus"@de ;
     rdfs:label "корпус"@ru ;
     rdfs:comment "Data about a DraCor corpus."@en ;
-    rdfs:comment "Daten über ein Korpus in DraCor"@de ;
+    rdfs:comment "Daten über ein DraCor Korpus."@de ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
@@ -109,72 +153,161 @@ dracon:corpus_name
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Name"@en ;
-    dracon:feature_id "C1" .
+    rdfs:label "corpus name"@en ;
+    rdfs:comment "Identifier 'name' or 'corpusname' of a corpus, e.g. 'ger' for the 'German Drama Corpus'. 
+    These identifiers are normally used as path parameters in requests to the DraCor API. 
+    For further details see API Specification at https://dracor.org/doc/api#/ .";
+    dracon:feature_id "C1" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L472-L473> ;
+    dracon:xPath "/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='URI' and @xml:base='https://dracor.org/']/text()" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon:field_key "name" . 
 
 
 dracon:corpus_uri
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:anyURI ;
-    rdfs:label "Corpus URI"@en ;
-    dracon:feature_id "C2" .
+    rdfs:label "corpus uri"@en ;
+    rdfs:comment "Identifier 'uri' of a corpus. It is equal to the the full URL of the /corpora/{corpusname}.";
+    dracon:feature_id "C2" ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "api:corpora" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L247> ;
+    dracon:operation_id "list-corpora" ;
+    dracon:field_key "uri" .
 
 
 dracon:corpus_title
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Title"@en ;
-    dracon:feature_id "C3" .
+    rdfs:label "corpus title"@en ;
+    rdfs:comment "Full title of a corpus, e.g. 'Ukrainian Drama Corpus'.";
+    dracon:feature_id "C3" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref  <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L475> ;
+    dracon:xPath "/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[1]/text()" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon:field_key "title" . 
 
 
 dracon:corpus_acronym
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Acronym"@en ;
-    dracon:feature_id "C4" .
+    rdfs:label "corpus acronym"@en ;
+    rdfs:comment "Acronym of a corpus. Normally, it is the identifier 'name'/'corpusname' 
+    (feature C1; but starting with a capital letter) followed by the string 'DraCor', e.g. 'TatDraCor'. 
+    
+    In the TEI source data the corpus acronym can be explicity set by including an element <tei:title> with the @type 'acronym' in
+    in the metadata file of a corpus (corpus.xml). 
+    
+    If this element is missing, the value of the element <tei:idno> with with the attribute @type 'URI' from the corpus.xml is extracted and prepended with 'DraCor'." ;
+    dracon:feature_id "C4" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L487-L492> , 
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L476> ;
+    dracon:xPath "/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='acronym']/text()" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon: field_key "acronym" .
 
 
 dracon:corpus_description
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Description"@en ;
-    dracon:feature_id "C5" .
+    rdfs:label "corpus description"@en ;
+    rdfs:comment "Description of a corpus. 
+    
+    In the TEI source data this information is contained in the element <tei:projectDesc> 
+    in the corpus.xml file. The value returned can be formatted using Markdown. 
+    
+    The transformation of TEI into Markdown is handled by the function 
+    'local:to-markdown' in 'util.xqm' which transforms TEI elements <tei:hi> and <tei:ref> for hyperlinks." ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L478> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L480-L482> ;
+    dracon:xPath "/tei:teiCorpus/tei:teiHeader/tei:encodingDesc/tei:projectDesc/tei:p"
+    dracon:feature_id "C5" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon:field_key "description" .
 
 
 dracon:corpus_repository
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Repository"@en ;
-    dracon:feature_id "C6" .
+    rdfs:label "corpus repository"@en ;
+    rdfs:comment "URL of the (GitHub) repository that contains the TEI source data.
+    
+    The information is extracted from the element <tei:idno> with the @type attribute-value 'repo' 
+    in a corpus.xml file." ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L477>
+    dracon:xPath </tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='repo']/text()> ;
+    dracon:feature_id "C6" ;
+    dracon:field_key "repository" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" .
 
 
 dracon:corpus_licence
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Corpus Licence"@en ;
-    dracon:feature_id "C7" .
+    rdfs:label "corpus licence"@en ;
+    rdfs:comment "Licence information of a corpus.
+
+    The value is a string identifying the licence, e.g. 'CC0' .
+    
+    The information is extracted from the corpus metadata in 'corpus.xml'. 
+    It is the text content of the element <tei:licence>." ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> , 
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L495-L496> ;
+    dracon:xPath "normalize-space(/tei:teiCorpus/tei:teiHeader//tei:availability/tei:licence/text())" ;
+    dracon:feature_id "C7" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon:field_key "licence" .
 
 
 dracon:corpus_licence_url
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:anyURI ;
-    rdfs:label "Corpus Licence URL"@en ;
-    dracon:feature_id "C8" .
+    rdfs:label "corpus licence URL"@en ;
+    rdfs:comment "Identifier/URL of a licence.
+
+    The value is extracted from the attribute @target of the element <tei:licence> in the 'corpus.xml' file." ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-info" ;
+    dracon:code-ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> ,
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L497-L498> ;
+    dracon:feature_id "C8" ;
+    dracon:operation_id "list-corpora", "list-corpus-content" ;
+    dracon:field_key "licenceUrl" . 
 
 
 dracon:corpus_num_of_plays
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Plays in Corpus"@en ;
-    rdfs:label "Anzahl der Stücke"@de ;
+    rdfs:label "number of plays in corpus"@en ;
+    rdfs:label "Anzahl Stücke (in einem Korpus)"@de ;
+    rdfs:comment "Number of plays in a corpus.
+    
+    The value is the number of <tei:TEI> elements (should be equal to files) in a given corpus collection in the 
+    underlying eXist database." ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L202> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C9" .
 
 
@@ -182,8 +315,16 @@ dracon:corpus_num_of_characters
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Characters in Corpus"@en ;
-    rdfs:label "Anzahl Figuren"@de ;
+    rdfs:label "number of characters in corpus"@en ;
+    rdfs:label "Anzahl Figuren (in einem Korpus)"@de ;
+    rdfs:comment "Number of characters in a corpus.
+    
+    The value is the number of all <tei:person> and <tei:personGrp> elements in 
+    all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L204> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C10" .
 
 
@@ -191,7 +332,16 @@ dracon:corpus_num_of_characters_male
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Male Characters in Corpus"@en ;
+    rdfs:label "number of male characters in corpus"@en ;
+    rdfs:label "Anzahl männlicher Figuren (in einem Korpus)@de" ;
+    rdfs:comment "Number of male characters in a corpus.
+    
+    The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'MALE' in the
+    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L205> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C11" .
 
 
@@ -199,7 +349,16 @@ dracon:corpus_num_of_characters_female
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Female Characters in Corpus"@en ;
+    rdfs:label "number of female characters in corpus"@en ;
+    rdfs:label "Anzahl weiblicher Figuren (in einem Korpus)@de" ;
+    rdfs:comment "Number of female characters in a corpus.
+    
+    The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'FEMALE' in the
+    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L206> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C12" .
 
 
@@ -207,7 +366,15 @@ dracon:corpus_num_of_tei_text_elements
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of <tei:text> Elements in the Corpus"@en ;
+    rdfs:label "number of text elements in corpus"@en ;
+    rdfs:description "Number of <tei:text> elements in a corpus.
+    
+    The value is the number of <tei:text> elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
+    A TEI file can contain multiple <tei:text> elements, e.g. when there are multiple one act plays published together." ;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L207> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C13" .
 
 
@@ -215,7 +382,15 @@ dracon:corpus_num_of_sp
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of <tei:sp> Elements in the Corpus"@en ;
+    rdfs:label "number of speech acts in a corpus"@en ;
+    rdfs:label "Anzahl Repliken (in einem Korpus)"
+    rdfs:description "Number of speech acts in a corpus.
+    
+    The value is the number of <tei:sp> elements in a collection representing a corpus in the underlying eXist database."@en
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L209> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C14" .
 
 
@@ -223,7 +398,15 @@ dracon:corpus_num_of_stage
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of <tei:stage> Elements in the Corpus"@en ;
+    rdfs:label "number of stage directions in a corpus"@en ;
+    rdfs:label "Anzahl Regieanweisungen (in einem Korpus)"@de ;
+    rdfs:description "Number of stage directions in a corpus.
+    
+    The value is the number of <tei:stage> elements in a collection representing a corpus in the underlying eXist database."@en;
+    dracon:extractor_in_api_module "api.xqm" ;
+    dracon:extractor_in_api_function "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L208> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C15" .
 
 
@@ -231,7 +414,16 @@ dracon:corpus_num_of_word_tokens_in_text_elements
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Word Tokens in <tei:text> Elements in the Corpus"@en ;
+    rdfs:label "number of word tokens in text elements"@en ;
+    rdfs:description "Number of word tokens in <tei:text> elements in the corpus.
+    
+    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en  ;
+    dracon:extractor_in_api_module "metrics.xqm", "api.xqm" ;
+    dracon:extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ,
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219>
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C16" .
 
 
@@ -239,7 +431,16 @@ dracon:corpus_num_of_word_tokens_in_sp
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Word Tokens in <tei:sp> Elements in the Corpus"@en ;
+    rdfs:label "number of word tokens in sp"@en ;
+    rdfs:description "Number of word tokens in <tei:sp> elements in the corpus.
+    
+    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
+    dracon:extractor_in_api_module "metrics.xqm", "api.xqm" ;
+    dracon:extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L220> ,
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L129> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C17" .
 
 
@@ -247,7 +448,16 @@ dracon:corpus_num_of_word_tokens_in_stage
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Word Tokens in <tei:stage> Elements in the Corpus"@en ;
+    rdfs:label "number of word tokens in stage"@en ;
+    rdfs:description "Number of word tokens in <tei:stage> elements in the corpus.
+    
+    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
+    dracon:extractor_in_api_module "metrics.xqm", "api.xqm" ;
+    dracon:extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L128> ,
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L221> ;
+    dracon:operation_id "list-corpora" ;
     dracon:feature_id "C18" .
 
 
@@ -255,16 +465,24 @@ dracon:corpus_metrics_date_updated
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:dateTime ;
-    rdfs:label "Date updated of the Corpus in the DraCor system"@en ;
-    dracon:feature_id "C19" .
+    rdfs:label "metrics updated at"@en ;
+    rdfs:description "Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated.
+    
+    The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'."@en ;
+    dracon:extractor_in_api_module "metrics.xqm" , "api.xqm" ;
+    dracon:extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L130> ,
+    <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L223> ;
+    dracon:feature_id "C19" ;
+    dracon:operation_id "list-corpora" .
 
 
 dracon:contains_play_data 
     a owl:ObjectProperty, rdf:Property ;
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Play ;
-    rdfs:label "Contains play data"@en ;
-    rdfs:comment "Links the corpus data in the API response to the data about the play objects contained in the corpus.
+    rdfs:label "contains play data"@en ;
+    rdfs:description "Links the corpus data in the API response to the data about the play objects contained in the corpus.
     This property encodes the information of Feature 'C20 corpus play objects' as listed in the Report 'On Programmable
     Corpora'."@en ;
     rdfs:subPropertyOf dracon:contains_data .
@@ -277,7 +495,7 @@ dracon:Corpus_Metrics
     a owl:Class, rdfs:Class ;
     rdfs:label "Corpus Metrics Data"@en ;
     rdfs:label "Korpusmetriken"@de ;
-    rdfs:comment "Corpus Metrics as included in the response of the /corpora endpoint."@en ;
+    rdfs:description "Corpus Metrics as included in the response of the /corpora endpoint."@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
@@ -292,7 +510,7 @@ dracon:contains_corpus_metrics_data
 dracon:Corpus_Wordcount
     a owl:Class, rdfs:Class ;
     rdfs:label "Wordcounts"@en ;
-    rdfs:comment "Object containing the counts of word tokens of a single corpus."@en ;
+    rdfs:description "Object containing the counts of word tokens on the level of text,  of a single corpus."@en ;
     rdfs:subClassOf dracon:API_Response_Data .
 
 
