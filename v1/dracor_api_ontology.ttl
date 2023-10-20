@@ -367,7 +367,7 @@ dracon:corpus_num_of_tei_text_elements
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of text elements in corpus"@en ;
-    rdfs:description "Number of <tei:text> elements in a corpus.
+    rdfs:comment "Number of <tei:text> elements in a corpus.
     
     The value is the number of <tei:text> elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
     A TEI file can contain multiple <tei:text> elements, e.g. when there are multiple one act plays published together." ;
@@ -384,7 +384,7 @@ dracon:corpus_num_of_sp
     rdfs:range xsd:integer ;
     rdfs:label "number of speech acts in a corpus"@en ;
     rdfs:label "Anzahl Repliken (in einem Korpus)" ;
-    rdfs:description "Number of speech acts in a corpus.
+    rdfs:comment "Number of speech acts in a corpus.
     
     The value is the number of <tei:sp> elements in a collection representing a corpus in the underlying eXist database."@en ;
     dracon:extractor_in_api_module "api.xqm" ;
@@ -400,7 +400,7 @@ dracon:corpus_num_of_stage
     rdfs:range xsd:integer ;
     rdfs:label "number of stage directions in a corpus"@en ;
     rdfs:label "Anzahl Regieanweisungen (in einem Korpus)"@de ;
-    rdfs:description "Number of stage directions in a corpus.
+    rdfs:comment "Number of stage directions in a corpus.
     
     The value is the number of <tei:stage> elements in a collection representing a corpus in the underlying eXist database."@en;
     dracon:extractor_in_api_module "api.xqm" ;
@@ -415,7 +415,7 @@ dracon:corpus_num_of_word_tokens_in_text_elements
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in text elements"@en ;
-    rdfs:description "Number of word tokens in <tei:text> elements in the corpus.
+    rdfs:comment "Number of word tokens in <tei:text> elements in the corpus.
     
     The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
     '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en  ;
@@ -432,7 +432,7 @@ dracon:corpus_num_of_word_tokens_in_sp
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in sp"@en ;
-    rdfs:description "Number of word tokens in <tei:sp> elements in the corpus.
+    rdfs:comment "Number of word tokens in <tei:sp> elements in the corpus.
     
     The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
     '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
@@ -449,7 +449,7 @@ dracon:corpus_num_of_word_tokens_in_stage
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in stage"@en ;
-    rdfs:description "Number of word tokens in <tei:stage> elements in the corpus.
+    rdfs:comment "Number of word tokens in <tei:stage> elements in the corpus.
     
     The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
     '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
@@ -466,7 +466,7 @@ dracon:corpus_metrics_date_updated
     rdfs:domain dracon:Corpus ;
     rdfs:range xsd:dateTime ;
     rdfs:label "metrics updated at"@en ;
-    rdfs:description "Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated.
+    rdfs:comment "Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated.
     
     The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'."@en ;
     dracon:extractor_in_api_module "metrics.xqm" , "api.xqm" ;
@@ -482,7 +482,7 @@ dracon:contains_play_data
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Play ;
     rdfs:label "contains play data"@en ;
-    rdfs:description "Links the corpus data in the API response to the data about the play objects contained in the corpus.
+    rdfs:comment "Links the corpus data in the API response to the data about the play objects contained in the corpus.
     This property encodes the information of Feature 'C20 corpus play objects' as listed in the Report 'On Programmable
     Corpora'."@en ;
     rdfs:subPropertyOf dracon:contains_data ;
@@ -497,7 +497,7 @@ dracon:Corpus_Metrics
     a owl:Class, rdfs:Class ;
     rdfs:label "Corpus Metrics"@en ;
     rdfs:label "Korpusmetriken"@de ;
-    rdfs:description "Corpus Metrics as included in the response of the /corpora endpoint."@en ;
+    rdfs:comment "Corpus Metrics as included in the response of the /corpora endpoint."@en ;
     rdfs:subClassOf dracon:API_Response_Data ;
     dracon:extractor_in_api_module "api.xqm" ;
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
@@ -510,14 +510,14 @@ dracon:contains_corpus_metrics_data
     rdfs:domain dracon:Corpus ;
     rdfs:range dracon:Corpus_Metrics ;
     rdfs:label "contains corpus metrics"@en ;
-    rdfs:description "Links corpus data to the metrics data."@en ;
+    rdfs:comment "Links corpus data to the metrics data."@en ;
     rdfs:subPropertyOf dracon:contains_data .
 
 
 dracon:Corpus_Wordcounts
     a owl:Class, rdfs:Class ;
     rdfs:label "Corpus Wordcounts"@en ;
-    rdfs:description "Object containing the counts of word tokens on the level of text, speech act and stage direction of a single corpus."@en ;
+    rdfs:comment "Object containing the counts of word tokens on the level of text, speech act and stage direction of a single corpus."@en ;
     rdfs:subClassOf dracon:API_Response_Data ;
     dracon:extractor_in_api_module "api.xqm" ;
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
@@ -530,7 +530,7 @@ dracon:contains_corpus_wordcount_data
     rdfs:domain dracon:Corpus_Metrics ;
     rdfs:range dracon:Corpus_Wordcount ;
     rdfs:label "contains wordcount data"@en ;
-    rdfs:description "Links metrics data to the wordcount data."@en ;
+    rdfs:comment "Links metrics data to the wordcount data."@en ;
     rdfs:subPropertyOf dracon:contains_data .
 
 
@@ -555,7 +555,7 @@ dracon:play_corpus_name
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play corpus name"@en ;
-    rdfs:description "Name/Identifier 'corpusname' (Feature C1) of the corpus the play is contained in"@en ;
+    rdfs:comment "Name/Identifier 'corpusname' (Feature C1) of the corpus the play is contained in"@en ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-play-info" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1006> ;
@@ -567,7 +567,7 @@ dracon:play_id
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:description "DraCor ID of the play, e.g. 'ger000171'.
+    rdfs:comment "DraCor ID of the play, e.g. 'ger000171'.
     
     In the TEI source file the DraCor ID is contained in the attribute @xml:id on the root element <tei:TEI>."@en ;
     dracon:extractor_in_api_module "util.xqm" ;
@@ -583,7 +583,7 @@ dracon:play_uri
     rdfs:domain dracon:Play ;
     rdfs:range xsd:anyURI;
     rdfs:label "play uri"@en ;
-    rdfs:description "URI of the play.
+    rdfs:comment "URI of the play.
     
     It is equal to the the full URL of the /corpora/{corpusname}/plays/{playname} endpoint."@en ;
     dracon:extractor_in_api_module "util.xqm" ;
