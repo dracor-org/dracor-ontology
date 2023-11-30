@@ -720,89 +720,112 @@ dracon:play_author_shortname_en
     dracon:operation_id "list-corpus-content", "play-info" .
 
 
-dracon:play_first_author_name
-    a owl:DatatypeProperty, rdf:Property ;
-    rdfs:domain dracon:Play ;
-    rdfs:range  rdfs:Literal;
-    rdfs:label "Name of the First Author of a Play"@en ;
-    dracon:feature_id "P15" .
-
-
 dracon:play_first_author_shortname
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "Short Name of the First Author of a Play"@en ;
-    dracon:feature_id "P16" .
-
-
-dracon:play_first_author_deprecation_warning
-    a owl:DatatypeProperty, rdf:Property ;
-    rdfs:domain dracon:Play ;
-    rdfs:range  rdfs:Literal;
-    rdfs:label "Warning that the information on the first author will become deprecated"@en ;
-    dracon:feature_id "P17" .
+    rdfs:comment "Short name of the first author of a play."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data", "dutil:get-short-name" , "local:build-short-name" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L26>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L619> ;
+    dracon:feature_id "P16" ;
+    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" .
 
 
 dracon:play_author_also_known_as
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "Alternative Name of the Author of a Play"@en ;
-    dracon:feature_id "P18" .
+    rdfs:comment "Alternative name of the author of a play, e.g. 'Titus Maccius Plautus' in case of the author 'Plautus'. In the source TEI file alternative names are encoded as additional elements <tei:persName>."@en ;
+    dracon:feature_id "P18" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-authors" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L816-L819> ;
+    dracon:xpath "/tei:TEI//tei:fileDesc/tei:titleStmt/tei:author[not(@role='illustrator')]/tei:persName[position() > 1]" ;
+    dracon:operation_id "list-corpus-content", "play-info" .
 
 
 dracon:play_author_ref_external_id
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "ID of the Author in an External Reference Resource"@en ;
-    dracon:feature_id "P19" .
+    rdfs:label "external reference resource id"@en ;
+    rdfs:comment "ID of the author in an external reference resource. This for example can be the 'Q-Number' of Wikidata."@en ;
+    dracon:feature_id "P19" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-authors" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
+    dracon:operation_id "list-corpus-content", "play-info" .
+
 
 
 dracon:play_author_ref_type
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "Type of the ID of the Author in an External Reference Resource"@en ;
-    dracon:feature_id "P20" .
+    rdfs:label "type of id in external reference resource" ;
+    rdfs:comment "Type of the ID of the author in an external reference resource, e.g. 'wikidata'."@en ;
+    dracon:feature_id "P20" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-authors" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
+    dracon:operation_id "list-corpus-content", "play-info" .
 
 
 dracon:play_num_of_co_authors
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:integer;
-    rdfs:label "Number of Co-Authors of a Play"@en ;
-    dracon:feature_id "P21" .
+    rdfs:label "number of co-authors"@en ;
+    rdfs:comment "Number of co-authors of a play. The value is the number of all authors of a play minus one."@en ;
+    dracon:feature_id "P21" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ; 
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L27>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L622> ;
+    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" .
 
 
 dracon:play_genre_normalized
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "Normalized Genre of a Play"@en ;
-    dracon:feature_id "P22" .
+    rdfs:label "normalized genre"@en ;
+    rdfs:comment "Normalized genre of a play. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. The normalized values can be 'Comedy', 'Tagedy', 'Tragicomedy', 'Satyr play'."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-text-classes" , "dutil:get-genre" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L568> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L617> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L516-L529> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/config.xqm#L79-L89> ;
+    dracon:xpath "$tei:TEI//tei:textClass/tei:classCode[@scheme='http://www.wikidata.org/entity/']/string()" ;
+    dracon:feature_id "P22" ;
+    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" .
 
 
 dracon:play_is_libretto
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:boolean;
-    rdfs:label "Play is a Libretto"@en ;
-    dracon:feature_id "P23" .
+    rdfs:label "play is libretto"@en ;
+    rdfs:comment "Indicates if a play is a libretto. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. If the returned value is 'Libretto' the value of this property is 'true', otherwise 'false'."@en;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-text-classes", "dutil:get-corpus-meta-data" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L618> ;
+    dracon:feature_id "P23" ;
+    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" .
 
 
 dracon:play_year_written
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
-    rdfs:label "Creation Year"@en ;
+    rdfs:label "year written"@en ;
     rdfs:label "Jahr der Entstehung"@de ;
     rdfs:label "Год написания"@ru ;
-    rdfs:comment "Year the Play was written"@en ;
+    rdfs:comment "Year of the creation of the play / year when the play was written."@en ;
     dracon:feature_id "P24" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-years-iso" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
     dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='written']/@when|@notBefore|@notAfter" .
-
+HIER
 
 dracon:play_year_printed
     a owl:DatatypeProperty, rdf:Property ;
