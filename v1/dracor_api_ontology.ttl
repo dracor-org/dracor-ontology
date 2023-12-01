@@ -46,6 +46,12 @@ dracon:feature_id
     See column 'No.' in Tab. 01, 02, 03, 04.";
     rdfs:range rdfs:Literal .
 
+dracon:feature_name
+    a owl:AnnotationProperty ;
+    rdfs:label "Feature Slug"@en;
+    rdfs:comment "Slug used to identify the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
+    See column 'Feature' in Tab. 01, 02, 03, 04.";
+    rdfs:range rdfs:Literal .
 
 dracon:xpath
     a owl:AnnotationProperty ;
@@ -158,6 +164,7 @@ dracon:corpus_name
     This identifier is normally used as path parameters in requests to the DraCor API. 
     For further details see API Specification at https://dracor.org/doc/api#/ .";
     dracon:feature_id "C1" ;
+    dracon:feature_name "corpus_name" ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-corpus-info" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L472-L473> ;
@@ -173,6 +180,7 @@ dracon:corpus_uri
     rdfs:label "corpus uri"@en ;
     rdfs:comment "Identifier 'uri' of a corpus. It is equal to the the full URL of the /corpora/{corpusname}.";
     dracon:feature_id "C2" ;
+    dracon:feature_name "corpus_uri" ;
     dracon:extractor_in_api_module "api.xqm" ;
     dracon:extractor_in_api_function "api:corpora" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L247> ;
@@ -187,6 +195,7 @@ dracon:corpus_title
     rdfs:label "corpus title"@en ;
     rdfs:comment "Full title of a corpus, e.g. 'Ukrainian Drama Corpus'.";
     dracon:feature_id "C3" ;
+    dracon:feature_name "corpus_title" ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-corpus-info" ;
     dracon:code_ref  <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L475> ;
@@ -208,6 +217,7 @@ dracon:corpus_acronym
     
     If this element is missing, the value of the element <tei:idno> with with the attribute @type 'URI' from the corpus.xml is extracted and prepended with 'DraCor'." ;
     dracon:feature_id "C4" ;
+    dracon:feature_name "corpus_acronym" ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-corpus-info" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L487-L492> , 
@@ -230,6 +240,7 @@ dracon:corpus_description
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L478> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L480-L482> ;
     dracon:xpath "/tei:teiCorpus/tei:teiHeader/tei:encodingDesc/tei:projectDesc/tei:p" ;
     dracon:feature_id "C5" ;
+    dracon:feature_name "corpus_description" ;
     dracon:operation_id "list-corpora", "list-corpus-content" ;
     dracon:field_key "description" .
 
@@ -246,6 +257,7 @@ dracon:corpus_repository
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L477> ;
     dracon:xpath "/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='repo']/text()" ;
     dracon:feature_id "C6" ;
+    dracon:feature_name "corpus_repository" ;
     dracon:field_key "repository" ;
     dracon:operation_id "list-corpora", "list-corpus-content" .
 
@@ -264,6 +276,7 @@ dracon:corpus_licence
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L495-L496> ;
     dracon:xpath "normalize-space(/tei:teiCorpus/tei:teiHeader//tei:availability/tei:licence/text())" ;
     dracon:feature_id "C7" ;
+    dracon:feature_name "corpus_licence" ;
     dracon:operation_id "list-corpora", "list-corpus-content" ;
     dracon:field_key "licence" .
 
@@ -276,9 +289,10 @@ dracon:corpus_licence_url
     rdfs:comment "Identifier/URL of a licence. The value is extracted from the attribute @target of the element <tei:licence> in the 'corpus.xml' file." ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-corpus-info" ;
-    dracon:code-ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> ,
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L497-L498> ;
     dracon:feature_id "C8" ;
+    dracon:feature_name "corpus_licence_url" ;
     dracon:operation_id "list-corpora", "list-corpus-content" ;
     dracon:field_key "licenceUrl" . 
 
@@ -295,7 +309,8 @@ dracon:corpus_num_of_plays
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L202> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C9" .
+    dracon:feature_id "C9" ;
+    dracon:feature_name "corpus_num_of_plays" .
 
 
 dracon:corpus_num_of_characters
@@ -310,7 +325,8 @@ dracon:corpus_num_of_characters
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L204> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C10" .
+    dracon:feature_id "C10" ;
+    dracon:feature_name "corpus_num_of_characters" .
 
 
 dracon:corpus_num_of_characters_male
@@ -325,7 +341,8 @@ dracon:corpus_num_of_characters_male
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L205> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C11" .
+    dracon:feature_id "C11" ;
+    dracon:feature_name "corpus_num_of_characters_male" .
 
 
 dracon:corpus_num_of_characters_female
@@ -340,7 +357,8 @@ dracon:corpus_num_of_characters_female
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L206> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C12" .
+    dracon:feature_id "C12" ;
+    dracon:feature_name "corpus_num_of_characters_female" .
 
 
 dracon:corpus_num_of_tei_text_elements
@@ -354,7 +372,8 @@ dracon:corpus_num_of_tei_text_elements
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L207> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C13" .
+    dracon:feature_id "C13" ;
+    dracon:feature_name "corpus_num_of_tei_text_elements" .
 
 
 dracon:corpus_num_of_sp
@@ -368,7 +387,8 @@ dracon:corpus_num_of_sp
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L209> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C14" .
+    dracon:feature_id "C14" ;
+    dracon:feature_name "corpus_num_of_sp" .
 
 
 dracon:corpus_num_of_stage
@@ -382,8 +402,8 @@ dracon:corpus_num_of_stage
     dracon:extractor_in_api_function "local:get-corpus-metrics" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L208> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C15" .
-
+    dracon:feature_id "C15" ;
+    dracon:feature_name "corpus_num_of_stage" .
 
 dracon:corpus_num_of_word_tokens_in_text_elements
     a owl:DatatypeProperty, rdf:Property ;
@@ -397,7 +417,8 @@ dracon:corpus_num_of_word_tokens_in_text_elements
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C16" .
+    dracon:feature_id "C16" ;
+    dracon:feature_name "corpus_num_of_word_tokens_in_text_elements" .
 
 
 dracon:corpus_num_of_word_tokens_in_sp
@@ -412,7 +433,8 @@ dracon:corpus_num_of_word_tokens_in_sp
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L220> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L129> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C17" .
+    dracon:feature_id "C17" ;
+    dracon:feature_name "corpus_num_of_word_tokens_in_sp" .
 
 
 dracon:corpus_num_of_word_tokens_in_stage
@@ -427,7 +449,8 @@ dracon:corpus_num_of_word_tokens_in_stage
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L128> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L221> ;
     dracon:operation_id "list-corpora" ;
-    dracon:feature_id "C18" .
+    dracon:feature_id "C18" ;
+    dracon:feature_name "corpus_num_of_word_tokens_in_stage" .
 
 
 dracon:corpus_metrics_date_updated
@@ -441,7 +464,8 @@ dracon:corpus_metrics_date_updated
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L130> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L223> ;
     dracon:feature_id "C19" ;
-    dracon:operation_id "list-corpora" .
+    dracon:operation_id "list-corpora" ;
+    dracon:feature_name "corpus_metrics_date_updated" .
 
 
 dracon:contains_play_data 
@@ -527,7 +551,8 @@ dracon:play_corpus_name
     dracon:extractor_in_api_function "dutil:get-play-info" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1006> ;
     dracon:feature_id "P1" ;
-    dracon:operation_id "play-info" , "play-metrics" .
+    dracon:operation_id "play-info" , "play-metrics" ;
+    dracon:feature_name "play_corpus_name" .
 
 
 dracon:play_id
@@ -541,7 +566,8 @@ dracon:play_id
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100> ;
     dracon:feature_id "P2" ;
     dracon:xpath "/tei:TEI/@xml:id/string()" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" .
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
+    dracon:feature_name "play_id" .
 
 
 dracon:play_uri
@@ -554,7 +580,8 @@ dracon:play_uri
     dracon:extractor_in_api_function "dutil:get-play-info" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L958-L959> ;
     dracon:feature_id "P65" ;
-    dracon:operation_id "list-corpus-content" , "play-info" .
+    dracon:operation_id "list-corpus-content" , "play-info" ;
+    dracon:feature_name "play_uri" .
 
 
 dracon:play_name
@@ -568,7 +595,8 @@ dracon:play_name
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1005> ;
     dracon:extractor_in_api_function "dutil:get-play-info" ;
     dracon:feature_id "P3" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , play-metrics .
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , play-metrics ;
+    dracon:feature_name "play_name" .
 
 
 dracon:play_wikidata_id
@@ -582,7 +610,8 @@ dracon:play_wikidata_id
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L895-L906> ;
     dracon:feature_id "P4" ;
     dracon:xpath "substring-after(/tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name='wikidata'][1]/@passive/string(),'http://www.wikidata.org/entity/')" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" .
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
+    dracon:feature_name "play_wikidata_id" .
 
 
 dracon:play_title
@@ -596,7 +625,8 @@ dracon:play_title
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L843> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1007> ;
     dracon:feature_id "P5" ;
     dracon:xpath "/tei:TEI//tei:fileDesc/tei:titleStmt/tei:title[1]/normalize-space()", "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" .
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
+    dracon:feature_name "play_title" .
 
 
 dracon:play_subtitle
@@ -610,7 +640,8 @@ dracon:play_subtitle
     dracon:extractor_in_api_function "dutil:get-titles" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L844-L845> ;
     dracon:xpath "/tei:TEI//tei:titleStmt/tei:title[@type='sub'][1]/normalize-space()", "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" .
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
+    dracon:feature_name "play_subtitle" .
 
 
 dracon:play_title_en
@@ -624,7 +655,8 @@ dracon:play_title_en
     dracon:extractor_in_api_function "dutil:get-titles" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L865-L868> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961> ;
     dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()" ;
-    dracon:operation_id "list-corpus-content",  "play-info".
+    dracon:operation_id "list-corpus-content",  "play-info" ;
+    dracon:feature_name "play_title_en" .
 
 
 dracon:play_subtitle_en
@@ -638,7 +670,8 @@ dracon:play_subtitle_en
     dracon:extractor_in_api_function "dutil:get-titles" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L869-L870>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961> ;
     dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()" ;
-    dracon:operation_id "list-corpus-content",  "play-info".
+    dracon:operation_id "list-corpus-content",  "play-info" ;
+    dracon:feature_name "play_subtitle_en" .
 
 
 dracon:play_author_name
@@ -652,7 +685,8 @@ dracon:play_author_name
     dracon:extractor_in_api_function "dutil:get-sort-name", "local:build-sort-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L760-L770> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L734-L752> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_name" .
 
 
 dracon:play_author_name_en
@@ -665,7 +699,8 @@ dracon:play_author_name_en
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-sort-name", "local:build-sort-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L772-L790> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_name_en" .
 
 
 dracon:play_author_fullname
@@ -678,7 +713,8 @@ dracon:play_author_fullname
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-full-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L663-L667> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_fullname" .
     
 
 dracon:play_author_fullname_en
@@ -691,7 +727,8 @@ dracon:play_author_fullname_en
     dracon:extractor_in_api_function "dutil:get-full-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L681-L685> ;
     dracon:feature_id "P12" ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_fullname_en" .
 
 
 dracon:play_author_shortname
@@ -704,7 +741,8 @@ dracon:play_author_shortname
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-short-name" , "local:build-short-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L690-L692> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_shortname" .
 
 
 dracon:play_author_shortname_en
@@ -717,7 +755,8 @@ dracon:play_author_shortname_en
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-short-name" , "local:build-short-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L721-L732> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_shortname_en" .
 
 
 dracon:play_first_author_shortname
@@ -729,7 +768,8 @@ dracon:play_first_author_shortname
     dracon:extractor_in_api_function "dutil:get-corpus-meta-data", "dutil:get-short-name" , "local:build-short-name" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L26>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L619> ;
     dracon:feature_id "P16" ;
-    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" .
+    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" ;
+    dracon:feature_name "play_first_author_shortname" .
 
 
 dracon:play_author_also_known_as
@@ -742,7 +782,8 @@ dracon:play_author_also_known_as
     dracon:extractor_in_api_function "dutil:get-authors" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L816-L819> ;
     dracon:xpath "/tei:TEI//tei:fileDesc/tei:titleStmt/tei:author[not(@role='illustrator')]/tei:persName[position() > 1]" ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_also_known_as" .
 
 
 dracon:play_author_ref_external_id
@@ -755,8 +796,8 @@ dracon:play_author_ref_external_id
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-authors" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
-
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_ref_external_id" .
 
 
 dracon:play_author_ref_type
@@ -769,7 +810,8 @@ dracon:play_author_ref_type
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-authors" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
-    dracon:operation_id "list-corpus-content", "play-info" .
+    dracon:operation_id "list-corpus-content", "play-info" ;
+    dracon:feature_name "play_author_ref_type" .
 
 
 dracon:play_num_of_co_authors
@@ -782,7 +824,8 @@ dracon:play_num_of_co_authors
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ; 
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L27>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L622> ;
-    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" .
+    dracon:operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" ;
+    dracon:feature_name "play_num_of_co_authors" .
 
 
 dracon:play_genre_normalized
@@ -796,7 +839,8 @@ dracon:play_genre_normalized
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L568> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L617> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L516-L529> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/config.xqm#L79-L89> ;
     dracon:xpath "$tei:TEI//tei:textClass/tei:classCode[@scheme='http://www.wikidata.org/entity/']/string()" ;
     dracon:feature_id "P22" ;
-    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" .
+    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" ;
+    dracon:feature_name "play_genre_normalized" .
 
 
 dracon:play_is_libretto
@@ -809,7 +853,8 @@ dracon:play_is_libretto
     dracon:extractor_in_api_function "dutil:get-text-classes", "dutil:get-corpus-meta-data" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L618> ;
     dracon:feature_id "P23" ;
-    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" .
+    dracon:operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" ;
+    dracon:feature_name "play_is_libretto" .
 
 
 dracon:play_year_written
@@ -824,129 +869,227 @@ dracon:play_year_written
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:extractor_in_api_function "dutil:get-years-iso" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
-    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='written']/@when|@notBefore|@notAfter" .
-HIER
+    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='written']/@when|@notBefore|@notAfter" ;
+    dracon:feature_name "play_year_written" ;
+    dracon:operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .  
+
 
 dracon:play_year_printed
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
-    rdfs:label "Publication Year"@en ;
+    rdfs:label "year printed"@en ;
     rdfs:label "Jahr der Veröffentlichung"@de ;
     rdfs:label "Год издания"@ru ;
-    rdfs:comment "Year the Play was published"@en ;
+    rdfs:comment "Year the play was published / year of first printing."@en ;
     dracon:feature_id "P25" ;
-    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='print']/@when|@notBefore|@notAfter" .
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-years-iso" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
+    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='print']/@when|@notBefore|@notAfter" ;
+    dracon:feature_name "play_year_printed" ;
+    dracon:operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
 
 
 dracon:play_year_premiered
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
-    rdfs:label "Year premiered"@en ;
+    rdfs:label "year premiered"@en ;
     rdfs:label "Jahr der Erstaufführung"@de ;
     rdfs:label "Год премьеры"@ru ;
     rdfs:comment "Year the Play was premiered"@en ;
     dracon:feature_id "P26" ;
-    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when|@notBefore|@notAfter" .
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-years-iso" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
+    dracon:xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when|@notBefore|@notAfter" ;
+    dracon:feature_name "play_year_premiered" ;
+    dracon:operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
+
+
+dracon:play_date_premiered
+    a owl:DatatypeProperty, rdf:Property ;
+    rdfs:domain dracon:Play ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "date premiered"@en ;
+    rdfs:label "Datum der Erstaufführung"@de ;
+    rdfs:comment "Date the play was premiered. This is only available when the exact date of the premiere in ISO format (YYYY-MM-DD) is specified in element <tei:standOff>. This feature was added later and is not included in the 'Report on Programmable Corpora'."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-premiere-date" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L362-L375> ;
+    dracon:xpath "/tei:TEI//tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when" ;
+    dracon:feature_id "P66" ;
+    dracon:feature_name "play_date_premiered" .
 
 
 dracon:play_year_normalized
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  xsd:gYear;
-    rdfs:label "Normalized Year"@en ;
+    rdfs:label "year normalized"@en ;
     rdfs:label "Normalisierte Jahresangabe"@de ;
     rdfs:label "Нормализованный год"@ru ;
     rdfs:comment "Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird
     ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr
     der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat."@de ;
+    rdfs:comment "Normalized Year. Of all avaliable years (written, printed, premiered) a so-called 'normalized year' is selected; It is either the earlier on of printing or premiered or, if a work was published or performed much later (more than 10 years) after its creation, the year of its creation is taken as »Normalized Year« (if it is a range of years, the last of them is taken)."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-normalized-year" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L377-L410> ;
     dracon:feature_id "P27" ;
-    rdfs:seeAlso <https://dracor.org/doc/faq> .
+    rdfs:seeAlso <https://dracor.org/doc/faq> ;
+    dracon:feature_name "play_year_normalized" ;
+    dracon:operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
 
 
 dracon:play_digital_source_name
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal;
-    rdfs:label "Name of the Digital Source of a Play"@en ;
+    rdfs:label "digital source name"@en ;
+    rdfs:comment "Name of the digital source of a play. Normally it is the name of the repository or project that provides a digital version of the play, e.g. 'Google Books', 'Wikisource', 'TextGrid Repository'."@en ;
     dracon:feature_id "P28" ;
-    dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:name/string()" .
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-source" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893> ;
+    dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:name/string()" ;
+    dracon:feature_name "play_digital_source_name" ;
+    dracon:operation_id "list-corpus-content",  "play-info" .
 
 
 dracon:play_digital_source_url
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:anyURI;
-    rdfs:label "URL of the Digital Source of a Play"@en ;
+    rdfs:label "digital source url"@en ;
+    rdfs:comment "URL of the digital source of a play."@en ;
     dracon:feature_id "P29" ;
-    dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:idno[@type='URL'][1]/string()" .
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-source" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893> ;
+    dracon:xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:idno[@type='URL'][1]/string()" ;
+    dracon:feature_name "play_digital_source_url" ;
+    dracon:operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
 
 
 dracon:play_original_source_full_citation
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal;
-    rdfs:label "Full Citation of the Play's Original Source of a Play"@en ;
-    dracon:feature_id "P30" .
+    rdfs:label "original source full citation"@en ;
+    rdfs:comment "Full citation of the play's original (print publication) source. In the TEI file the citation is contained in the element <tei:bibl> with the value 'originalSource' of the attribute @type inside the <tei:sourceDesc>."@en ;
+    dracon:feature_id "P30" ;
+    dracon:feature_name "play_original_source_full_citation" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-play-info" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L963> ;
+    dracon:xpath "/tei:tei//tei:bibl[@type='originalSource'][1]/normalize-space(.)" ;
+    dracon:operation_id "play-info" .
 
 
 dracon:play_original_source_publisher
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Full Citation of the Play's Original Source of a Play"@en ;
-    dracon:feature_id "P31" .
-
+    rdfs:label "original source publisher"@en ;
+    rdfs:comment "Publisher of the print publication that was used as the original source. In the TEI data the content of the element <tei:publisher> in the <tei:bibl> representing the original source is extracted."@en ;
+    dracon:feature_id "P31" ;
+    dracon:feature_name "play_original_source_publisher" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L598-L600> ;
+    dracon:xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:publisher/normalize-space(.)" ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
+    
 
 dracon:play_original_source_publication_place
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Place of Publication of the Original Source of a Play"@en ;
-    dracon:feature_id "P32" .
+    rdfs:label "original source publication place"@en ;
+    rdfs:comment "Place of publication of the print publication that was used as the original source. In the TEI data the content of the element <tei:pubPlace> in the <tei:bibl> representing the original source is extracted. If there are multiple places annotated, they are joined to a single string separated by ','."@en ;
+    dracon:feature_id "P32" ;
+    dracon:feature_name "play_original_source_publication_place" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L601-L602> ;
+    dracon:xpath "string-join(/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:pubPlace/normalize-space(.), ', ')" ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
 
 
 dracon:play_original_source_publication_year
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Yer of Publication of the Original Source of a Play"@en ;
-    dracon:feature_id "P33" .
+    rdfs:label "original source publication year"@en ;
+    rdfs:comment "Year of publication of the print publication that was used as the original source."@en ;
+    dracon:feature_id "P33" ;
+    dracon:feature_name "play_original_source_publication_year" ;
+    dracon:xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:date" ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L604-L605> ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
 
 
 dracon:play_original_source_num_of_pages
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Pages of the Original Source of a Play"@en ;
-    dracon:feature_id "P34" .
+    rdfs:label "original source number of pages"@en ;
+    rdfs:comment "Extent of the original source in number of pages derived from the bibliographic reference. In the TEI file the element <tei:biblScope> holds a page range encoded in the attribute @from and @to. The value is calculated by taking the value of @to and substracting the value of @from and adding 1."@en ;
+    dracon:feature_id "P34" ;
+    dracon:feature_name "play_original_source_num_of_pages" ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L606-L609> ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ;
+    dracon:xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:biblScope[@unit='page']" .
 
 
 dracon:play_num_of_wikipedia_links
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Wikipedia Links of a Play"@en ;
-    dracon:feature_id "P35" .
+    rdfs:label "number of wikipedia links"@en ;
+    rdfs:comment "Number of Wikipedia links of a play. The links are counted upon ingest of the TEI file into the system using the Wikidata Query Service. The query looks for connections based on the property 'schema:about' (?sitelink schema:about wd:' || $id || ' .) and filters the results with the regular expression '[.]wikipedia[.]org'."@en ;
+    dracon:feature_id "P35" ;
+    dracon:feature_name "play_num_of_wikipedia_links" ;
+    dracon:extractor_in_api_module "util.xqm" , "wikidata.xqm" ;
+    dracon:extractor_in_api_function "dutil:count-sitelinks" , "wd:get-sitelinks" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L636> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L412-L425> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/wikidata.xqm#L15-L34> ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint", "play-metrics" .
 
 
 dracon:play_num_of_segments
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Segments of a Play"@en ;
-    dracon:feature_id "P37" .
+    rdfs:label "number of segments"@en ;
+    rdfs:comment "Number of segments (e.g. scenes) of a play. Usually <tei:div> elements inside <tei:body> are considered a segment if they contain a speech marked up by an element <tei:sp>. However, also 'empty scenes' with no speaking characters are considered a segment, e.g. elements <tei:div> that consist of stage directions (<tei:stage>) only."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data" ;
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L627> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L262-L285> ;
+    dracon:feature_id "P37" ;
+    dracon:feature_name "play_num_of_segments" ;
+    dracon:operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
 
 
 dracon:play_num_of_acts
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
-    rdfs:label "Number of Acts of a Play"@en ;
+    rdfs:label "number of acts"@en ;
     rdfs:label "Anzahl Akte"@de ;
     rdfs:label "Количество актов"@ru ;
-    dracon:feature_id "P38" .
+    rdfs:comment "Number of acts of a play. In the TEI file acts are elements <tei:div> with an attribute @type value of 'act'. The function extracting the information returns the number of such <tei:div> elements."@en ;
+    dracon:extractor_in_api_module "util.xqm" ;
+    dracon:extractor_in_api_function "dutil:get-corpus-meta-data";
+    dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L628> ;
+    dracon:xpath "count(/tei:TEI//tei:div[@type='act'])" ;
+    dracon:feature_id "P38" ;
+    dracon:feature_name "play_num_of_acts" .
 
 
 dracon:play_num_of_paragraphs
@@ -954,7 +1097,8 @@ dracon:play_num_of_paragraphs
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Paragraphs of a Play"@en ;
-    dracon:feature_id "P39" .
+    dracon:feature_id "P39" ;
+    dracon:feature_name "play_num_of_paragraphs" .
 
 
 dracon:play_num_of_verse_lines
@@ -962,7 +1106,8 @@ dracon:play_num_of_verse_lines
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Verses of a Play"@en ;
-    dracon:feature_id "P40" .
+    dracon:feature_id "P40" ;
+    dracon:feature_name "play_num_of_verse_lines" .
 
 
 dracon:play_num_of_word_tokens_in_text_elements
@@ -970,7 +1115,8 @@ dracon:play_num_of_word_tokens_in_text_elements
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:text> Elements of a Play"@en ;
-    dracon:feature_id "P41" .
+    dracon:feature_id "P41" ;
+    dracon:feature_name "play_num_of_word_tokens_in_text_elements" .
 
 
 dracon:play_num_of_word_tokens_in_sp
@@ -978,7 +1124,8 @@ dracon:play_num_of_word_tokens_in_sp
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:sp> Elements of a Play"@en ;
-    dracon:feature_id "P42" .
+    dracon:feature_id "P42" ;
+    dracon:feature_name "play_num_of_word_tokens_in_sp" .
 
 
 dracon:play_num_of_word_tokens_in_stage
@@ -986,7 +1133,8 @@ dracon:play_num_of_word_tokens_in_stage
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:stage> Elements of a Play"@en ;
-    dracon:feature_id "P43" .
+    dracon:feature_id "P43" ;
+    dracon:feature_name "play_num_of_word_tokens_in_stage" .
 
 
 dracon:play_num_of_speakers
@@ -997,7 +1145,8 @@ dracon:play_num_of_speakers
     rdfs:label "Sprecheranzahl"@de ;
     rdfs:label "Количество персонажей"@ru ;
     rdfs:comment "Number of Speakers of a Play"@en ;
-    dracon:feature_id "P45" .
+    dracon:feature_id "P45" ;
+    dracon:feature_name "play_num_of_speakers" .
 
 
 dracon:play_num_of_speakers_gender_female
@@ -1005,7 +1154,8 @@ dracon:play_num_of_speakers_gender_female
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Female Characters of a Play"@en ;
-    dracon:feature_id "P46" .
+    dracon:feature_id "P46" ;
+    dracon:feature_name "play_num_of_speakers_gender_female" .
 
 
 dracon:play_num_of_speakers_gender_male
@@ -1013,7 +1163,8 @@ dracon:play_num_of_speakers_gender_male
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Male Characters of a Play"@en ;
-    dracon:feature_id "P47" .
+    dracon:feature_id "P47" ;
+    dracon:feature_name "play_num_of_speakers_gender_male" .
 
 
 dracon:play_num_of_speakers_gender_unknown
@@ -1021,7 +1172,8 @@ dracon:play_num_of_speakers_gender_unknown
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Characters of Unknown Gender of a Play"@en ;
-    dracon:feature_id "P48" .
+    dracon:feature_id "P48" ;
+    dracon:feature_name "play_num_of_speakers_gender_unknown" .
 
 
 dracon:play_num_of_person_groups
@@ -1029,7 +1181,8 @@ dracon:play_num_of_person_groups
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Person Groups in a Play"@en ;
-    dracon:feature_id "P49" .
+    dracon:feature_id "P49" ;
+    dracon:feature_name "play_num_of_person_groups" .
 
 
 dracon:play_all_in_segment
@@ -1037,7 +1190,8 @@ dracon:play_all_in_segment
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "All in Segment of a Play"@en ;
-    dracon:feature_id "P50" .
+    dracon:feature_id "P50" ;
+    dracon:feature_name "play_all_in_segment" .
 
 
 dracon:play_all_in_index
@@ -1045,7 +1199,8 @@ dracon:play_all_in_index
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "All in Index of a Play"@en ;
-    dracon:feature_id "P51" .
+    dracon:feature_id "P51" ;
+    dracon:feature_name "play_all_in_index" .
 
 
 dracon:play_network_data_csv_url
@@ -1053,7 +1208,8 @@ dracon:play_network_data_csv_url
     rdfs:domain dracon:Play ;
     rdfs:range xsd:anyURI ;
     rdfs:label "URL to retrieve Network data of a Play in CSV format"@en ;
-    dracon:feature_id "P53" .
+    dracon:feature_id "P53" ;
+    dracon:feature_name "play_network_data_csv_url" .
 
 
 dracon:play_network_size
@@ -1061,7 +1217,8 @@ dracon:play_network_size
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Size of the Network of a Play"@en ;
-    dracon:feature_id "P55" .
+    dracon:feature_id "P55" ;
+    dracon:feature_name "play_network_size" .
 
 
 dracon:play_network_num_edges
@@ -1069,7 +1226,8 @@ dracon:play_network_num_edges
     rdfs:domain dracon:Play ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Edges"@en ;
-    dracon:feature_id "P56" .
+    dracon:feature_id "P56" ;
+    dracon:feature_name "play_network_num_edges" .
 
 
 dracon:play_network_average_degree
@@ -1080,7 +1238,8 @@ dracon:play_network_average_degree
     rdfs:label "Durchschnittlicher Grad"@de ;
     rdfs:label "Средняя степень"@ru ;
     rdfs:comment "Average Degree of the Network representing a Play"@en ;
-    dracon:feature_id "P57" .
+    dracon:feature_id "P57" ;
+    dracon:feature_name "play_network_average_degree" .
 
 
 dracon:play_network_density
@@ -1091,7 +1250,8 @@ dracon:play_network_density
     rdfs:label "Netzwerkdichte"@de ;
     rdfs:label "Плотность"@ru ;
     rdfs:comment "Density of a Network representing a Play"@en ;
-    dracon:feature_id "P58" .
+    dracon:feature_id "P58" ;
+    dracon:feature_name "play_network_density" .
 
 
 dracon:play_network_diameter
@@ -1100,7 +1260,8 @@ dracon:play_network_diameter
     rdfs:range xsd:int ;
     rdfs:label "Diameter of a Network"@en ;
     rdfs:label "Netzwerkdurchmesser"@de ;
-    dracon:feature_id "P59" .
+    dracon:feature_id "P59" ;
+    dracon:feature_name "play_network_diameter" .
 
 
 dracon:play_network_average_path_length
@@ -1110,7 +1271,8 @@ dracon:play_network_average_path_length
     rdfs:label "Average Path Length"@en ;
     rdfs:label "Durchschnittliche Pfadlänge"@de ;
     rdfs:comment "Average Path Length of a Network representing a Play"@en ;
-    dracon:feature_id "P60" .
+    dracon:feature_id "P60" ;
+    dracon:feature_name "play_network_average_path_length" .
 
 
 dracon:play_network_average_clustering
@@ -1118,7 +1280,8 @@ dracon:play_network_average_clustering
     rdfs:domain dracon:Play ;
     rdfs:range xsd:float ;
     rdfs:label "Average Clustering Coefficient of a Network representing a Play"@en ;
-    dracon:feature_id "P61" .
+    dracon:feature_id "P61" ;
+    dracon:feature_name "play_network_average_clustering" .
 
 
 dracon:play_network_num_connected_components
@@ -1126,7 +1289,8 @@ dracon:play_network_num_connected_components
     rdfs:domain dracon:Play ;
     rdfs:range xsd:int ;
     rdfs:label "Number of Connected Components of a Network representing a Play"@en ;
-    dracon:feature_id "P62" .
+    dracon:feature_id "P62" ;
+    dracon:feature_name "play_network_num_connected_components" .
 
 
 dracon:play_network_max_degree
@@ -1134,7 +1298,8 @@ dracon:play_network_max_degree
     rdfs:domain dracon:Play ;
     rdfs:range xsd:int ;
     rdfs:label "Maximum Degree of a Network representing a Play"@en ;
-    dracon:feature_id "P63" .
+    dracon:feature_id "P63" ;
+    dracon:feature_name "play_network_max_degree" .
 
 
 dracon:play_network_max_degree_character_id
@@ -1200,7 +1365,8 @@ dracon:segment_type
     rdfs:domain dracon:Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Type of a Segment"@en ;
-    dracon:feature_id "S1" .
+    dracon:feature_id "S1" ;
+    dracon:feature_name "segment_type" .
 
 
 dracon:segment_number
@@ -1208,7 +1374,8 @@ dracon:segment_number
     rdfs:domain dracon:Segment ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of a Segment"@en ;
-    dracon:feature_id "S2" .
+    dracon:feature_id "S2" ;
+    dracon:feature_name "segment_number" .
 
 
 dracon:segment_title
@@ -1216,14 +1383,16 @@ dracon:segment_title
     rdfs:domain dracon:Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Title of a Segment"@en ;
-    dracon:feature_id "S3" .
+    dracon:feature_id "S3" ;
+    dracon:feature_name "segment_title" .
 
 
 dracon:segment_speaking_characters
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Segment ;
     rdfs:label "Data on Speaking Characters of a Segment"@en ;
-    dracon:feature_id "S4" .
+    dracon:feature_id "S4" ;
+    dracon:feature_name "segment_speaking_characters" .
 
 
 dracon:segment_speaking_character_id
@@ -1262,7 +1431,8 @@ dracon:character_id
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "ID of a Character"@en ;
-    dracon:feature_id "Ch1" .
+    dracon:feature_id "Ch1" ;
+    dracon:feature_name "character_id" .
 
 
 dracon:character_name
@@ -1270,7 +1440,8 @@ dracon:character_name
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Name of a Character"@en ;
-    dracon:feature_id "Ch2" .
+    dracon:feature_id "Ch2" ;
+    dracon:feature_name "character_name" .
 
 
 dracon:character_is_group
@@ -1278,7 +1449,8 @@ dracon:character_is_group
     rdfs:domain dracon:character ;
     rdfs:range xsd:boolean ;
     rdfs:label "Indicates if the Character is a Group"@en ;
-    dracon:feature_id "Ch3" .
+    dracon:feature_id "Ch3" ;
+    dracon:feature_name "character_is_group" .
 
 
 dracon:character_gender
@@ -1286,7 +1458,8 @@ dracon:character_gender
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Gender of a Character"@en ;
-    dracon:feature_id "Ch4" .
+    dracon:feature_id "Ch4" ;
+    dracon:feature_name "character_gender" .
 
 
 dracon:character_wikidata_id
@@ -1294,7 +1467,8 @@ dracon:character_wikidata_id
     rdfs:domain dracon:character ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Wikidata ID of a Character"@en ;
-    dracon:feature_id "Ch5" .
+    dracon:feature_id "Ch5" ;
+    dracon:feature_name "character_wikidata_id" .
 
 
 dracon:character_node_betweenness
@@ -1302,7 +1476,8 @@ dracon:character_node_betweenness
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Betweenness Centrality of a Node representing a Character"@en ;
-    dracon:feature_id "Ch6" .
+    dracon:feature_id "Ch6" ;
+    dracon:feature_name "character_node_betweenness" .
 
 
 dracon:character_node_degree
@@ -1310,7 +1485,8 @@ dracon:character_node_degree
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Degree of a Node representing a Character"@en ;
-    dracon:feature_id "Ch7" .
+    dracon:feature_id "Ch7" ;
+    dracon:feature_name "character_node_degree" .
 
 
 dracon:character_node_closeness
@@ -1318,7 +1494,8 @@ dracon:character_node_closeness
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Closeness Centrality of a Node representing a Character"@en ;
-    dracon:feature_id "Ch8" .
+    dracon:feature_id "Ch8" ;
+    dracon:feature_name "character_node_closeness" .
 
 
 dracon:character_node_eigenvector
@@ -1326,7 +1503,8 @@ dracon:character_node_eigenvector
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Eigenvector Centrality of a Node representing a Character"@en ;
-    dracon:feature_id "Ch9" .
+    dracon:feature_id "Ch9" ;
+    dracon:feature_name "character_node_eigenvector" .
 
 
 dracon:character_node_weighted_degree
@@ -1334,7 +1512,8 @@ dracon:character_node_weighted_degree
     rdfs:domain dracon:character ;
     rdfs:range xsd:float ;
     rdfs:label "Weighted Degree of a Node representing a Character"@en ;
-    dracon:feature_id "Ch10" .
+    dracon:feature_id "Ch10" ;
+    dracon:feature_name "character_node_weighted_degree" .
 
 
 dracon:character_num_of_segments
@@ -1345,7 +1524,8 @@ dracon:character_num_of_segments
     rdfs:label "Anzahl Segmente"@de ;
     rdfs:label "Количество сегментов"@ru ;
     rdfs:comment "Number of Segments a Character appears in"@en ;
-    dracon:feature_id "Ch11" .
+    dracon:feature_id "Ch11" ;
+    dracon:feature_name "character_num_of_segments" .
 
 
 dracon:character_num_of_sp
@@ -1353,7 +1533,8 @@ dracon:character_num_of_sp
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:sp> Elements that are attributed to a Character"@en ;
-    dracon:feature_id "Ch12" .
+    dracon:feature_id "Ch12" ;
+    dracon:feature_name "character_num_of_sp" .
 
 
 dracon:character_num_of_word_tokens
@@ -1361,7 +1542,8 @@ dracon:character_num_of_word_tokens
     rdfs:domain dracon:character ;
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens spoken by a Character"@en ;
-    dracon:feature_id "Ch13" .
+    dracon:feature_id "Ch13" ;
+    dracon:feature_name "character_num_of_word_tokens" .
 
 
 dracon:character_role
@@ -1375,7 +1557,8 @@ dracon:character_spoken_text
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:character ;
     rdfs:label "Spoken Text of a Character"@en ;
-    dracon:feature_id "Ch15" .
+    dracon:feature_id "Ch15" ;
+    dracon:feature_name "character_spoken_text" .
 
 
 ########
