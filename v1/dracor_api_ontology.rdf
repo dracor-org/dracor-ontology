@@ -38,6 +38,13 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
   </owl:AnnotationProperty>
 
+  <owl:AnnotationProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#feature_name">
+    <rdfs:label xml:lang="en">Feature Slug</rdfs:label>
+    <rdfs:comment>Slug used to identify the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
+    See column 'Feature' in Tab. 01, 02, 03, 04.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </owl:AnnotationProperty>
+
   <owl:AnnotationProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#xpath">
     <rdfs:label xml:lang="en">xPath</rdfs:label>
     <rdfs:comment xml:lang="en">XPath expression that extracts the information from a DraCor TEI-file starting at the document root.
@@ -130,13 +137,14 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">corpus name</rdfs:label>
     <rdfs:comment>Identifier 'name' or 'corpusname' of a corpus, e.g. 'ger' for the 'German Drama Corpus'. 
-    These identifiers are normally used as path parameters in requests to the DraCor API. 
+    This identifier is normally used as path parameters in requests to the DraCor API. 
     For further details see API Specification at https://dracor.org/doc/api#/ .</rdfs:comment>
     <ns0:feature_id>C1</ns0:feature_id>
+    <ns0:feature_name>corpus_name</ns0:feature_name>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L472-L473"/>
-    <ns0:xPath>/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='URI' and @xml:base='https://dracor.org/']/text()</ns0:xPath>
+    <ns0:xpath>/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='URI' and @xml:base='https://dracor.org/']/text()</ns0:xpath>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>name</ns0:field_key>
@@ -149,6 +157,7 @@
     <rdfs:label xml:lang="en">corpus uri</rdfs:label>
     <rdfs:comment>Identifier 'uri' of a corpus. It is equal to the the full URL of the /corpora/{corpusname}.</rdfs:comment>
     <ns0:feature_id>C2</ns0:feature_id>
+    <ns0:feature_name>corpus_uri</ns0:feature_name>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>api:corpora</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L247"/>
@@ -163,10 +172,11 @@
     <rdfs:label xml:lang="en">corpus title</rdfs:label>
     <rdfs:comment>Full title of a corpus, e.g. 'Ukrainian Drama Corpus'.</rdfs:comment>
     <ns0:feature_id>C3</ns0:feature_id>
+    <ns0:feature_name>corpus_title</ns0:feature_name>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L475"/>
-    <ns0:xPath>/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[1]/text()</ns0:xPath>
+    <ns0:xpath>/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[1]/text()</ns0:xpath>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>title</ns0:field_key>
@@ -185,11 +195,12 @@
     
     If this element is missing, the value of the element &lt;tei:idno&gt; with with the attribute @type 'URI' from the corpus.xml is extracted and prepended with 'DraCor'.</rdfs:comment>
     <ns0:feature_id>C4</ns0:feature_id>
+    <ns0:feature_name>corpus_acronym</ns0:feature_name>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L487-L492"/>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L476"/>
-    <ns0:xPath>/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='acronym']/text()</ns0:xPath>
+    <ns0:xpath>/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='acronym']/text()</ns0:xpath>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>acronym</ns0:field_key>
@@ -200,19 +211,16 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">corpus description</rdfs:label>
-    <rdfs:comment>Description of a corpus. 
-    
-    In the TEI source data this information is contained in the element &lt;tei:projectDesc&gt; 
-    in the corpus.xml file. The value returned can be formatted using Markdown. 
-    
-    The transformation of TEI into Markdown is handled by the function 
+    <rdfs:comment>Description of a corpus. In the TEI source data this information is contained in the element &lt;tei:projectDesc&gt; 
+    in the corpus.xml file. The value returned can be formatted using Markdown. The transformation of TEI into Markdown is handled by the function 
     'local:to-markdown' in 'util.xqm' which transforms TEI elements &lt;tei:hi&gt; and &lt;tei:ref&gt; for hyperlinks.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L478"/>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L480-L482"/>
-    <ns0:xPath>/tei:teiCorpus/tei:teiHeader/tei:encodingDesc/tei:projectDesc/tei:p</ns0:xPath>
+    <ns0:xpath>/tei:teiCorpus/tei:teiHeader/tei:encodingDesc/tei:projectDesc/tei:p</ns0:xpath>
     <ns0:feature_id>C5</ns0:feature_id>
+    <ns0:feature_name>corpus_description</ns0:feature_name>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>description</ns0:field_key>
@@ -223,15 +231,14 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">corpus repository</rdfs:label>
-    <rdfs:comment>URL of the (GitHub) repository that contains the TEI source data.
-    
-    The information is extracted from the element &lt;tei:idno&gt; with the @type attribute-value 'repo' 
+    <rdfs:comment>URL of the (GitHub) repository that contains the TEI source data. The information is extracted from the element &lt;tei:idno&gt; with the @type attribute-value 'repo' 
     in a corpus.xml file.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L477"/>
-    <ns0:xPath>/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='repo']/text()</ns0:xPath>
+    <ns0:xpath>/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='repo']/text()</ns0:xpath>
     <ns0:feature_id>C6</ns0:feature_id>
+    <ns0:feature_name>corpus_repository</ns0:feature_name>
     <ns0:field_key>repository</ns0:field_key>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
@@ -242,18 +249,16 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">corpus licence</rdfs:label>
-    <rdfs:comment>Licence information of a corpus.
-
-    The value is a string identifying the licence, e.g. 'CC0' .
-    
+    <rdfs:comment>Licence information of a corpus. The value is a string identifying the licence, e.g. 'CC0' .
     The information is extracted from the corpus metadata in 'corpus.xml'. 
     It is the text content of the element &lt;tei:licence&gt;.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479"/>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L495-L496"/>
-    <ns0:xPath>normalize-space(/tei:teiCorpus/tei:teiHeader//tei:availability/tei:licence/text())</ns0:xPath>
+    <ns0:xpath>normalize-space(/tei:teiCorpus/tei:teiHeader//tei:availability/tei:licence/text())</ns0:xpath>
     <ns0:feature_id>C7</ns0:feature_id>
+    <ns0:feature_name>corpus_licence</ns0:feature_name>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>licence</ns0:field_key>
@@ -264,14 +269,13 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     <rdfs:label xml:lang="en">corpus licence URL</rdfs:label>
-    <rdfs:comment>Identifier/URL of a licence.
-
-    The value is extracted from the attribute @target of the element &lt;tei:licence&gt; in the 'corpus.xml' file.</rdfs:comment>
+    <rdfs:comment>Identifier/URL of a licence. The value is extracted from the attribute @target of the element &lt;tei:licence&gt; in the 'corpus.xml' file.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-corpus-info</ns0:extractor_in_api_function>
-    <ns0:code-ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479"/>
-    <ns0:code-ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L497-L498"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L497-L498"/>
     <ns0:feature_id>C8</ns0:feature_id>
+    <ns0:feature_name>corpus_licence_url</ns0:feature_name>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:field_key>licenceUrl</ns0:field_key>
@@ -283,15 +287,14 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of plays in corpus</rdfs:label>
     <rdfs:label xml:lang="de">Anzahl Stücke (in einem Korpus)</rdfs:label>
-    <rdfs:comment>Number of plays in a corpus.
-    
-    The value is the number of &lt;tei:TEI&gt; elements (should be equal to files) in a given corpus collection in the 
+    <rdfs:comment>Number of plays in a corpus. The value is the number of &lt;tei:TEI&gt; elements (should be equal to files) in a given corpus collection in the 
     underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L202"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C9</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_plays</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_characters">
@@ -300,15 +303,14 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of characters in corpus</rdfs:label>
     <rdfs:label xml:lang="de">Anzahl Figuren (in einem Korpus)</rdfs:label>
-    <rdfs:comment>Number of characters in a corpus.
-    
-    The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; elements in 
+    <rdfs:comment>Number of characters in a corpus. The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; elements in 
     all &lt;tei:listPerson&gt; elements in a given collection representing a corpus in the underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L204"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C10</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_characters</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_characters_male">
@@ -317,15 +319,14 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of male characters in corpus</rdfs:label>
     <rdfs:label>Anzahl männlicher Figuren (in einem Korpus)@de</rdfs:label>
-    <rdfs:comment>Number of male characters in a corpus.
-    
-    The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; that are classified with the value 'MALE' in the
+    <rdfs:comment>Number of male characters in a corpus. The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; that are classified with the value 'MALE' in the
     attribute @sex in all &lt;tei:listPerson&gt; elements in a given collection representing a corpus in the underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L205"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C11</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_characters_male</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_characters_female">
@@ -334,15 +335,14 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of female characters in corpus</rdfs:label>
     <rdfs:label>Anzahl weiblicher Figuren (in einem Korpus)@de</rdfs:label>
-    <rdfs:comment>Number of female characters in a corpus.
-    
-    The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; that are classified with the value 'FEMALE' in the
+    <rdfs:comment>Number of female characters in a corpus. The value is the number of all &lt;tei:person&gt; and &lt;tei:personGrp&gt; that are classified with the value 'FEMALE' in the
     attribute @sex in all &lt;tei:listPerson&gt; elements in a given collection representing a corpus in the underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L206"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C12</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_characters_female</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_tei_text_elements">
@@ -350,15 +350,14 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of text elements in corpus</rdfs:label>
-    <rdfs:description>Number of &lt;tei:text&gt; elements in a corpus.
-    
-    The value is the number of &lt;tei:text&gt; elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
-    A TEI file can contain multiple &lt;tei:text&gt; elements, e.g. when there are multiple one act plays published together.</rdfs:description>
+    <rdfs:comment>Number of &lt;tei:text&gt; elements in a corpus. The value is the number of &lt;tei:text&gt; elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
+    A TEI file can contain multiple &lt;tei:text&gt; elements, e.g. when there are multiple one act plays published together.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L207"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C13</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_tei_text_elements</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_sp">
@@ -367,14 +366,13 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of speech acts in a corpus</rdfs:label>
     <rdfs:label>Anzahl Repliken (in einem Korpus)</rdfs:label>
-    <rdfs:description xml:lang="en">Number of speech acts in a corpus.
-    
-    The value is the number of &lt;tei:sp&gt; elements in a collection representing a corpus in the underlying eXist database.</rdfs:description>
+    <rdfs:comment xml:lang="en">Number of speech acts in a corpus. The value is the number of &lt;tei:sp&gt; elements in a collection representing a corpus in the underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L209"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C14</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_sp</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_stage">
@@ -383,14 +381,13 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of stage directions in a corpus</rdfs:label>
     <rdfs:label xml:lang="de">Anzahl Regieanweisungen (in einem Korpus)</rdfs:label>
-    <rdfs:description xml:lang="en">Number of stage directions in a corpus.
-    
-    The value is the number of &lt;tei:stage&gt; elements in a collection representing a corpus in the underlying eXist database.</rdfs:description>
+    <rdfs:comment xml:lang="en">Number of stage directions in a corpus. The value is the number of &lt;tei:stage&gt; elements in a collection representing a corpus in the underlying eXist database.</rdfs:comment>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L208"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C15</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_stage</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_word_tokens_in_text_elements">
@@ -398,10 +395,8 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of word tokens in text elements</rdfs:label>
-    <rdfs:description xml:lang="en">Number of word tokens in &lt;tei:text&gt; elements in the corpus.
-    
-    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:description>
+    <rdfs:comment xml:lang="en">Number of word tokens in &lt;tei:text&gt; elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:comment>
     <ns0:extractor_in_api_module>metrics.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>metrics:calculate</ns0:extractor_in_api_function>
@@ -409,6 +404,7 @@
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C16</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_word_tokens_in_text_elements</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_word_tokens_in_sp">
@@ -416,10 +412,8 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of word tokens in sp</rdfs:label>
-    <rdfs:description xml:lang="en">Number of word tokens in &lt;tei:sp&gt; elements in the corpus.
-    
-    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:description>
+    <rdfs:comment xml:lang="en">Number of word tokens in &lt;tei:sp&gt; elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:comment>
     <ns0:extractor_in_api_module>metrics.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>metrics:calculate</ns0:extractor_in_api_function>
@@ -428,6 +422,7 @@
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L129"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C17</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_word_tokens_in_sp</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_num_of_word_tokens_in_stage">
@@ -435,10 +430,8 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">number of word tokens in stage</rdfs:label>
-    <rdfs:description xml:lang="en">Number of word tokens in &lt;tei:stage&gt; elements in the corpus.
-    
-    The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:description>
+    <rdfs:comment xml:lang="en">Number of word tokens in &lt;tei:stage&gt; elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up.</rdfs:comment>
     <ns0:extractor_in_api_module>metrics.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>metrics:calculate</ns0:extractor_in_api_function>
@@ -447,6 +440,7 @@
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L221"/>
     <ns0:operation_id>list-corpora</ns0:operation_id>
     <ns0:feature_id>C18</ns0:feature_id>
+    <ns0:feature_name>corpus_num_of_word_tokens_in_stage</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#corpus_metrics_date_updated">
@@ -454,9 +448,7 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
     <rdfs:label xml:lang="en">metrics updated at</rdfs:label>
-    <rdfs:description xml:lang="en">Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated.
-    
-    The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'.</rdfs:description>
+    <rdfs:comment xml:lang="en">Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated. The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'.</rdfs:comment>
     <ns0:extractor_in_api_module>metrics.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>metrics:calculate</ns0:extractor_in_api_function>
@@ -465,6 +457,7 @@
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L223"/>
     <ns0:feature_id>C19</ns0:feature_id>
     <ns0:operation_id>list-corpora</ns0:operation_id>
+    <ns0:feature_name>corpus_metrics_date_updated</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:ObjectProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#contains_play_data">
@@ -472,9 +465,9 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:label xml:lang="en">contains play data</rdfs:label>
-    <rdfs:description xml:lang="en">Links the corpus data in the API response to the data about the play objects contained in the corpus.
+    <rdfs:comment xml:lang="en">Links the corpus data in the API response to the data about the play objects contained in the corpus.
     This property encodes the information of Feature 'C20 corpus play objects' as listed in the Report 'On Programmable
-    Corpora'.</rdfs:description>
+    Corpora'.</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="https://dracor.org/ontology/dracor-api-ontology#contains_data"/>
     <ns0:feature_id>C20</ns0:feature_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
@@ -484,7 +477,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
     <rdfs:label xml:lang="en">Corpus Metrics</rdfs:label>
     <rdfs:label xml:lang="de">Korpusmetriken</rdfs:label>
-    <rdfs:description xml:lang="en">Corpus Metrics as included in the response of the /corpora endpoint.</rdfs:description>
+    <rdfs:comment xml:lang="en">Corpus Metrics as included in the response of the /corpora endpoint.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://dracor.org/ontology/dracor-api-ontology#API_Response_Data"/>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
@@ -497,14 +490,14 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus"/>
     <rdfs:range rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus_Metrics"/>
     <rdfs:label xml:lang="en">contains corpus metrics</rdfs:label>
-    <rdfs:description xml:lang="en">Links corpus data to the metrics data.</rdfs:description>
+    <rdfs:comment xml:lang="en">Links corpus data to the metrics data.</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="https://dracor.org/ontology/dracor-api-ontology#contains_data"/>
   </owl:ObjectProperty>
 
   <owl:Class rdf:about="https://dracor.org/ontology/dracor-api-ontology#Corpus_Wordcounts">
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
     <rdfs:label xml:lang="en">Corpus Wordcounts</rdfs:label>
-    <rdfs:description xml:lang="en">Object containing the counts of word tokens on the level of text, speech act and stage direction of a single corpus.</rdfs:description>
+    <rdfs:comment xml:lang="en">Object containing the counts of word tokens on the level of text, speech act and stage direction of a single corpus.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://dracor.org/ontology/dracor-api-ontology#API_Response_Data"/>
     <ns0:extractor_in_api_module>api.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>local:get-corpus-metrics</ns0:extractor_in_api_function>
@@ -517,7 +510,7 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus_Metrics"/>
     <rdfs:range rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Corpus_Wordcount"/>
     <rdfs:label xml:lang="en">contains wordcount data</rdfs:label>
-    <rdfs:description xml:lang="en">Links metrics data to the wordcount data.</rdfs:description>
+    <rdfs:comment xml:lang="en">Links metrics data to the wordcount data.</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="https://dracor.org/ontology/dracor-api-ontology#contains_data"/>
   </owl:ObjectProperty>
 
@@ -536,22 +529,22 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">play corpus name</rdfs:label>
-    <rdfs:description xml:lang="en">Name/Identifier 'corpusname' (Feature C1) of the corpus the play is contained in</rdfs:description>
+    <rdfs:comment xml:lang="en">Name/Identifier 'corpusname' (Feature C1) of the corpus the play is contained in</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-play-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1006"/>
     <ns0:feature_id>P1</ns0:feature_id>
     <ns0:operation_id>play-info</ns0:operation_id>
     <ns0:operation_id>play-metrics</ns0:operation_id>
+    <ns0:feature_name>play_corpus_name</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_id">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:description xml:lang="en">DraCor ID of the play, e.g. 'ger000171'.
-    
-    In the TEI source file the DraCor ID is contained in the attribute @xml:id on the root element &lt;tei:TEI&gt;.</rdfs:description>
+    <rdfs:label xml:lang="en">play id</rdfs:label>
+    <rdfs:comment xml:lang="en">DraCor ID of the play, e.g. 'ger000171'. In the TEI source file the DraCor ID is contained in the attribute @xml:id on the root element &lt;tei:TEI&gt;.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-dracor-id</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L93-L100"/>
@@ -562,6 +555,7 @@
     <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
     <ns0:operation_id>play-info</ns0:operation_id>
     <ns0:operation_id>play-metrics</ns0:operation_id>
+    <ns0:feature_name>play_id</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_uri">
@@ -569,15 +563,14 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     <rdfs:label xml:lang="en">play uri</rdfs:label>
-    <rdfs:description xml:lang="en">URI of the play.
-    
-    It is equal to the the full URL of the /corpora/{corpusname}/plays/{playname} endpoint.</rdfs:description>
+    <rdfs:comment xml:lang="en">URI of the play. It is equal to the the full URL of the /corpora/{corpusname}/plays/{playname} endpoint.</rdfs:comment>
     <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
     <ns0:extractor_in_api_function>dutil:get-play-info</ns0:extractor_in_api_function>
     <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L958-L959"/>
     <ns0:feature_id>P65</ns0:feature_id>
     <ns0:operation_id>list-corpus-content</ns0:operation_id>
     <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_uri</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_name">
@@ -585,306 +578,582 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">play name</rdfs:label>
+    <rdfs:comment xml:lang="en">Identifier 'playname'. Normally a combination of the name of the author and the title of the play, e.g. 'lessing-emilia-galotti'. It is unique across a single corpus. This identifier is normally used as path parameters in requests to the DraCor API. For further details see API Specification at https://dracor.org/doc/api#/ .</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1005"/>
+    <ns0:extractor_in_api_function>dutil:get-play-info</ns0:extractor_in_api_function>
     <ns0:feature_id>P3</ns0:feature_id>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:operation_id>play-metrics</ns0:operation_id>
+    <ns0:feature_name>play_name</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_wikidata_id">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Wikidata ID of the Play</rdfs:label>
+    <rdfs:label xml:lang="en">play wikidata id</rdfs:label>
+    <rdfs:comment xml:lang="en">Wikidata ID of the play. Identifier ('Q-Number') of the item on Wikidata, e.g. 'Q466333'. In the TEI source document the information is contained in the &lt;tei:standOff&gt; element as a &lt;tei:relation&gt; with the attribute @name 'wikidata' as the full URI, e.g. 'http://www.wikidata.org/entity/Q466333'.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-play-wikidata-id</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L895-L906"/>
     <ns0:feature_id>P4</ns0:feature_id>
     <ns0:xpath>substring-after(/tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name='wikidata'][1]/@passive/string(),'http://www.wikidata.org/entity/')</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_wikidata_id</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_title">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Title of the Play</rdfs:label>
+    <rdfs:label xml:lang="en">play title</rdfs:label>
+    <rdfs:comment xml:lang="en">(Main) title of the play. Normally, the title is in the language of the corpus. The respective function extracts the text of the first element &lt;tei:title&gt; in &lt;tei:titleStmt&gt; in the &lt;tei:teiHeader&gt;.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-titles</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L843"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1007"/>
     <ns0:feature_id>P5</ns0:feature_id>
+    <ns0:xpath>/tei:TEI//tei:fileDesc/tei:titleStmt/tei:title[1]/normalize-space()</ns0:xpath>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_title</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_subtitle">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Subtitle of the Play</rdfs:label>
+    <rdfs:label xml:lang="en">play subtitle</rdfs:label>
+    <rdfs:comment xml:lang="en">Subtitle of the play. Normally, the subtitle is in the language of the corpus. The respective function extracts the text of the first element &lt;tei:title&gt; in &lt;tei:titleStmt&gt; in the &lt;tei:teiHeader&gt; that carries an attribute @type with the value 'sub'.</rdfs:comment>
     <ns0:feature_id>P6</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-titles</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L844-L845"/>
+    <ns0:xpath>/tei:TEI//tei:titleStmt/tei:title[@type='sub'][1]/normalize-space()</ns0:xpath>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_subtitle</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_title_en">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">English Title of the Play</rdfs:label>
+    <rdfs:label xml:lang="en">play title english</rdfs:label>
+    <rdfs:comment xml:lang="en">English translation of the original main title of the play. Extracts the text of the element &lt;tei:title&gt; with 'eng' as the attribute's @xml:lang value.</rdfs:comment>
     <ns0:feature_id>P7</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-titles</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L865-L868"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961"/>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_title_en</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_subtitle_en">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">English Subtitle of the Play</rdfs:label>
+    <rdfs:label xml:lang="en">play subtitle english</rdfs:label>
+    <rdfs:comment xml:lang="en">English translation of the original subtitle of the play. Extracts the text of the element &lt;tei:title&gt; with the value of the attribute @type being 'sub' and 'eng' as the attribute's @xml:lang value.</rdfs:comment>
     <ns0:feature_id>P8</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-titles</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L869-L870"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961"/>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_subtitle_en</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_name">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author name</rdfs:label>
+    <rdfs:comment xml:lang="en">Name of the author of the play in the format '{surname}, {forename}', e.g. 'Shakespeare, William', 'Гоголь, Николай Васильевич'. The value can be used for sorting. The function takes the contents of the elements &lt;tei:persName&gt; or &lt;tei:name&gt; from the element &lt;tei:author&gt; in the &lt;tei:titleStmt&gt; and applies some processing logic: If the constituents are marked up with the special elements &lt;tei:surname&gt; and &lt;tei:forname&gt;, they are arranged in the order surname, forname. The optional attribute @sort on the element &lt;tei:surname&gt; is evaluated as well to distinguish the order of &lt;tei:surname&gt; elements. If no additional markup is present, the contents of the &lt;tei:name&gt; or &lt;tei:persName&gt; element is used.</rdfs:comment>
     <ns0:feature_id>P9</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-sort-name</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>local:build-sort-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L760-L770"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L734-L752"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_name</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_name_en">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">English Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author name english</rdfs:label>
+    <rdfs:comment xml:lang="en">English name of the author of a play in the format '{surname}, {forename}', e.g. 'Gogol, Nikolai' (in this case the value of 'author_name' is Гоголь, Николай Васильевич' including the patronym). </rdfs:comment>
     <ns0:feature_id>P10</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-sort-name</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>local:build-sort-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L772-L790"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_name_en</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_fullname">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Full Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author fullname</rdfs:label>
+    <rdfs:comment xml:lang="en">Full name of the author of the play including patronyms and other name constituents as encoded in the TEI source file in the element &lt;tei:persName&gt; or &lt;tei:name&gt; in &lt;tei:author&gt;. E.g. 'Николай Васильевич Гоголь', 'William Shakespeare'.</rdfs:comment>
     <ns0:feature_id>P11</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-full-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L663-L667"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_fullname</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_fullname_en">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">English Full Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author fullname english</rdfs:label>
+    <rdfs:comment xml:lang="en">Full english name of the author of the play, e.g. 'Nikolai Gogol'.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-full-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L681-L685"/>
     <ns0:feature_id>P12</ns0:feature_id>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_fullname_en</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_shortname">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Short Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author shortname</rdfs:label>
+    <rdfs:comment xml:lang="en">Short name of the author of a play. Normally, the value is the author's surname only, e.g. 'Shakespeare' ,'Гоголь'.</rdfs:comment>
     <ns0:feature_id>P13</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-short-name</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>local:build-short-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L690-L692"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_shortname</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_shortname_en">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">English Short Name of the Author of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">play author shortname english</rdfs:label>
+    <rdfs:comment xml:lang="en">English short name of the author of a play. Normally, it is the value of the author's surname only, e.g. 'Gogol'.</rdfs:comment>
     <ns0:feature_id>P14</ns0:feature_id>
-  </owl:DatatypeProperty>
-
-  <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_first_author_name">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Name of the First Author of a Play</rdfs:label>
-    <ns0:feature_id>P15</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-short-name</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>local:build-short-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L721-L732"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_shortname_en</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_first_author_shortname">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Short Name of the First Author of a Play</rdfs:label>
+    <rdfs:comment xml:lang="en">Short name of the first author of a play.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>dutil:get-short-name</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>local:build-short-name</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L26"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L619"/>
     <ns0:feature_id>P16</ns0:feature_id>
-  </owl:DatatypeProperty>
-
-  <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_first_author_deprecation_warning">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Warning that the information on the first author will become deprecated</rdfs:label>
-    <ns0:feature_id>P17</ns0:feature_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:feature_name>play_first_author_shortname</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_also_known_as">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Alternative Name of the Author of a Play</rdfs:label>
+    <rdfs:comment xml:lang="en">Alternative name of the author of a play, e.g. 'Titus Maccius Plautus' in case of the author 'Plautus'. In the source TEI file alternative names are encoded as additional elements &lt;tei:persName&gt;.</rdfs:comment>
     <ns0:feature_id>P18</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-authors</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L816-L819"/>
+    <ns0:xpath>/tei:TEI//tei:fileDesc/tei:titleStmt/tei:author[not(@role='illustrator')]/tei:persName[position() &gt; 1]</ns0:xpath>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_also_known_as</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_ref_external_id">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">ID of the Author in an External Reference Resource</rdfs:label>
+    <rdfs:label xml:lang="en">external reference resource id</rdfs:label>
+    <rdfs:comment xml:lang="en">ID of the author in an external reference resource. This for example can be the 'Q-Number' of Wikidata.</rdfs:comment>
     <ns0:feature_id>P19</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-authors</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_ref_external_id</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_author_ref_type">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Type of the ID of the Author in an External Reference Resource</rdfs:label>
+    <rdfs:label>type of id in external reference resource</rdfs:label>
+    <rdfs:comment xml:lang="en">Type of the ID of the author in an external reference resource, e.g. 'wikidata'.</rdfs:comment>
     <ns0:feature_id>P20</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-authors</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815"/>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_author_ref_type</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_co_authors">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:label xml:lang="en">Number of Co-Authors of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">number of co-authors</rdfs:label>
+    <rdfs:comment xml:lang="en">Number of co-authors of a play. The value is the number of all authors of a play minus one.</rdfs:comment>
     <ns0:feature_id>P21</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L27"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L622"/>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:feature_name>play_num_of_co_authors</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_genre_normalized">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Normalized Genre of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">normalized genre</rdfs:label>
+    <rdfs:comment xml:lang="en">Normalized genre of a play. The function performs a lookup using a Wikidata identifier provided in the element &lt;tei:classCode&gt; in &lt;tei:textClass&gt;. The normalized values can be 'Comedy', 'Tagedy', 'Tragicomedy', 'Satyr play'.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-text-classes</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>dutil:get-genre</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L568"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L617"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L516-L529"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/config.xqm#L79-L89"/>
+    <ns0:xpath>$tei:TEI//tei:textClass/tei:classCode[@scheme='http://www.wikidata.org/entity/']/string()</ns0:xpath>
     <ns0:feature_id>P22</ns0:feature_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_genre_normalized</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_is_libretto">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">Play is a Libretto</rdfs:label>
+    <rdfs:label xml:lang="en">play is libretto</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates if a play is a libretto. The function performs a lookup using a Wikidata identifier provided in the element &lt;tei:classCode&gt; in &lt;tei:textClass&gt;. If the returned value is 'Libretto' the value of this property is 'true', otherwise 'false'.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-text-classes</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L618"/>
     <ns0:feature_id>P23</ns0:feature_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+    <ns0:feature_name>play_is_libretto</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_year_written">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
-    <rdfs:label xml:lang="en">Creation Year</rdfs:label>
+    <rdfs:label xml:lang="en">year written</rdfs:label>
     <rdfs:label xml:lang="de">Jahr der Entstehung</rdfs:label>
     <rdfs:label xml:lang="ru">Год написания</rdfs:label>
-    <rdfs:comment xml:lang="en">Year the Play was written</rdfs:comment>
+    <rdfs:comment xml:lang="en">Year of the creation of the play / year when the play was written.</rdfs:comment>
     <ns0:feature_id>P24</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-years-iso</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326"/>
     <ns0:xpath>/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='written']/@when|@notBefore|@notAfter</ns0:xpath>
+    <ns0:feature_name>play_year_written</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_year_printed">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
-    <rdfs:label xml:lang="en">Publication Year</rdfs:label>
+    <rdfs:label xml:lang="en">year printed</rdfs:label>
     <rdfs:label xml:lang="de">Jahr der Veröffentlichung</rdfs:label>
     <rdfs:label xml:lang="ru">Год издания</rdfs:label>
-    <rdfs:comment xml:lang="en">Year the Play was published</rdfs:comment>
+    <rdfs:comment xml:lang="en">Year the play was published / year of first printing.</rdfs:comment>
     <ns0:feature_id>P25</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-years-iso</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326"/>
     <ns0:xpath>/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='print']/@when|@notBefore|@notAfter</ns0:xpath>
+    <ns0:feature_name>play_year_printed</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_year_premiered">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
-    <rdfs:label xml:lang="en">Year premiered</rdfs:label>
+    <rdfs:label xml:lang="en">year premiered</rdfs:label>
     <rdfs:label xml:lang="de">Jahr der Erstaufführung</rdfs:label>
     <rdfs:label xml:lang="ru">Год премьеры</rdfs:label>
     <rdfs:comment xml:lang="en">Year the Play was premiered</rdfs:comment>
     <ns0:feature_id>P26</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-years-iso</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326"/>
     <ns0:xpath>/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when|@notBefore|@notAfter</ns0:xpath>
+    <ns0:feature_name>play_year_premiered</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_date_premiered">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="en">date premiered</rdfs:label>
+    <rdfs:label xml:lang="de">Datum der Erstaufführung</rdfs:label>
+    <rdfs:comment xml:lang="en">Date the play was premiered. This is only available when the exact date of the premiere in ISO format (YYYY-MM-DD) is specified in element &lt;tei:standOff&gt;. This feature was added later and is not included in the 'Report on Programmable Corpora'.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-premiere-date</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L362-L375"/>
+    <ns0:xpath>/tei:TEI//tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when</ns0:xpath>
+    <ns0:feature_id>P66</ns0:feature_id>
+    <ns0:feature_name>play_date_premiered</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_year_normalized">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
-    <rdfs:label xml:lang="en">Normalized Year</rdfs:label>
+    <rdfs:label xml:lang="en">year normalized</rdfs:label>
     <rdfs:label xml:lang="de">Normalisierte Jahresangabe</rdfs:label>
     <rdfs:label xml:lang="ru">Нормализованный год</rdfs:label>
     <rdfs:comment xml:lang="de">Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird
     ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr
     der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Normalized Year. Of all avaliable years (written, printed, premiered) a so-called 'normalized year' is selected; It is either the earlier on of printing or premiered or, if a work was published or performed much later (more than 10 years) after its creation, the year of its creation is taken as »Normalized Year« (if it is a range of years, the last of them is taken).</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-normalized-year</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L377-L410"/>
     <ns0:feature_id>P27</ns0:feature_id>
     <rdfs:seeAlso rdf:resource="https://dracor.org/doc/faq"/>
+    <ns0:feature_name>play_year_normalized</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_digital_source_name">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Name of the Digital Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">digital source name</rdfs:label>
+    <rdfs:comment xml:lang="en">Name of the digital source of a play. Normally it is the name of the repository or project that provides a digital version of the play, e.g. 'Google Books', 'Wikisource', 'TextGrid Repository'.</rdfs:comment>
     <ns0:feature_id>P28</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-source</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893"/>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:name/string()</ns0:xpath>
+    <ns0:feature_name>play_digital_source_name</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_digital_source_url">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-    <rdfs:label xml:lang="en">URL of the Digital Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">digital source url</rdfs:label>
+    <rdfs:comment xml:lang="en">URL of the digital source of a play.</rdfs:comment>
     <ns0:feature_id>P29</ns0:feature_id>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-source</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893"/>
     <ns0:xpath>/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:idno[@type='URL'][1]/string()</ns0:xpath>
+    <ns0:feature_name>play_digital_source_url</ns0:feature_name>
+    <ns0:operation_id>list-corpus-content</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_original_source_full_citation">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Full Citation of the Play's Original Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">original source full citation</rdfs:label>
+    <rdfs:comment xml:lang="en">Full citation of the play's original (print publication) source. In the TEI file the citation is contained in the element &lt;tei:bibl&gt; with the value 'originalSource' of the attribute @type inside the &lt;tei:sourceDesc&gt;.</rdfs:comment>
     <ns0:feature_id>P30</ns0:feature_id>
+    <ns0:feature_name>play_original_source_full_citation</ns0:feature_name>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-play-info</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L963"/>
+    <ns0:xpath>/tei:tei//tei:bibl[@type='originalSource'][1]/normalize-space(.)</ns0:xpath>
+    <ns0:operation_id>play-info</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_original_source_publisher">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Full Citation of the Play's Original Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">original source publisher</rdfs:label>
+    <rdfs:comment xml:lang="en">Publisher of the print publication that was used as the original source. In the TEI data the content of the element &lt;tei:publisher&gt; in the &lt;tei:bibl&gt; representing the original source is extracted.</rdfs:comment>
     <ns0:feature_id>P31</ns0:feature_id>
+    <ns0:feature_name>play_original_source_publisher</ns0:feature_name>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L598-L600"/>
+    <ns0:xpath>/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:publisher/normalize-space(.)</ns0:xpath>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_original_source_publication_place">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Place of Publication of the Original Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">original source publication place</rdfs:label>
+    <rdfs:comment xml:lang="en">Place of publication of the print publication that was used as the original source. In the TEI data the content of the element &lt;tei:pubPlace&gt; in the &lt;tei:bibl&gt; representing the original source is extracted. If there are multiple places annotated, they are joined to a single string separated by ','.</rdfs:comment>
     <ns0:feature_id>P32</ns0:feature_id>
+    <ns0:feature_name>play_original_source_publication_place</ns0:feature_name>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L601-L602"/>
+    <ns0:xpath>string-join(/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:pubPlace/normalize-space(.), ', ')</ns0:xpath>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_original_source_publication_year">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:label xml:lang="en">Yer of Publication of the Original Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">original source publication year</rdfs:label>
+    <rdfs:comment xml:lang="en">Year of publication of the print publication that was used as the original source.</rdfs:comment>
     <ns0:feature_id>P33</ns0:feature_id>
+    <ns0:feature_name>play_original_source_publication_year</ns0:feature_name>
+    <ns0:xpath>/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:date</ns0:xpath>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L604-L605"/>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_original_source_num_of_pages">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:label xml:lang="en">Number of Pages of the Original Source of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">original source number of pages</rdfs:label>
+    <rdfs:comment xml:lang="en">Extent of the original source in number of pages derived from the bibliographic reference. In the TEI file the element &lt;tei:biblScope&gt; holds a page range encoded in the attribute @from and @to. The value is calculated by taking the value of @to and substracting the value of @from and adding 1.</rdfs:comment>
     <ns0:feature_id>P34</ns0:feature_id>
+    <ns0:feature_name>play_original_source_num_of_pages</ns0:feature_name>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L606-L609"/>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:xpath>/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:biblScope[@unit='page']</ns0:xpath>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_wikipedia_links">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:label xml:lang="en">Number of Wikipedia Links of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">number of wikipedia links</rdfs:label>
+    <rdfs:comment xml:lang="en">Number of Wikipedia links of a play. The links are counted upon ingest of the TEI file into the system using the Wikidata Query Service. The query looks for connections based on the property 'schema:about' (?sitelink schema:about wd:' || $id || ' .) and filters the results with the regular expression '[.]wikipedia[.]org'.</rdfs:comment>
     <ns0:feature_id>P35</ns0:feature_id>
+    <ns0:feature_name>play_num_of_wikipedia_links</ns0:feature_name>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_module>wikidata.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:count-sitelinks</ns0:extractor_in_api_function>
+    <ns0:extractor_in_api_function>wd:get-sitelinks</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L636"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L412-L425"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/wikidata.xqm#L15-L34"/>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
+    <ns0:operation_id>play-metrics</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_segments">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:label xml:lang="en">Number of Segments of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">number of segments</rdfs:label>
+    <rdfs:comment xml:lang="en">Number of segments (e.g. scenes) of a play. Usually &lt;tei:div&gt; elements inside &lt;tei:body&gt; are considered a segment if they contain a speech marked up by an element &lt;tei:sp&gt;. However, also 'empty scenes' with no speaking characters are considered a segment, e.g. elements &lt;tei:div&gt; that consist of stage directions (&lt;tei:stage&gt;) only.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L627"/>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L262-L285"/>
     <ns0:feature_id>P37</ns0:feature_id>
+    <ns0:feature_name>play_num_of_segments</ns0:feature_name>
+    <ns0:operation_id>corpus-metadata</ns0:operation_id>
+    <ns0:operation_id>corpus-metadata-csv-endpoint</ns0:operation_id>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_acts">
     <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Play"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:label xml:lang="en">Number of Acts of a Play</rdfs:label>
+    <rdfs:label xml:lang="en">number of acts</rdfs:label>
     <rdfs:label xml:lang="de">Anzahl Akte</rdfs:label>
     <rdfs:label xml:lang="ru">Количество актов</rdfs:label>
+    <rdfs:comment xml:lang="en">Number of acts of a play. In the TEI file acts are elements &lt;tei:div&gt; with an attribute @type value of 'act'. The function extracting the information returns the number of such &lt;tei:div&gt; elements.</rdfs:comment>
+    <ns0:extractor_in_api_module>util.xqm</ns0:extractor_in_api_module>
+    <ns0:extractor_in_api_function>dutil:get-corpus-meta-data</ns0:extractor_in_api_function>
+    <ns0:code_ref rdf:resource="https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L628"/>
+    <ns0:xpath>count(/tei:TEI//tei:div[@type='act'])</ns0:xpath>
     <ns0:feature_id>P38</ns0:feature_id>
+    <ns0:feature_name>play_num_of_acts</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_paragraphs">
@@ -893,6 +1162,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Paragraphs of a Play</rdfs:label>
     <ns0:feature_id>P39</ns0:feature_id>
+    <ns0:feature_name>play_num_of_paragraphs</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_verse_lines">
@@ -901,6 +1171,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Verses of a Play</rdfs:label>
     <ns0:feature_id>P40</ns0:feature_id>
+    <ns0:feature_name>play_num_of_verse_lines</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_word_tokens_in_text_elements">
@@ -909,6 +1180,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Word Tokens in &lt;tei:text&gt; Elements of a Play</rdfs:label>
     <ns0:feature_id>P41</ns0:feature_id>
+    <ns0:feature_name>play_num_of_word_tokens_in_text_elements</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_word_tokens_in_sp">
@@ -917,6 +1189,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Word Tokens in &lt;tei:sp&gt; Elements of a Play</rdfs:label>
     <ns0:feature_id>P42</ns0:feature_id>
+    <ns0:feature_name>play_num_of_word_tokens_in_sp</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_word_tokens_in_stage">
@@ -925,6 +1198,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Word Tokens in &lt;tei:stage&gt; Elements of a Play</rdfs:label>
     <ns0:feature_id>P43</ns0:feature_id>
+    <ns0:feature_name>play_num_of_word_tokens_in_stage</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_speakers">
@@ -936,6 +1210,7 @@
     <rdfs:label xml:lang="ru">Количество персонажей</rdfs:label>
     <rdfs:comment xml:lang="en">Number of Speakers of a Play</rdfs:comment>
     <ns0:feature_id>P45</ns0:feature_id>
+    <ns0:feature_name>play_num_of_speakers</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_speakers_gender_female">
@@ -944,6 +1219,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Female Characters of a Play</rdfs:label>
     <ns0:feature_id>P46</ns0:feature_id>
+    <ns0:feature_name>play_num_of_speakers_gender_female</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_speakers_gender_male">
@@ -952,6 +1228,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Male Characters of a Play</rdfs:label>
     <ns0:feature_id>P47</ns0:feature_id>
+    <ns0:feature_name>play_num_of_speakers_gender_male</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_speakers_gender_unknown">
@@ -960,6 +1237,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Characters of Unknown Gender of a Play</rdfs:label>
     <ns0:feature_id>P48</ns0:feature_id>
+    <ns0:feature_name>play_num_of_speakers_gender_unknown</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_num_of_person_groups">
@@ -968,6 +1246,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Person Groups in a Play</rdfs:label>
     <ns0:feature_id>P49</ns0:feature_id>
+    <ns0:feature_name>play_num_of_person_groups</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_all_in_segment">
@@ -976,6 +1255,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">All in Segment of a Play</rdfs:label>
     <ns0:feature_id>P50</ns0:feature_id>
+    <ns0:feature_name>play_all_in_segment</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_all_in_index">
@@ -984,6 +1264,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">All in Index of a Play</rdfs:label>
     <ns0:feature_id>P51</ns0:feature_id>
+    <ns0:feature_name>play_all_in_index</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_data_csv_url">
@@ -992,6 +1273,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     <rdfs:label xml:lang="en">URL to retrieve Network data of a Play in CSV format</rdfs:label>
     <ns0:feature_id>P53</ns0:feature_id>
+    <ns0:feature_name>play_network_data_csv_url</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_size">
@@ -1000,6 +1282,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Size of the Network of a Play</rdfs:label>
     <ns0:feature_id>P55</ns0:feature_id>
+    <ns0:feature_name>play_network_size</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_num_edges">
@@ -1008,6 +1291,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Edges</rdfs:label>
     <ns0:feature_id>P56</ns0:feature_id>
+    <ns0:feature_name>play_network_num_edges</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_average_degree">
@@ -1019,6 +1303,7 @@
     <rdfs:label xml:lang="ru">Средняя степень</rdfs:label>
     <rdfs:comment xml:lang="en">Average Degree of the Network representing a Play</rdfs:comment>
     <ns0:feature_id>P57</ns0:feature_id>
+    <ns0:feature_name>play_network_average_degree</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_density">
@@ -1030,6 +1315,7 @@
     <rdfs:label xml:lang="ru">Плотность</rdfs:label>
     <rdfs:comment xml:lang="en">Density of a Network representing a Play</rdfs:comment>
     <ns0:feature_id>P58</ns0:feature_id>
+    <ns0:feature_name>play_network_density</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_diameter">
@@ -1039,6 +1325,7 @@
     <rdfs:label xml:lang="en">Diameter of a Network</rdfs:label>
     <rdfs:label xml:lang="de">Netzwerkdurchmesser</rdfs:label>
     <ns0:feature_id>P59</ns0:feature_id>
+    <ns0:feature_name>play_network_diameter</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_average_path_length">
@@ -1049,6 +1336,7 @@
     <rdfs:label xml:lang="de">Durchschnittliche Pfadlänge</rdfs:label>
     <rdfs:comment xml:lang="en">Average Path Length of a Network representing a Play</rdfs:comment>
     <ns0:feature_id>P60</ns0:feature_id>
+    <ns0:feature_name>play_network_average_path_length</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_average_clustering">
@@ -1057,6 +1345,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">Average Clustering Coefficient of a Network representing a Play</rdfs:label>
     <ns0:feature_id>P61</ns0:feature_id>
+    <ns0:feature_name>play_network_average_clustering</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_num_connected_components">
@@ -1065,6 +1354,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     <rdfs:label xml:lang="en">Number of Connected Components of a Network representing a Play</rdfs:label>
     <ns0:feature_id>P62</ns0:feature_id>
+    <ns0:feature_name>play_network_num_connected_components</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_max_degree">
@@ -1073,6 +1363,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     <rdfs:label xml:lang="en">Maximum Degree of a Network representing a Play</rdfs:label>
     <ns0:feature_id>P63</ns0:feature_id>
+    <ns0:feature_name>play_network_max_degree</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#play_network_max_degree_character_id">
@@ -1128,6 +1419,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">Type of a Segment</rdfs:label>
     <ns0:feature_id>S1</ns0:feature_id>
+    <ns0:feature_name>segment_type</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#segment_number">
@@ -1136,6 +1428,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of a Segment</rdfs:label>
     <ns0:feature_id>S2</ns0:feature_id>
+    <ns0:feature_name>segment_number</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#segment_title">
@@ -1144,6 +1437,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">Title of a Segment</rdfs:label>
     <ns0:feature_id>S3</ns0:feature_id>
+    <ns0:feature_name>segment_title</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#segment_speaking_characters">
@@ -1151,6 +1445,7 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#Segment"/>
     <rdfs:label xml:lang="en">Data on Speaking Characters of a Segment</rdfs:label>
     <ns0:feature_id>S4</ns0:feature_id>
+    <ns0:feature_name>segment_speaking_characters</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#segment_speaking_character_id">
@@ -1184,6 +1479,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">ID of a Character</rdfs:label>
     <ns0:feature_id>Ch1</ns0:feature_id>
+    <ns0:feature_name>character_id</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_name">
@@ -1192,6 +1488,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">Name of a Character</rdfs:label>
     <ns0:feature_id>Ch2</ns0:feature_id>
+    <ns0:feature_name>character_name</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_is_group">
@@ -1200,6 +1497,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:label xml:lang="en">Indicates if the Character is a Group</rdfs:label>
     <ns0:feature_id>Ch3</ns0:feature_id>
+    <ns0:feature_name>character_is_group</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_gender">
@@ -1208,6 +1506,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">Gender of a Character</rdfs:label>
     <ns0:feature_id>Ch4</ns0:feature_id>
+    <ns0:feature_name>character_gender</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_wikidata_id">
@@ -1216,6 +1515,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:label xml:lang="en">Wikidata ID of a Character</rdfs:label>
     <ns0:feature_id>Ch5</ns0:feature_id>
+    <ns0:feature_name>character_wikidata_id</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_node_betweenness">
@@ -1224,6 +1524,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">Betweenness Centrality of a Node representing a Character</rdfs:label>
     <ns0:feature_id>Ch6</ns0:feature_id>
+    <ns0:feature_name>character_node_betweenness</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_node_degree">
@@ -1232,6 +1533,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Degree of a Node representing a Character</rdfs:label>
     <ns0:feature_id>Ch7</ns0:feature_id>
+    <ns0:feature_name>character_node_degree</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_node_closeness">
@@ -1240,6 +1542,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">Closeness Centrality of a Node representing a Character</rdfs:label>
     <ns0:feature_id>Ch8</ns0:feature_id>
+    <ns0:feature_name>character_node_closeness</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_node_eigenvector">
@@ -1248,6 +1551,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">Eigenvector Centrality of a Node representing a Character</rdfs:label>
     <ns0:feature_id>Ch9</ns0:feature_id>
+    <ns0:feature_name>character_node_eigenvector</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_node_weighted_degree">
@@ -1256,6 +1560,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdfs:label xml:lang="en">Weighted Degree of a Node representing a Character</rdfs:label>
     <ns0:feature_id>Ch10</ns0:feature_id>
+    <ns0:feature_name>character_node_weighted_degree</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_num_of_segments">
@@ -1267,6 +1572,7 @@
     <rdfs:label xml:lang="ru">Количество сегментов</rdfs:label>
     <rdfs:comment xml:lang="en">Number of Segments a Character appears in</rdfs:comment>
     <ns0:feature_id>Ch11</ns0:feature_id>
+    <ns0:feature_name>character_num_of_segments</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_num_of_sp">
@@ -1275,6 +1581,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of &lt;tei:sp&gt; Elements that are attributed to a Character</rdfs:label>
     <ns0:feature_id>Ch12</ns0:feature_id>
+    <ns0:feature_name>character_num_of_sp</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_num_of_word_tokens">
@@ -1283,6 +1590,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     <rdfs:label xml:lang="en">Number of Word Tokens spoken by a Character</rdfs:label>
     <ns0:feature_id>Ch13</ns0:feature_id>
+    <ns0:feature_name>character_num_of_word_tokens</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/dracor-api-ontology#character_role">
@@ -1297,6 +1605,7 @@
     <rdfs:domain rdf:resource="https://dracor.org/ontology/dracor-api-ontology#character"/>
     <rdfs:label xml:lang="en">Spoken Text of a Character</rdfs:label>
     <ns0:feature_id>Ch15</ns0:feature_id>
+    <ns0:feature_name>character_spoken_text</ns0:feature_name>
   </owl:DatatypeProperty>
 
   <owl:Class rdf:about="https://dracor.org/ontology/dracor-api-ontology#Relation">
