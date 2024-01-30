@@ -589,13 +589,12 @@ dracon:play_name
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play name"@en ;
-    rdfs:comment "Identifier 'playname'. Normally a combination of the name of the author and the title of the play, e.g. 'lessing-emilia-galotti'. It is unique across a single corpus. This identifier is normally used as path parameters in requests to the DraCor API. 
-    For further details see API Specification at https://dracor.org/doc/api#/ ."@en ;
+    rdfs:comment "Identifier 'playname'. Normally a combination of the name of the author and the title of the play, e.g. 'lessing-emilia-galotti'. It is unique across a single corpus. This identifier is normally used as path parameters in requests to the DraCor API. For further details see API Specification at https://dracor.org/doc/api#/ ."@en ;
     dracon:extractor_in_api_module "util.xqm" ;
     dracon:code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1005> ;
     dracon:extractor_in_api_function "dutil:get-play-info" ;
     dracon:feature_id "P3" ;
-    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , play-metrics ;
+    dracon:operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
     dracon:feature_name "play_name" .
 
 
@@ -648,7 +647,7 @@ dracon:play_title_en
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain dracon:Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:label "play title english"@ ;
+    rdfs:label "play title english"@en ;
     rdfs:comment "English translation of the original main title of the play. Extracts the text of the element <tei:title> with 'eng' as the attribute's @xml:lang value."@en ;
     dracon:feature_id "P7" ;
     dracon:extractor_in_api_module "util.xqm" ;
