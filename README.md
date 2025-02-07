@@ -1,2 +1,2 @@
 # dracor-ontology
-Ontology to add semantics DraCor API responses
+Linked Data Ontologies to add semantics DraCor Resources
