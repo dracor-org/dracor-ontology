@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://dracor.org/ontology#"
-     xml:base="http://dracor.org/ontology"
+<rdf:RDF xmlns="https://dracor.org/ontology/v0/"
+     xml:base="https://dracor.org/ontology/v0/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:wd="http://www.wikidata.org/entity/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -9,11 +9,12 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://dracor.org/ontology#">
+    <owl:Ontology rdf:about="https://dracor.org/ontology/v0">
         <dc:creator>Ingo Börner</dc:creator>
         <dc:title>DraCor Ontology</dc:title>
         <rdfs:label xml:lang="en">DraCor Ontology</rdfs:label>
         <rdfs:seeAlso>https://dracor.org</rdfs:seeAlso>
+        <owl:versionInfo>v0</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -66,86 +67,86 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <!-- http://dracor.org/ontology#allInSegment -->
+    <!-- https://dracor.org/ontology/v0/allInSegment -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#allInSegment">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#segment"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/allInSegment">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/segment"/>
         <rdfs:comment xml:lang="en">All characters have appeared at least once with the segment</rdfs:comment>
     </owl:ObjectProperty>
     
     
     
-    <!-- http://dracor.org/ontology#appears_in_segment -->
+    <!-- https://dracor.org/ontology/v0/appears_in_segment -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#appears_in_segment">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#segment"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/appears_in_segment">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/segment"/>
         <rdfs:label xml:lang="en">appears in segment</rdfs:label>
         <rdfs:label xml:lang="de">hat einen Auftritt in</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#has_speaker"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/has_speaker"/>
     </owl:ObjectProperty>
 
 
 
-    <!-- http://dracor.org/ontology#has_author -->
+    <!-- https://dracor.org/ontology/v0/has_author -->
 
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_author">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#author"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/has_author">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/author"/>
         <rdfs:comment xml:lang="de">Autor/in eines Stücks.</rdfs:comment>
         <rdfs:label xml:lang="de">Autor/in</rdfs:label>
         <rdfs:label xml:lang="en">author</rdfs:label>
         <rdfs:label xml:lang="ru">автор</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#is_author_of"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/is_author_of"/>
     </owl:ObjectProperty>
     
     
-    <!-- http://dracor.org/ontology#has_character -->
+    <!-- https://dracor.org/ontology/v0/has_character -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_character">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/has_character">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:label xml:lang="de">hat Figur</rdfs:label>
         <rdfs:label xml:lang="en">has character</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#is_character_in"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/is_character_in"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://dracor.org/ontology#has_genre -->
+    <!-- https://dracor.org/ontology/v0/has_genre -->
 
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_genre">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#genre"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/has_genre">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/genre"/>
         <rdfs:label xml:lang="de">Gattung</rdfs:label>
         <rdfs:label xml:lang="en">genre</rdfs:label>
         <rdfs:label xml:lang="ru">жанр</rdfs:label>
     </owl:ObjectProperty>
     
-    <!-- http://dracor.org/ontology#has_relation_type -->
+    <!-- https://dracor.org/ontology/v0/has_relation_type -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_relation_type">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#relation"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/has_relation_type">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/relation"/>
         <rdfs:label xml:lang="en">type of (social) relation</rdfs:label>
     </owl:ObjectProperty>
     
     
-    <!-- http://dracor.org/ontology#has_speaker -->
+    <!-- https://dracor.org/ontology/v0/has_speaker -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#has_speaker">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#segment"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#character"/>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#appears_in_segment"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/has_speaker">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/segment"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/character"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/appears_in_segment"/>
     </owl:ObjectProperty>
     
     
 
-    <!-- http://dracor.org/ontology#in_corpus -->
+    <!-- https://dracor.org/ontology/v0/in_corpus -->
 
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#in_corpus">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#corpus"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/in_corpus">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/corpus"/>
         <rdfs:comment xml:lang="de">Gibt die Zugehörigkeit eines Stücks zu einem Korpus an.</rdfs:comment>
         <rdfs:label xml:lang="de">Korpus</rdfs:label>
         <rdfs:label xml:lang="en">Corpus</rdfs:label>
@@ -154,47 +155,47 @@
     
     
     
-    <!-- http://dracor.org/ontology#is_author_of -->
+    <!-- https://dracor.org/ontology/v0/is_author_of -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#is_author_of">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#author"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/is_author_of">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/author"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:label xml:lang="de">ist Autor/in von</rdfs:label>
         <rdfs:label xml:lang="en">is author of</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#has_author"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/has_author"/>
     </owl:ObjectProperty>
     
     
     
-    <!-- http://dracor.org/ontology#is_character_in -->
+    <!-- https://dracor.org/ontology/v0/is_character_in -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#is_character_in">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/is_character_in">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:label xml:lang="de">ist eine Figur in</rdfs:label>
         <rdfs:label xml:lang="en">is character in</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#has_character"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/has_character"/>
     </owl:ObjectProperty>
     
     
     
-    <!-- http://dracor.org/ontology#is_segment_of -->
+    <!-- https://dracor.org/ontology/v0/is_segment_of -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#is_segment_of">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#segment"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/is_segment_of">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/segment"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:label xml:lang="de">ist ein Segment von</rdfs:label>
         <rdfs:label xml:lang="en">is segment of</rdfs:label>
-        <owl:inverseOf rdf:resource="http://dracor.org/ontology#has_segment"/>
+        <owl:inverseOf rdf:resource="https://dracor.org/ontology/v0/has_segment"/>
     </owl:ObjectProperty>
     
     
     
-    <!-- http://dracor.org/ontology#maxDegreeCharacter -->
+    <!-- https://dracor.org/ontology/v0/maxDegreeCharacter -->
     
-    <owl:ObjectProperty rdf:about="http://dracor.org/ontology#maxDegreeCharacter">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
-        <rdfs:range rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:ObjectProperty rdf:about="https://dracor.org/ontology/v0/maxDegreeCharacter">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
+        <rdfs:range rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:comment xml:lang="de">Figur mit dem höchsten Degree-Wert im Drama.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -208,30 +209,30 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <!-- http://dracor.org/ontology#allInIndex -->
+    <!-- https://dracor.org/ontology/v0/allInIndex -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#allInIndex">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/allInIndex">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
         <rdfs:label xml:lang="en">All-In Index</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://dracor.org/ontology#averageClustering -->
+    <!-- https://dracor.org/ontology/v0/averageClustering -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averageClustering">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/averageClustering">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="en">Average Clustering</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://dracor.org/ontology#averageDegree -->
+    <!-- https://dracor.org/ontology/v0/averageDegree -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averageDegree">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/averageDegree">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="de">Durchschnittlcher Grad</rdfs:label>
         <rdfs:label xml:lang="ru">Средняя степень</rdfs:label>
@@ -240,10 +241,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#averagePathLength -->
+    <!-- https://dracor.org/ontology/v0/averagePathLength -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#averagePathLength">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/averagePathLength">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="de">Durchschnittliche Pfadlänge</rdfs:label>
         <rdfs:label xml:lang="en">Average path length</rdfs:label>
@@ -251,28 +252,28 @@
     
     
     
-    <!-- http://dracor.org/ontology#betweenness -->
+    <!-- https://dracor.org/ontology/v0/betweenness -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#betweenness">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/betweenness">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="en">Betweenness</rdfs:label>
     </owl:DatatypeProperty>
     
     
-    <!-- http://dracor.org/ontology#closeness -->
+    <!-- https://dracor.org/ontology/v0/closeness -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#closeness">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/closeness">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="en">Closeness</rdfs:label>
     </owl:DatatypeProperty>
     
     
-    <!-- http://dracor.org/ontology#degree -->
+    <!-- https://dracor.org/ontology/v0/degree -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#degree">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/degree">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Degree</rdfs:label>
         <rdfs:label xml:lang="de">Grad</rdfs:label>
@@ -280,10 +281,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#density -->
+    <!-- https://dracor.org/ontology/v0/density -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#density">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/density">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="de">Netzwerkdichte</rdfs:label>
         <rdfs:label xml:lang="ru">Плотность</rdfs:label>
@@ -292,10 +293,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#diameter -->
+    <!-- https://dracor.org/ontology/v0/diameter -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#diameter">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/diameter">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Netzwerkduchmesser</rdfs:label>
         <rdfs:label xml:lang="en">Diameter</rdfs:label>
@@ -303,58 +304,58 @@
     
     
     
-    <!-- http://dracor.org/ontology#eigenvector -->
+    <!-- https://dracor.org/ontology/v0/eigenvector -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#eigenvector">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/eigenvector">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="en">Eigenvector</rdfs:label>
     </owl:DatatypeProperty>
     
     
     
-    <!-- http://dracor.org/ontology#has_numOfSpeechActs -->
+    <!-- https://dracor.org/ontology/v0/has_numOfSpeechActs -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#has_numOfSpeechActs">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/has_numOfSpeechActs">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">has number of speech acts</rdfs:label>
         <rdfs:label xml:lang="en">Anzahl an Sprechakten</rdfs:label>
     </owl:DatatypeProperty>
     
     
-    <!-- http://dracor.org/ontology#in_numOfScenes -->
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#in_numOfScenes">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <!-- https://dracor.org/ontology/v0/in_numOfScenes -->
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/in_numOfScenes">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">appears in number of scenes</rdfs:label>
         <rdfs:label xml:lang="en">Anzahl an Szenen mit Auftritt</rdfs:label>
     </owl:DatatypeProperty>
     
 
-    <!-- http://dracor.org/ontology#maxDegree -->
+    <!-- https://dracor.org/ontology/v0/maxDegree -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#maxDegree">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/maxDegree">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Maximum degree</rdfs:label>
     </owl:DatatypeProperty>
     
     
     
-    <!-- http://dracor.org/ontology#networkSize -->
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#networkSize">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <!-- https://dracor.org/ontology/v0/networkSize -->
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/networkSize">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Network size</rdfs:label>
     </owl:DatatypeProperty>
     
     
 
-    <!-- http://dracor.org/ontology#normalisedYear -->
+    <!-- https://dracor.org/ontology/v0/normalisedYear -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#normalisedYear">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/normalisedYear">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
         <rdfs:comment xml:lang="de">Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat.</rdfs:comment>
         <rdfs:label xml:lang="de">Normalisierte Jahresangabe</rdfs:label>
@@ -364,9 +365,9 @@
     </owl:DatatypeProperty>
     
     
-    <!-- http://dracor.org/ontology#numConnectedComponents -->
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numConnectedComponents">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <!-- https://dracor.org/ontology/v0/numConnectedComponents -->
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numConnectedComponents">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Number of connected components</rdfs:label>
         <rdfs:label xml:lang="de">Anzahl an verbundenen Komponenten</rdfs:label>
@@ -374,10 +375,10 @@
     
     
 
-    <!-- http://dracor.org/ontology#numOfActs -->
+    <!-- https://dracor.org/ontology/v0/numOfActs -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfActs">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfActs">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl Akte</rdfs:label>
         <rdfs:label xml:lang="ru">Количество актов</rdfs:label>
@@ -386,10 +387,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#numOfLines  -->
+    <!-- https://dracor.org/ontology/v0/numOfLines  -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfLines">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfLines">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl Verszeilen</rdfs:label>
         <rdfs:label xml:lang="en">Number of verse lines</rdfs:label>
@@ -397,10 +398,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#numOfParagraphs  -->
+    <!-- https://dracor.org/ontology/v0/numOfParagraphs  -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfParagraphs">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfParagraphs">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl Absätze</rdfs:label>
         <rdfs:label xml:lang="en">Number of paragraphs</rdfs:label>
@@ -408,10 +409,10 @@
    
    
 
-    <!-- http://dracor.org/ontology#numOfSegments -->
+    <!-- https://dracor.org/ontology/v0/numOfSegments -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSegments">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSegments">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl Segmente</rdfs:label>
         <rdfs:label xml:lang="ru">Количество сегментов</rdfs:label>
@@ -420,20 +421,20 @@
     
     
     
-    <!-- http://dracor.org/ontology#numOfSpeakerGroups -->
+    <!-- https://dracor.org/ontology/v0/numOfSpeakerGroups -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakerGroups">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSpeakerGroups">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl von Sprecher-Gruppen</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://dracor.org/ontology#numOfSpeakers -->
+    <!-- https://dracor.org/ontology/v0/numOfSpeakers -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakers">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSpeakers">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Sprecheranzahl</rdfs:label>
         <rdfs:label xml:lang="ru">Количество персонажей</rdfs:label>
@@ -442,10 +443,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#numOfSpeakersFemale -->
+    <!-- https://dracor.org/ontology/v0/numOfSpeakersFemale -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakersFemale">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSpeakersFemale">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl an weiblichen Sprecherinnen</rdfs:label>
         <rdfs:label xml:lang="en">Number of female speakers</rdfs:label>
@@ -453,20 +454,20 @@
     
     
     
-    <!-- http://dracor.org/ontology#numOfSpeakersMale -->
+    <!-- https://dracor.org/ontology/v0/numOfSpeakersMale -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakersMale">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSpeakersMale">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl an männlichen Sprechern</rdfs:label>
         <rdfs:label xml:lang="en">Number of male speakers</rdfs:label>
     </owl:DatatypeProperty>
     
     
-    <!-- http://dracor.org/ontology#numOfSpeakersUnknown -->
+    <!-- https://dracor.org/ontology/v0/numOfSpeakersUnknown -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#numOfSpeakersUnknown">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/numOfSpeakersUnknown">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="de">Anzahl an Sprechern/Sprecherinnen unbestimmten Genders</rdfs:label>
     </owl:DatatypeProperty>
@@ -474,10 +475,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#premiereYear -->
+    <!-- https://dracor.org/ontology/v0/premiereYear -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#premiereYear">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/premiereYear">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
         <rdfs:label xml:lang="de">Jahr der Erstaufführung</rdfs:label>
         <rdfs:label xml:lang="ru">Год премьеры</rdfs:label>
@@ -485,10 +486,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#printYear -->
+    <!-- https://dracor.org/ontology/v0/printYear -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#printYear">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/printYear">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
         <rdfs:label xml:lang="de">Jahr der Veröffentlichung</rdfs:label>
         <rdfs:label xml:lang="ru">Год издания</rdfs:label>
@@ -497,10 +498,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#speaks_numOfWords -->
+    <!-- https://dracor.org/ontology/v0/speaks_numOfWords -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#speaks_numOfWords">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/speaks_numOfWords">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">speaks number of words</rdfs:label>
         <rdfs:label xml:lang="de">Anzahl gesprochener Wörter</rdfs:label>
@@ -508,10 +509,10 @@
     
 
 
-    <!-- http://dracor.org/ontology#writtenYear -->
+    <!-- https://dracor.org/ontology/v0/writtenYear -->
 
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#writtenYear">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/writtenYear">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
         <rdfs:label xml:lang="de">Jahr der Entstehung</rdfs:label>
         <rdfs:label xml:lang="ru">Год написания</rdfs:label>
@@ -519,10 +520,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#weightedDegree -->
+    <!-- https://dracor.org/ontology/v0/weightedDegree -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#weightedDegree">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#character"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/weightedDegree">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/character"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Weighted degree</rdfs:label>
         <rdfs:label xml:lang="de">Gewichteter Grad</rdfs:label>
@@ -530,10 +531,10 @@
     
     
     
-    <!-- http://dracor.org/ontology#wikipediaLinkCount -->
+    <!-- https://dracor.org/ontology/v0/wikipediaLinkCount -->
     
-    <owl:DatatypeProperty rdf:about="http://dracor.org/ontology#wikipediaLinkCount">
-        <rdfs:domain rdf:resource="http://dracor.org/ontology#play"/>
+    <owl:DatatypeProperty rdf:about="https://dracor.org/ontology/v0/wikipediaLinkCount">
+        <rdfs:domain rdf:resource="https://dracor.org/ontology/v0/play"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
         <rdfs:label xml:lang="en">Number of Links on Wikipedia</rdfs:label>
         <rdfs:label xml:lang="de">Anzahl Wikipedia-Links</rdfs:label>
@@ -552,18 +553,18 @@
     
 
 
-    <!-- http://dracor.org/ontology#author -->
+    <!-- https://dracor.org/ontology/v0/author -->
 
-    <owl:Class rdf:about="http://dracor.org/ontology#author">
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/author">
         <rdfs:label xml:lang="de">Autor/in</rdfs:label>
         <rdfs:label xml:lang="ru">автор</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://dracor.org/ontology#corpus -->
+    <!-- https://dracor.org/ontology/v0/corpus -->
 
-    <owl:Class rdf:about="http://dracor.org/ontology#corpus">
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/corpus">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Korpus</rdfs:label>
         <rdfs:label xml:lang="en">corpus</rdfs:label>
@@ -572,9 +573,9 @@
     
 
 
-    <!-- http://dracor.org/ontology#genre -->
+    <!-- https://dracor.org/ontology/v0/genre -->
 
-    <owl:Class rdf:about="http://dracor.org/ontology#genre">
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/genre">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Gattung</rdfs:label>
         <rdfs:label xml:lang="ru">жанр</rdfs:label>
@@ -582,9 +583,9 @@
     
     
     
-    <!-- http://dracor.org/ontology#character -->
+    <!-- https://dracor.org/ontology/v0/character -->
     
-    <owl:Class rdf:about="http://dracor.org/ontology#character">
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/character">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Figur</rdfs:label>
         <rdfs:label xml:lang="en">character</rdfs:label> 
@@ -592,9 +593,9 @@
     
 
 
-    <!-- http://dracor.org/ontology#play -->
+    <!-- https://dracor.org/ontology/v0/play -->
 
-    <owl:Class rdf:about="http://dracor.org/ontology#play">
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/play">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Stück</rdfs:label>
         <rdfs:label xml:lang="en">play</rdfs:label>
@@ -602,16 +603,16 @@
     </owl:Class>
     
     
-    <!-- http://dracor.org/ontology#relation -->
-    <owl:Class rdf:about="http://dracor.org/ontology#relation">
+    <!-- https://dracor.org/ontology/v0/relation -->
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/relation">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Beziehung zwischen Figuren</rdfs:label>
         <rdfs:label xml:lang="en">relation of characters</rdfs:label>
     </owl:Class>
     
     
-    <!-- http://dracor.org/ontology#segment -->
-    <owl:Class rdf:about="http://dracor.org/ontology#segment">
+    <!-- https://dracor.org/ontology/v0/segment -->
+    <owl:Class rdf:about="https://dracor.org/ontology/v0/segment">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:label xml:lang="de">Segment</rdfs:label>
         <rdfs:label xml:lang="en">segment</rdfs:label>
@@ -623,4 +624,5 @@
 
 <!-- Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi -->
 <!-- Adapted manually later in Oxygen Editor -->
+<!-- Updated namespace 2025-02-10 -->
 
