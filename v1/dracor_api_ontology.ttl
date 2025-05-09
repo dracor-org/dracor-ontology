@@ -46,12 +46,14 @@
     See column 'No.' in Tab. 01, 02, 03, 04.";
     rdfs:range rdfs:Literal .
 
+
 :feature_name
     a owl:AnnotationProperty ;
     rdfs:label "Feature Slug"@en;
     rdfs:comment "Slug used to identify the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
     See column 'Feature' in Tab. 01, 02, 03, 04.";
     rdfs:range rdfs:Literal .
+
 
 :xpath
     a owl:AnnotationProperty ;
@@ -101,6 +103,12 @@
     field keys consistent across the endpoints, there might be several keys. Therefore this information should be handled with care
     and not be used for automatic processing."@en ;
     rdfs:range rdfs:Literal .
+
+:documentation
+    a owl:AnnotationProperty ;
+    rdfs:label "see other documentation at" ;
+    rdfs:comment "Links to the HTML rendering of the DraCor ODD which also documents the features" ;
+    rdfs:range xsd:anyURI .
 
 
 ########
@@ -170,7 +178,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L472-L473> ;
     :xpath "/tei:teiCorpus/tei:teiHeader//tei:publicationStmt/tei:idno[@type='URI' and @xml:base='https://dracor.org/']/text()" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "name" . 
+    :field_key "name" ;
+    :documentation <https://dracor.org/doc/odd#corpus_name> .
 
 
 :corpus_uri
@@ -185,7 +194,8 @@
     :extractor_in_api_function "api:corpora" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L247> ;
     :operation_id "list-corpora" ;
-    :field_key "uri" .
+    :field_key "uri" ;
+    :documentation <https://dracor.org/doc/odd#corpus_uri> .
 
 
 :corpus_title
@@ -201,7 +211,8 @@
     :code_ref  <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L475> ;
     :xpath "/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[1]/text()" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "title" . 
+    :field_key "title" ;
+    :documentation <https://dracor.org/doc/odd#corpus_title> . 
 
 
 :corpus_acronym
@@ -224,7 +235,8 @@
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L476> ;
     :xpath "/tei:teiCorpus/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='acronym']/text()" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "acronym" .
+    :field_key "acronym" ;
+    :documentation <https://dracor.org/doc/odd#corpus_acronym> .
 
 
 :corpus_description
@@ -242,7 +254,8 @@
     :feature_id "C5" ;
     :feature_name "corpus_description" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "description" .
+    :field_key "description" ;
+    :documentation <https://dracor.org/doc/odd#corpus_description> .
 
 
 :corpus_repository
@@ -259,7 +272,8 @@
     :feature_id "C6" ;
     :feature_name "corpus_repository" ;
     :field_key "repository" ;
-    :operation_id "list-corpora", "list-corpus-content" .
+    :operation_id "list-corpora", "list-corpus-content" ;
+    :documentation <https://dracor.org/doc/odd#corpus_repository> .
 
 
 :corpus_licence
@@ -278,7 +292,8 @@
     :feature_id "C7" ;
     :feature_name "corpus_licence" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "licence" .
+    :field_key "licence" ;
+    :documentation <https://dracor.org/doc/odd#corpus_licence> .
 
 
 :corpus_licence_url
@@ -294,7 +309,8 @@
     :feature_id "C8" ;
     :feature_name "corpus_licence_url" ;
     :operation_id "list-corpora", "list-corpus-content" ;
-    :field_key "licenceUrl" . 
+    :field_key "licenceUrl" ;
+    :documentation <https://dracor.org/doc/odd#corpus_licence_url> . 
 
 
 :corpus_num_of_plays
@@ -310,7 +326,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L202> ;
     :operation_id "list-corpora" ;
     :feature_id "C9" ;
-    :feature_name "corpus_num_of_plays" .
+    :feature_name "corpus_num_of_plays" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_plays> .
 
 
 :corpus_num_of_characters
@@ -326,7 +343,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L204> ;
     :operation_id "list-corpora" ;
     :feature_id "C10" ;
-    :feature_name "corpus_num_of_characters" .
+    :feature_name "corpus_num_of_characters" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_characters> .
 
 
 :corpus_num_of_characters_male
@@ -342,7 +360,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L205> ;
     :operation_id "list-corpora" ;
     :feature_id "C11" ;
-    :feature_name "corpus_num_of_characters_male" .
+    :feature_name "corpus_num_of_characters_male" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_characters_male> .
 
 
 :corpus_num_of_characters_female
@@ -358,7 +377,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L206> ;
     :operation_id "list-corpora" ;
     :feature_id "C12" ;
-    :feature_name "corpus_num_of_characters_female" .
+    :feature_name "corpus_num_of_characters_female" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_characters_female> .
 
 
 :corpus_num_of_tei_text_elements
@@ -373,7 +393,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L207> ;
     :operation_id "list-corpora" ;
     :feature_id "C13" ;
-    :feature_name "corpus_num_of_tei_text_elements" .
+    :feature_name "corpus_num_of_tei_text_elements" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_tei_text_elements> .
 
 
 :corpus_num_of_sp
@@ -388,7 +409,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L209> ;
     :operation_id "list-corpora" ;
     :feature_id "C14" ;
-    :feature_name "corpus_num_of_sp" .
+    :feature_name "corpus_num_of_sp" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_sp> .
 
 
 :corpus_num_of_stage
@@ -403,7 +425,9 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L208> ;
     :operation_id "list-corpora" ;
     :feature_id "C15" ;
-    :feature_name "corpus_num_of_stage" .
+    :feature_name "corpus_num_of_stage" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_stage> .
+
 
 :corpus_num_of_word_tokens_in_text_elements
     a owl:DatatypeProperty, rdf:Property ;
@@ -418,7 +442,8 @@
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ;
     :operation_id "list-corpora" ;
     :feature_id "C16" ;
-    :feature_name "corpus_num_of_word_tokens_in_text_elements" .
+    :feature_name "corpus_num_of_word_tokens_in_text_elements" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_word_tokens_in_text_elements> .
 
 
 :corpus_num_of_word_tokens_in_sp
@@ -434,7 +459,8 @@
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L129> ;
     :operation_id "list-corpora" ;
     :feature_id "C17" ;
-    :feature_name "corpus_num_of_word_tokens_in_sp" .
+    :feature_name "corpus_num_of_word_tokens_in_sp" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_word_tokens_in_sp> .
 
 
 :corpus_num_of_word_tokens_in_stage
@@ -450,7 +476,8 @@
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L221> ;
     :operation_id "list-corpora" ;
     :feature_id "C18" ;
-    :feature_name "corpus_num_of_word_tokens_in_stage" .
+    :feature_name "corpus_num_of_word_tokens_in_stage" ;
+    :documentation <https://dracor.org/doc/odd#corpus_num_of_word_tokens_in_stage> .
 
 
 :corpus_metrics_date_updated
@@ -465,7 +492,8 @@
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L223> ;
     :feature_id "C19" ;
     :operation_id "list-corpora" ;
-    :feature_name "corpus_metrics_date_updated" .
+    :feature_name "corpus_metrics_date_updated" ;
+    :documentation <https://dracor.org/doc/odd#corpus_metrics_date_updated> .
 
 
 :contains_play_data 
@@ -552,7 +580,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1006> ;
     :feature_id "P1" ;
     :operation_id "play-info" , "play-metrics" ;
-    :feature_name "play_corpus_name" .
+    :feature_name "play_corpus_name" ;
+    :documentation <https://dracor.org/doc/odd#play_corpus_name> .
 
 
 :play_id
@@ -567,7 +596,8 @@
     :feature_id "P2" ;
     :xpath "/tei:TEI/@xml:id/string()" ;
     :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
-    :feature_name "play_id" .
+    :feature_name "play_id" ;
+    :documentation <https://dracor.org/doc/odd#play_id> .
 
 
 :play_uri
@@ -581,7 +611,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L958-L959> ;
     :feature_id "P65" ;
     :operation_id "list-corpus-content" , "play-info" ;
-    :feature_name "play_uri" .
+    :feature_name "play_uri" ;
+    :documentation <https://dracor.org/doc/odd#play_uri> .
 
 
 :play_name
@@ -595,7 +626,8 @@
     :extractor_in_api_function "dutil:get-play-info" ;
     :feature_id "P3" ;
     :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" , "play-metrics" ;
-    :feature_name "play_name" .
+    :feature_name "play_name" ;
+    :documentation <https://dracor.org/doc/odd#play_name> .
 
 
 :play_wikidata_id
@@ -610,7 +642,8 @@
     :feature_id "P4" ;
     :xpath "substring-after(/tei:TEI/tei:standOff/tei:listRelation/tei:relation[@name='wikidata'][1]/@passive/string(),'http://www.wikidata.org/entity/')" ;
     :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
-    :feature_name "play_wikidata_id" .
+    :feature_name "play_wikidata_id" ;
+    :documentation <https://dracor.org/doc/odd#play_wikidata_id> .
 
 
 :play_title
@@ -625,7 +658,8 @@
     :feature_id "P5" ;
     :xpath "/tei:TEI//tei:fileDesc/tei:titleStmt/tei:title[1]/normalize-space()", "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()" ;
     :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
-    :feature_name "play_title" .
+    :feature_name "play_title" ;
+    :documentation <https://dracor.org/doc/odd#play_title> .
 
 
 :play_subtitle
@@ -640,7 +674,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L844-L845> ;
     :xpath "/tei:TEI//tei:titleStmt/tei:title[@type='sub'][1]/normalize-space()", "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and not(@xml:lang or ./ancestor::tei:TEI/@xml:lang = @xml:lang)]/normalize-space()" ;
     :operation_id "list-corpus-content" , "corpus-metadata" , "corpus-metadata-csv-endpoint" , "play-info" ;
-    :feature_name "play_subtitle" .
+    :feature_name "play_subtitle" ;
+    :documentation <https://dracor.org/doc/odd#play_subtitle> .
 
 
 :play_title_en
@@ -655,7 +690,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L865-L868> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961> ;
     :xpath "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[not(@type = 'sub') and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()" ;
     :operation_id "list-corpus-content",  "play-info" ;
-    :feature_name "play_title_en" .
+    :feature_name "play_title_en" ;
+    :documentation <https://dracor.org/doc/odd#play_title_en> .
 
 
 :play_subtitle_en
@@ -670,7 +706,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L869-L870>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L961> ;
     :xpath "/tei:TEI/tei:teiHeader/tei:fileDesc[1]/tei:titleStmt/tei:title[@type = 'sub' and @xml:lang = 'eng' and ./ancestor::tei:TEI/@xml:lang != 'eng']/normalize-space()" ;
     :operation_id "list-corpus-content",  "play-info" ;
-    :feature_name "play_subtitle_en" .
+    :feature_name "play_subtitle_en" ;
+    :documentation <https://dracor.org/doc/odd#play_subtitle_en> .
 
 
 :play_author_name
@@ -685,7 +722,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L760-L770> ,
     <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L734-L752> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_name" .
+    :feature_name "play_author_name" ;
+    :documentation <https://dracor.org/doc/odd#play_author_name> .
 
 
 :play_author_name_en
@@ -699,7 +737,8 @@
     :extractor_in_api_function "dutil:get-sort-name", "local:build-sort-name" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L772-L790> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_name_en" .
+    :feature_name "play_author_name_en" ;
+    :documentation <https://dracor.org/doc/odd#play_author_name_en> .
 
 
 :play_author_fullname
@@ -713,7 +752,8 @@
     :extractor_in_api_function "dutil:get-full-name" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L663-L667> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_fullname" .
+    :feature_name "play_author_fullname" ;
+    :documentation <https://dracor.org/doc/odd#play_author_fullname> .
     
 
 :play_author_fullname_en
@@ -727,7 +767,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L681-L685> ;
     :feature_id "P12" ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_fullname_en" .
+    :feature_name "play_author_fullname_en" ;
+    :documentation <https://dracor.org/doc/odd#play_author_fullname_en> .
 
 
 :play_author_shortname
@@ -741,7 +782,8 @@
     :extractor_in_api_function "dutil:get-short-name" , "local:build-short-name" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L690-L692> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_shortname" .
+    :feature_name "play_author_shortname" ;
+    :documentation <https://dracor.org/doc/odd#play_author_shortname> .
 
 
 :play_author_shortname_en
@@ -755,7 +797,8 @@
     :extractor_in_api_function "dutil:get-short-name" , "local:build-short-name" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L721-L732> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_shortname_en" .
+    :feature_name "play_author_shortname_en" ;
+    :documentation <https://dracor.org/doc/odd#play_author_shortname_en> .
 
 
 :play_first_author_shortname
@@ -768,7 +811,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L26>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L619> ;
     :feature_id "P16" ;
     :operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" ;
-    :feature_name "play_first_author_shortname" .
+    :feature_name "play_first_author_shortname" ;
+    :documentation <https://dracor.org/doc/odd#play_first_author_shortname> .
 
 
 :play_author_also_known_as
@@ -782,7 +826,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L816-L819> ;
     :xpath "/tei:TEI//tei:fileDesc/tei:titleStmt/tei:author[not(@role='illustrator')]/tei:persName[position() > 1]" ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_also_known_as" .
+    :feature_name "play_author_also_known_as" ;
+    :documentation <https://dracor.org/doc/odd#play_author_also_known_as> .
 
 
 :play_author_ref_external_id
@@ -796,7 +841,8 @@
     :extractor_in_api_function "dutil:get-authors" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_ref_external_id" .
+    :feature_name "play_author_ref_external_id" ;
+    :documentation <https://dracor.org/doc/odd#play_author_ref_external_id> .
 
 
 :play_author_ref_type
@@ -810,7 +856,8 @@
     :extractor_in_api_function "dutil:get-authors" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L807-L815> ;
     :operation_id "list-corpus-content", "play-info" ;
-    :feature_name "play_author_ref_type" .
+    :feature_name "play_author_ref_type" ;
+    :documentation <https://dracor.org/doc/odd#play_author_ref_type> .
 
 
 :play_num_of_co_authors
@@ -824,7 +871,8 @@
     :extractor_in_api_function "dutil:get-corpus-meta-data" ; 
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L27>, <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L622> ;
     :operation_id "corpus-metadata" , "corpus-metadata-csv-endpoint" ;
-    :feature_name "play_num_of_co_authors" .
+    :feature_name "play_num_of_co_authors" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_co_authors> .
 
 
 :play_genre_normalized
@@ -839,7 +887,8 @@
     :xpath "$tei:TEI//tei:textClass/tei:classCode[@scheme='http://www.wikidata.org/entity/']/string()" ;
     :feature_id "P22" ;
     :operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" ;
-    :feature_name "play_genre_normalized" .
+    :feature_name "play_genre_normalized" ;
+    :documentation <https://dracor.org/doc/odd#play_genre_normalized> .
 
 
 :play_is_libretto
@@ -853,7 +902,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L618> ;
     :feature_id "P23" ;
     :operation_id "corpus-metadata", "corpus-metadata-csv-endpoint" , "play-info" ;
-    :feature_name "play_is_libretto" .
+    :feature_name "play_is_libretto" ;
+    :documentation <https://dracor.org/doc/odd#play_is_libretto> .
 
 
 :play_year_written
@@ -870,7 +920,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
     :xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='written']/@when|@notBefore|@notAfter" ;
     :feature_name "play_year_written" ;
-    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .  
+    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_year_written> .  
 
 
 :play_year_printed
@@ -887,7 +938,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
     :xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='print']/@when|@notBefore|@notAfter" ;
     :feature_name "play_year_printed" ;
-    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
+    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_year_printed> .
 
 
 :play_year_premiered
@@ -904,7 +956,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L297-L326> ;
     :xpath "/tei:TEI/tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when|@notBefore|@notAfter" ;
     :feature_name "play_year_premiered" ;
-    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
+    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_year_premiered> .
 
 
 :play_date_premiered
@@ -919,7 +972,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L362-L375> ;
     :xpath "/tei:TEI//tei:standOff/tei:listEvent/tei:event[@type='premiere']/@when" ;
     :feature_id "P66" ;
-    :feature_name "play_date_premiered" .
+    :feature_name "play_date_premiered" ;
+    :documentation <https://dracor.org/doc/odd#play_date_premiered> .
 
 
 :play_year_normalized
@@ -939,7 +993,8 @@
     :feature_id "P27" ;
     rdfs:seeAlso <https://dracor.org/doc/faq> ;
     :feature_name "play_year_normalized" ;
-    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
+    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_year_normalized> .
 
 
 :play_digital_source_name
@@ -954,7 +1009,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893> ;
     :xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:name/string()" ;
     :feature_name "play_digital_source_name" ;
-    :operation_id "list-corpus-content",  "play-info" .
+    :operation_id "list-corpus-content",  "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_digital_source_name> .
 
 
 :play_digital_source_url
@@ -969,7 +1025,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L878-L893> ;
     :xpath "/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl[@type='digitalSource']/tei:idno[@type='URL'][1]/string()" ;
     :feature_name "play_digital_source_url" ;
-    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" .
+    :operation_id "list-corpus-content", "corpus-metadata", "corpus-metadata-csv-endpoint", "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_digital_source_url> .
 
 
 :play_original_source_full_citation
@@ -984,7 +1041,8 @@
     :extractor_in_api_function "dutil:get-play-info" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L963> ;
     :xpath "/tei:tei//tei:bibl[@type='originalSource'][1]/normalize-space(.)" ;
-    :operation_id "play-info" .
+    :operation_id "play-info" ;
+    :documentation <https://dracor.org/doc/odd#play_original_source_full_citation> .
 
 
 :play_original_source_publisher
@@ -999,7 +1057,8 @@
     :extractor_in_api_function "dutil:get-corpus-meta-data" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L598-L600> ;
     :xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:publisher/normalize-space(.)" ;
-    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
+    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
+    :documentation <https://dracor.org/doc/odd#play_original_source_publisher> .
     
 
 :play_original_source_publication_place
@@ -1014,7 +1073,8 @@
     :extractor_in_api_function "dutil:get-corpus-meta-data" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L601-L602> ;
     :xpath "string-join(/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:pubPlace/normalize-space(.), ', ')" ;
-    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
+    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
+    :documentation <https://dracor.org/doc/odd#play_original_source_publication_place> .
 
 
 :play_original_source_publication_year
@@ -1029,7 +1089,8 @@
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-meta-data" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L604-L605> ;
-    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
+    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
+    :documentation <https://dracor.org/doc/odd#play_original_source_publication_year> .
 
 
 :play_original_source_num_of_pages
@@ -1044,7 +1105,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L606-L609> ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-meta-data" ;
-    :xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:biblScope[@unit='page']" .
+    :xpath "/tei:TEI//tei:sourceDesc//tei:bibl[@type='originalSource'][1]/tei:biblScope[@unit='page']" ;
+    :documentation <https://dracor.org/doc/odd#play_original_source_num_of_pages> .
 
 
 :play_num_of_wikipedia_links
@@ -1058,7 +1120,8 @@
     :extractor_in_api_module "util.xqm" , "wikidata.xqm" ;
     :extractor_in_api_function "dutil:count-sitelinks" , "wd:get-sitelinks" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L636> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L412-L425> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/wikidata.xqm#L15-L34> ;
-    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint", "play-metrics" .
+    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint", "play-metrics" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_wikipedia_links> .
 
 
 :play_num_of_segments
@@ -1072,7 +1135,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L627> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L262-L285> ;
     :feature_id "P37" ;
     :feature_name "play_num_of_segments" ;
-    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" .
+    :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_segments> .
 
 
 :play_num_of_acts
@@ -1088,7 +1152,8 @@
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L628> ;
     :xpath "count(/tei:TEI//tei:div[@type='act'])" ;
     :feature_id "P38" ;
-    :feature_name "play_num_of_acts" .
+    :feature_name "play_num_of_acts" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_acts> .
 
 
 :play_num_of_paragraphs
@@ -1097,7 +1162,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Paragraphs of a Play"@en ;
     :feature_id "P39" ;
-    :feature_name "play_num_of_paragraphs" .
+    :feature_name "play_num_of_paragraphs" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_paragraphs> .
 
 
 :play_num_of_verse_lines
@@ -1106,7 +1172,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Verses of a Play"@en ;
     :feature_id "P40" ;
-    :feature_name "play_num_of_verse_lines" .
+    :feature_name "play_num_of_verse_lines" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_verse_lines> .
 
 
 :play_num_of_word_tokens_in_text_elements
@@ -1115,7 +1182,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:text> Elements of a Play"@en ;
     :feature_id "P41" ;
-    :feature_name "play_num_of_word_tokens_in_text_elements" .
+    :feature_name "play_num_of_word_tokens_in_text_elements" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_word_tokens_in_text_elements> .
 
 
 :play_num_of_word_tokens_in_sp
@@ -1124,7 +1192,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:sp> Elements of a Play"@en ;
     :feature_id "P42" ;
-    :feature_name "play_num_of_word_tokens_in_sp" .
+    :feature_name "play_num_of_word_tokens_in_sp" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_word_tokens_in_sp> .
 
 
 :play_num_of_word_tokens_in_stage
@@ -1133,7 +1202,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens in <tei:stage> Elements of a Play"@en ;
     :feature_id "P43" ;
-    :feature_name "play_num_of_word_tokens_in_stage" .
+    :feature_name "play_num_of_word_tokens_in_stage" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_word_tokens_in_stage> .
 
 
 :play_num_of_speakers
@@ -1145,7 +1215,8 @@
     rdfs:label "Количество персонажей"@ru ;
     rdfs:comment "Number of Speakers of a Play"@en ;
     :feature_id "P45" ;
-    :feature_name "play_num_of_speakers" .
+    :feature_name "play_num_of_speakers" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_speaker> .
 
 
 :play_num_of_speakers_gender_female
@@ -1154,7 +1225,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Female Characters of a Play"@en ;
     :feature_id "P46" ;
-    :feature_name "play_num_of_speakers_gender_female" .
+    :feature_name "play_num_of_speakers_gender_female" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_speakers_gender_female> .
 
 
 :play_num_of_speakers_gender_male
@@ -1163,7 +1235,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Male Characters of a Play"@en ;
     :feature_id "P47" ;
-    :feature_name "play_num_of_speakers_gender_male" .
+    :feature_name "play_num_of_speakers_gender_male" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_speakers_gender_male> .
 
 
 :play_num_of_speakers_gender_unknown
@@ -1172,7 +1245,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Characters of Unknown Gender of a Play"@en ;
     :feature_id "P48" ;
-    :feature_name "play_num_of_speakers_gender_unknown" .
+    :feature_name "play_num_of_speakers_gender_unknown" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_speakers_gender_unknown> .
 
 
 :play_num_of_person_groups
@@ -1181,7 +1255,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Person Groups in a Play"@en ;
     :feature_id "P49" ;
-    :feature_name "play_num_of_person_groups" .
+    :feature_name "play_num_of_person_groups" ;
+    :documentation <https://dracor.org/doc/odd#play_num_of_person_groups> .
 
 
 :play_all_in_segment
@@ -1190,7 +1265,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "All in Segment of a Play"@en ;
     :feature_id "P50" ;
-    :feature_name "play_all_in_segment" .
+    :feature_name "play_all_in_segment" ;
+    :documentation <https://dracor.org/doc/odd#play_all_in_segment> .
 
 
 :play_all_in_index
@@ -1199,7 +1275,8 @@
     rdfs:range xsd:float ;
     rdfs:label "All in Index of a Play"@en ;
     :feature_id "P51" ;
-    :feature_name "play_all_in_index" .
+    :feature_name "play_all_in_index" ;
+    :documentation <https://dracor.org/doc/odd#play_all_in_index> .
 
 
 :play_network_data_csv_url
@@ -1208,7 +1285,8 @@
     rdfs:range xsd:anyURI ;
     rdfs:label "URL to retrieve Network data of a Play in CSV format"@en ;
     :feature_id "P53" ;
-    :feature_name "play_network_data_csv_url" .
+    :feature_name "play_network_data_csv_url" ;
+    :documentation <https://dracor.org/doc/odd#play_network_data_csv_url> .
 
 
 :play_network_size
@@ -1217,7 +1295,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Size of the Network of a Play"@en ;
     :feature_id "P55" ;
-    :feature_name "play_network_size" .
+    :feature_name "play_network_size" ;
+    :documentation <https://dracor.org/doc/odd#play_network_size> .
 
 
 :play_network_num_edges
@@ -1226,7 +1305,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Edges"@en ;
     :feature_id "P56" ;
-    :feature_name "play_network_num_edges" .
+    :feature_name "play_network_num_edges" ;
+    :documentation <https://dracor.org/doc/odd#play_network_num_edges> .
 
 
 :play_network_average_degree
@@ -1238,7 +1318,8 @@
     rdfs:label "Средняя степень"@ru ;
     rdfs:comment "Average Degree of the Network representing a Play"@en ;
     :feature_id "P57" ;
-    :feature_name "play_network_average_degree" .
+    :feature_name "play_network_average_degree" ;
+    :documentation <https://dracor.org/doc/odd#play_network_average_degree> .
 
 
 :play_network_density
@@ -1250,7 +1331,8 @@
     rdfs:label "Плотность"@ru ;
     rdfs:comment "Density of a Network representing a Play"@en ;
     :feature_id "P58" ;
-    :feature_name "play_network_density" .
+    :feature_name "play_network_density" ;
+    :documentation <https://dracor.org/doc/odd#play_network_density> .
 
 
 :play_network_diameter
@@ -1260,7 +1342,8 @@
     rdfs:label "Diameter of a Network"@en ;
     rdfs:label "Netzwerkdurchmesser"@de ;
     :feature_id "P59" ;
-    :feature_name "play_network_diameter" .
+    :feature_name "play_network_diameter" ;
+    :documentation <https://dracor.org/doc/odd#play_network_diameter> .
 
 
 :play_network_average_path_length
@@ -1271,7 +1354,8 @@
     rdfs:label "Durchschnittliche Pfadlänge"@de ;
     rdfs:comment "Average Path Length of a Network representing a Play"@en ;
     :feature_id "P60" ;
-    :feature_name "play_network_average_path_length" .
+    :feature_name "play_network_average_path_length" ;
+    :documentation <https://dracor.org/doc/odd#play_network_average_path_length> .
 
 
 :play_network_average_clustering
@@ -1280,7 +1364,8 @@
     rdfs:range xsd:float ;
     rdfs:label "Average Clustering Coefficient of a Network representing a Play"@en ;
     :feature_id "P61" ;
-    :feature_name "play_network_average_clustering" .
+    :feature_name "play_network_average_clustering" ;
+    :documentation <https://dracor.org/doc/odd#play_network_average_clustering> .
 
 
 :play_network_num_connected_components
@@ -1289,7 +1374,8 @@
     rdfs:range xsd:int ;
     rdfs:label "Number of Connected Components of a Network representing a Play"@en ;
     :feature_id "P62" ;
-    :feature_name "play_network_num_connected_components" .
+    :feature_name "play_network_num_connected_components" ;
+    :documentation <https://dracor.org/doc/odd#play_network_num_connected_components> .
 
 
 :play_network_max_degree
@@ -1298,15 +1384,17 @@
     rdfs:range xsd:int ;
     rdfs:label "Maximum Degree of a Network representing a Play"@en ;
     :feature_id "P63" ;
-    :feature_name "play_network_max_degree" .
+    :feature_name "play_network_max_degree" ;
+    :documentation <https://dracor.org/doc/odd#play_network_max_degree> .
 
 
 :play_network_max_degree_character_id
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal;
-    rdfs:comment "ID of the character with the highest degree value in a network representing a play. In the report
-    'On programmable corpora' the corresponding feature is 'P64'."@en .
+    rdfs:comment """ID of the character with the highest degree value in a network representing a play. In the report
+    'On programmable corpora' the corresponding feature is 'P64'."""@en ;
+    :documentation <https://dracor.org/doc/odd#play_network_max_degree> .
 
 
 ########
@@ -1365,7 +1453,9 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "Type of a Segment"@en ;
     :feature_id "S1" ;
-    :feature_name "segment_type" .
+    :feature_name "segment_type" ;
+    :documentation <https://dracor.org/doc/odd#segment_type> .
+
 
 
 :segment_number
@@ -1374,7 +1464,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of a Segment"@en ;
     :feature_id "S2" ;
-    :feature_name "segment_number" .
+    :feature_name "segment_number" ;
+    :documentation <https://dracor.org/doc/odd#segment_number> .
 
 
 :segment_title
@@ -1383,7 +1474,8 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "Title of a Segment"@en ;
     :feature_id "S3" ;
-    :feature_name "segment_title" .
+    :feature_name "segment_title" ;
+    :documentation <https://dracor.org/doc/odd#segment_title> .
 
 
 :segment_speaking_characters
@@ -1391,7 +1483,8 @@
     rdfs:domain :Segment ;
     rdfs:label "Data on Speaking Characters of a Segment"@en ;
     :feature_id "S4" ;
-    :feature_name "segment_speaking_characters" .
+    :feature_name "segment_speaking_characters" ;
+    :documentation <https://dracor.org/doc/odd#segment_speaking_characters> .
 
 
 :segment_speaking_character_id
@@ -1399,8 +1492,9 @@
     rdfs:domain :Segment ;
     rdfs:range rdfs:Literal ;
     rdfs:label "Speaking Character ID"@en ;
-    rdfs:comment "ID of a character speaking in the segment. In the report 'On Programmable Corpora' this is
-    modeled by feature 'S4'."@en .
+    rdfs:comment """ID of a character speaking in the segment. In the report 'On Programmable Corpora' this is
+    modeled by feature 'S4'."""@en ;
+    :documentation <https://dracor.org/doc/odd#segment_speaking_character_id> .
 
 
 ########
@@ -1431,7 +1525,8 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "ID of a Character"@en ;
     :feature_id "Ch1" ;
-    :feature_name "character_id" .
+    :feature_name "character_id" ;
+    :documentation <https://dracor.org/doc/odd#character_id> .
 
 
 :character_name
@@ -1440,7 +1535,8 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "Name of a Character"@en ;
     :feature_id "Ch2" ;
-    :feature_name "character_name" .
+    :feature_name "character_name" ;
+    :documentation <https://dracor.org/doc/odd#character_name> .
 
 
 :character_is_group
@@ -1449,7 +1545,8 @@
     rdfs:range xsd:boolean ;
     rdfs:label "Indicates if the Character is a Group"@en ;
     :feature_id "Ch3" ;
-    :feature_name "character_is_group" .
+    :feature_name "character_is_group" ;
+    :documentation <https://dracor.org/doc/odd#character_is_group> .
 
 
 :character_gender
@@ -1458,7 +1555,8 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "Gender of a Character"@en ;
     :feature_id "Ch4" ;
-    :feature_name "character_gender" .
+    :feature_name "character_gender" ;
+    :documentation <https://dracor.org/doc/odd#character_gender> .
 
 
 :character_wikidata_id
@@ -1467,7 +1565,8 @@
     rdfs:range rdfs:Literal ;
     rdfs:label "Wikidata ID of a Character"@en ;
     :feature_id "Ch5" ;
-    :feature_name "character_wikidata_id" .
+    :feature_name "character_wikidata_id" ;
+    :documentation <https://dracor.org/doc/odd#character_wikidata_id> .
 
 
 :character_node_betweenness
@@ -1476,7 +1575,8 @@
     rdfs:range xsd:float ;
     rdfs:label "Betweenness Centrality of a Node representing a Character"@en ;
     :feature_id "Ch6" ;
-    :feature_name "character_node_betweenness" .
+    :feature_name "character_node_betweenness" ;
+    :documentation <https://dracor.org/doc/odd#character_node_betweenness> .
 
 
 :character_node_degree
@@ -1485,7 +1585,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Degree of a Node representing a Character"@en ;
     :feature_id "Ch7" ;
-    :feature_name "character_node_degree" .
+    :feature_name "character_node_degree" ;
+    :documentation <https://dracor.org/doc/odd#character_node_degree> .
 
 
 :character_node_closeness
@@ -1494,7 +1595,8 @@
     rdfs:range xsd:float ;
     rdfs:label "Closeness Centrality of a Node representing a Character"@en ;
     :feature_id "Ch8" ;
-    :feature_name "character_node_closeness" .
+    :feature_name "character_node_closeness" ;
+    :documentation <https://dracor.org/doc/odd#character_node_closeness> .
 
 
 :character_node_eigenvector
@@ -1503,7 +1605,8 @@
     rdfs:range xsd:float ;
     rdfs:label "Eigenvector Centrality of a Node representing a Character"@en ;
     :feature_id "Ch9" ;
-    :feature_name "character_node_eigenvector" .
+    :feature_name "character_node_eigenvector" ;
+    :documentation <https://dracor.org/doc/odd#character_node_eigenvector> .
 
 
 :character_node_weighted_degree
@@ -1512,7 +1615,8 @@
     rdfs:range xsd:float ;
     rdfs:label "Weighted Degree of a Node representing a Character"@en ;
     :feature_id "Ch10" ;
-    :feature_name "character_node_weighted_degree" .
+    :feature_name "character_node_weighted_degree" ;
+    :documentation <https://dracor.org/doc/odd#character_node_weighted_degree> .
 
 
 :character_num_of_segments
@@ -1524,7 +1628,8 @@
     rdfs:label "Количество сегментов"@ru ;
     rdfs:comment "Number of Segments a Character appears in"@en ;
     :feature_id "Ch11" ;
-    :feature_name "character_num_of_segments" .
+    :feature_name "character_num_of_segments" ;
+    :documentation <https://dracor.org/doc/odd#character_num_of_segments> .
 
 
 :character_num_of_sp
@@ -1533,7 +1638,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of <tei:sp> Elements that are attributed to a Character"@en ;
     :feature_id "Ch12" ;
-    :feature_name "character_num_of_sp" .
+    :feature_name "character_num_of_sp" ;
+    :documentation <https://dracor.org/doc/odd#character_num_of_sp> .
 
 
 :character_num_of_word_tokens
@@ -1542,14 +1648,16 @@
     rdfs:range xsd:integer ;
     rdfs:label "Number of Word Tokens spoken by a Character"@en ;
     :feature_id "Ch13" ;
-    :feature_name "character_num_of_word_tokens" .
+    :feature_name "character_num_of_word_tokens" ;
+    :documentation <https://dracor.org/doc/odd#character_num_of_word_tokens> .
 
 
 :character_role
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :character ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Character Roles. Feature 'Ch14' in the report 'On Programmable Corpora'."@en .
+    rdfs:comment "Character Roles. Feature 'Ch14' in the report 'On Programmable Corpora'."@en ;
+    :documentation <https://dracor.org/doc/odd#character_role> .
 
 
 :character_spoken_text
@@ -1557,7 +1665,8 @@
     rdfs:domain :character ;
     rdfs:label "Spoken Text of a Character"@en ;
     :feature_id "Ch15" ;
-    :feature_name "character_spoken_text" .
+    :feature_name "character_spoken_text" ;
+    :documentation <https://dracor.org/doc/odd#character_spoken_text> .
 
 
 ########
@@ -1584,27 +1693,31 @@
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Relation ;
     rdfs:range xsd:boolean ;
-    rdfs:comment "Indicates if a relation is directed (true)."@en .
+    rdfs:comment "Indicates if a relation is directed (true)."@en ;
+    :documentation <https://dracor.org/doc/odd#character_relation_is_directed> .
 
 :character_relation_type
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Relation ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Type of social relation: 'parent_of', 'lover_of', 'related_with', 'associated_with', 'siblings',
-    'spouses', 'friends'."@en .
+    rdfs:comment """Type of social relation: 'parent_of', 'lover_of', 'related_with', 'associated_with', 'siblings',
+    'spouses', 'friends'."""@en ;
+    :documentation <https://dracor.org/doc/odd#character_relation_type> .
 
 :character_relation_from
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Relation ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Contains the ID/name of a character that is the 'source' of the relation."@en .
+    rdfs:comment "Contains the ID/name of a character that is the 'source' of the relation."@en ;
+    :documentation <https://dracor.org/doc/odd#character_relation_from> .
 
 
 :character_relation_to
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Relation ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Contains the ID/name of a character that is the 'target' of the relation."@en .
+    rdfs:comment "Contains the ID/name of a character that is the 'target' of the relation."@en ;
+    :documentation <https://dracor.org/doc/odd#character_relation_to> .
 
 
 ########
