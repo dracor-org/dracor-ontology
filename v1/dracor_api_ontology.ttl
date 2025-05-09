@@ -12,7 +12,7 @@
     owl:versionInfo "v1";
     rdfs:label "DraCor API Ontology"@en ;
     rdfs:seeAlso <https://dracor.org> , <https://doi.org/10.5281/zenodo.7664964> ;
-    rdfs:comment "This version (v1) of the DraCor API Ontology models the response objects returned by the DraCor API. 
+    rdfs:comment """This version (v1) of the DraCor API Ontology models the response objects returned by the DraCor API. 
  
     It formally defines the 'features' that have been identified in the report D7.1 'On Programmable Corpora' 
     (https://doi.org/10.5281/zenodo.7664964), but already includes the changes made for v1 of the DraCor API. 
@@ -31,7 +31,7 @@
     According to CIDOC-CRM it would be a 'crm: E73 Information Object', not an instance of the class 'crm: E39 Actor'.
     
     For this ontology version v1.0.0-beta.1 (https://github.com/dracor-org/dracor-api/releases/tag/v1.0.0-beta.1) of the DraCor API was reviewed.
-    " .
+    """ .
 
 
 ########
@@ -58,12 +58,12 @@
 :xpath
     a owl:AnnotationProperty ;
     rdfs:label "xPath"@en ;
-    rdfs:comment "XPath expression that extracts the information from a DraCor TEI-file starting at the document root.
+    rdfs:comment """XPath expression that extracts the information from a DraCor TEI-file starting at the document root.
     It is expected that the encoding adheres to the the DraCor TEI customization documented in the ODD.
     Although it SHOULD return the actual value of the feature, this XPath expression is for reference only.
     It might not be the exact same construct, that is used in the XQuery based implementation of the API
     in the eXist-DB. The extraction algorithm implemented might use a different XPath and/or a combination of
-    XQuery functions."@en ;
+    XQuery functions."""@en ;
     rdfs:range rdfs:Literal .
 
 
@@ -99,9 +99,9 @@
 :field_key
     a owl:AnnotationProperty ;
     rdfs:label "key"@en ;
-    rdfs:comment "Key of the field in the JSON response object. Although it is aimed at having the
+    rdfs:comment """Key of the field in the JSON response object. Although it is aimed at having the
     field keys consistent across the endpoints, there might be several keys. Therefore this information should be handled with care
-    and not be used for automatic processing."@en ;
+    and not be used for automatic processing."""@en ;
     rdfs:range rdfs:Literal .
 
 :documentation
@@ -118,13 +118,13 @@
 :API_Response_Data
     a owl:Class, rdfs:Class ;
     rdfs:label "API Response Data"@en;
-    rdfs:comment "Information Object returned by the DraCor API. It provides information about entities
+    rdfs:comment """Information Object returned by the DraCor API. It provides information about entities
     (plays, characters, ...). The subclasses of these class SHOULD not be confused with the digital representations
     of the entities themselves. For example a data object 'author' is NOT representing the author of the play, which
     would be modeled in CIDOC-CRM as 'crm: E39 Actor' or a subclass thereof, but is equivalent to an 'crm: E73 Information Object'
     providing information about this E39 Actor in a very specific way to the DraCor API. 
     The API returns information extracted from TEI files by some algorithms and thus can be considered (subjective) chunks of information about entities relevant to Computational
-    Drama Analysis. Formally, it is a sub-class of  'dig: D1 Digital Object' in CRMdig." ;
+    Drama Analysis. Formally, it is a sub-class of  'dig: D1 Digital Object' in CRMdig.""" ;
     rdfs:subClassOf dig:D1_Digital_Object.
 
 
@@ -133,8 +133,8 @@
     rdfs:label "contains data"@en ;
     rdfs:domain :API_Response_Data ;
     rdfs:range :API_Response_Data ;
-    rdfs:comment "Some API Response Objects do not only contain data values, but nested data structures. This auxillary property
-    links an API response object to its nested parts."@en ;
+    rdfs:comment """Some API Response Objects do not only contain data values, but nested data structures. This auxillary property
+    links an API response object to its nested parts."""@en ;
     rdfs:subPropertyOf crm:P106_is_composed_of .
 
 
@@ -168,9 +168,9 @@
     rdfs:domain :Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "corpus name"@en ;
-    rdfs:comment "Identifier 'name' or 'corpusname' of a corpus, e.g. 'ger' for the 'German Drama Corpus'. 
+    rdfs:comment """Identifier 'name' or 'corpusname' of a corpus, e.g. 'ger' for the 'German Drama Corpus'. 
     This identifier is normally used as path parameters in requests to the DraCor API. 
-    For further details see API Specification at https://dracor.org/doc/api#/ .";
+    For further details see API Specification at https://dracor.org/doc/api#/ .""";
     :feature_id "C1" ;
     :feature_name "corpus_name" ;
     :extractor_in_api_module "util.xqm" ;
@@ -220,13 +220,13 @@
     rdfs:domain :Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "corpus acronym"@en ;
-    rdfs:comment "Acronym of a corpus. Normally, it is the identifier 'name'/'corpusname' 
+    rdfs:comment """Acronym of a corpus. Normally, it is the identifier 'name'/'corpusname' 
     (feature C1; but starting with a capital letter) followed by the string 'DraCor', e.g. 'TatDraCor'. 
     
     In the TEI source data the corpus acronym can be explicity set by including an element <tei:title> with the @type 'acronym' in
     in the metadata file of a corpus (corpus.xml). 
     
-    If this element is missing, the value of the element <tei:idno> with with the attribute @type 'URI' from the corpus.xml is extracted and prepended with 'DraCor'." ;
+    If this element is missing, the value of the element <tei:idno> with with the attribute @type 'URI' from the corpus.xml is extracted and prepended with 'DraCor'.""" ;
     :feature_id "C4" ;
     :feature_name "corpus_acronym" ;
     :extractor_in_api_module "util.xqm" ;
@@ -244,9 +244,9 @@
     rdfs:domain :Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "corpus description"@en ;
-    rdfs:comment "Description of a corpus. In the TEI source data this information is contained in the element <tei:projectDesc> 
+    rdfs:comment """Description of a corpus. In the TEI source data this information is contained in the element <tei:projectDesc> 
     in the corpus.xml file. The value returned can be formatted using Markdown. The transformation of TEI into Markdown is handled by the function 
-    'local:to-markdown' in 'util.xqm' which transforms TEI elements <tei:hi> and <tei:ref> for hyperlinks." ;
+    'local:to-markdown' in 'util.xqm' which transforms TEI elements <tei:hi> and <tei:ref> for hyperlinks.""" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-info" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L478> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L480-L482> ;
@@ -263,8 +263,8 @@
     rdfs:domain :Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "corpus repository"@en ;
-    rdfs:comment "URL of the (GitHub) repository that contains the TEI source data. The information is extracted from the element <tei:idno> with the @type attribute-value 'repo' 
-    in a corpus.xml file." ;
+    rdfs:comment """URL of the (GitHub) repository that contains the TEI source data. The information is extracted from the element <tei:idno> with the @type attribute-value 'repo' 
+    in a corpus.xml file.""" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-info" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L477> ;
@@ -281,9 +281,9 @@
     rdfs:domain :Corpus ;
     rdfs:range rdfs:Literal ;
     rdfs:label "corpus licence"@en ;
-    rdfs:comment "Licence information of a corpus. The value is a string identifying the licence, e.g. 'CC0' .
+    rdfs:comment """Licence information of a corpus. The value is a string identifying the licence, e.g. 'CC0' .
     The information is extracted from the corpus metadata in 'corpus.xml'. 
-    It is the text content of the element <tei:licence>." ;
+    It is the text content of the element <tei:licence>.""" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-info" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> , 
@@ -319,8 +319,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of plays in corpus"@en ;
     rdfs:label "Anzahl Stücke (in einem Korpus)"@de ;
-    rdfs:comment "Number of plays in a corpus. The value is the number of <tei:TEI> elements (should be equal to files) in a given corpus collection in the 
-    underlying eXist database." ;
+    rdfs:comment """Number of plays in a corpus. The value is the number of <tei:TEI> elements (should be equal to files) in a given corpus collection in the 
+    underlying eXist database.""" ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L202> ;
@@ -336,8 +336,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of characters in corpus"@en ;
     rdfs:label "Anzahl Figuren (in einem Korpus)"@de ;
-    rdfs:comment "Number of characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> elements in 
-    all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    rdfs:comment """Number of characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> elements in 
+    all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database.""" ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L204> ;
@@ -353,8 +353,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of male characters in corpus"@en ;
     rdfs:label "Anzahl männlicher Figuren (in einem Korpus)@de" ;
-    rdfs:comment "Number of male characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'MALE' in the
-    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    rdfs:comment """Number of male characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'MALE' in the
+    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database.""" ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L205> ;
@@ -370,8 +370,8 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of female characters in corpus"@en ;
     rdfs:label "Anzahl weiblicher Figuren (in einem Korpus)@de" ;
-    rdfs:comment "Number of female characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'FEMALE' in the
-    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database." ;
+    rdfs:comment """Number of female characters in a corpus. The value is the number of all <tei:person> and <tei:personGrp> that are classified with the value 'FEMALE' in the
+    attribute @sex in all <tei:listPerson> elements in a given collection representing a corpus in the underlying eXist database.""" ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L206> ;
@@ -386,8 +386,8 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of text elements in corpus"@en ;
-    rdfs:comment "Number of <tei:text> elements in a corpus. The value is the number of <tei:text> elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
-    A TEI file can contain multiple <tei:text> elements, e.g. when there are multiple one act plays published together." ;
+    rdfs:comment """Number of <tei:text> elements in a corpus. The value is the number of <tei:text> elmenents in all TEI files in a collection representing a corpus in the underlying eXist database.
+    A TEI file can contain multiple <tei:text> elements, e.g. when there are multiple one act plays published together.""" ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L207> ;
@@ -403,7 +403,7 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of speech acts in a corpus"@en ;
     rdfs:label "Anzahl Repliken (in einem Korpus)" ;
-    rdfs:comment "Number of speech acts in a corpus. The value is the number of <tei:sp> elements in a collection representing a corpus in the underlying eXist database."@en ;
+    rdfs:comment """Number of speech acts in a corpus. The value is the number of <tei:sp> elements in a collection representing a corpus in the underlying eXist database."""@en ;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L209> ;
@@ -434,8 +434,8 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in text elements"@en ;
-    rdfs:comment "Number of word tokens in <tei:text> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en  ;
+    rdfs:comment """Number of word tokens in <tei:text> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."""@en  ;
     :extractor_in_api_module "metrics.xqm", "api.xqm" ;
     :extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ,
@@ -451,8 +451,8 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in sp"@en ;
-    rdfs:comment "Number of word tokens in <tei:sp> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
+    rdfs:comment """Number of word tokens in <tei:sp> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."""@en ;
     :extractor_in_api_module "metrics.xqm", "api.xqm" ;
     :extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L220> ,
@@ -468,8 +468,8 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in stage"@en ;
-    rdfs:comment "Number of word tokens in <tei:stage> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
-    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."@en ;
+    rdfs:comment """Number of word tokens in <tei:stage> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:sp with the built-in xPath function 'teokenize()'. The regular expression 
+    '\W+' is used as separator. The values of all documents in a corpus collection are summed up."""@en ;
     :extractor_in_api_module "metrics.xqm", "api.xqm" ;
     :extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L128> ,
@@ -485,7 +485,7 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:dateTime ;
     rdfs:label "metrics updated at"@en ;
-    rdfs:comment "Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated. The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'."@en ;
+    rdfs:comment """Most recent date and time the metrics of a document in a collection in the eXist database representing a corpus were updated. The function retrieves the update date/time values (attribute @updated) of all metrics files in a collection and takes the maximum value using the built-in function 'max'."""@en ;
     :extractor_in_api_module "metrics.xqm" , "api.xqm" ;
     :extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/metrics.xqm#L130> ,
@@ -501,9 +501,9 @@
     rdfs:domain :Corpus ;
     rdfs:range :Play ;
     rdfs:label "contains play data"@en ;
-    rdfs:comment "Links the corpus data in the API response to the data about the play objects contained in the corpus.
+    rdfs:comment """Links the corpus data in the API response to the data about the play objects contained in the corpus.
     This property encodes the information of Feature 'C20 corpus play objects' as listed in the Report 'On Programmable
-    Corpora'."@en ;
+    Corpora'."""@en ;
     rdfs:subPropertyOf :contains_data ;
     :feature_id "C20" ;
     :operation_id "list-corpus-content" .
@@ -635,7 +635,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play wikidata id"@en ;
-    rdfs:comment "Wikidata ID of the play. Identifier ('Q-Number') of the item on Wikidata, e.g. 'Q466333'. In the TEI source document the information is contained in the <tei:standOff> element as a <tei:relation> with the attribute @name 'wikidata' as the full URI, e.g. 'http://www.wikidata.org/entity/Q466333'."@en ;
+    rdfs:comment """Wikidata ID of the play. Identifier ('Q-Number') of the item on Wikidata, e.g. 'Q466333'. In the TEI source document the information is contained in the <tei:standOff> element as a <tei:relation> with the attribute @name 'wikidata' as the full URI, e.g. 'http://www.wikidata.org/entity/Q466333'."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-play-wikidata-id" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L895-L906> ;
@@ -651,7 +651,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play title"@en ;
-    rdfs:comment "(Main) title of the play. Normally, the title is in the language of the corpus. The respective function extracts the text of the first element <tei:title> in <tei:titleStmt> in the <tei:teiHeader>."@en ;
+    rdfs:comment """(Main) title of the play. Normally, the title is in the language of the corpus. The respective function extracts the text of the first element <tei:title> in <tei:titleStmt> in the <tei:teiHeader>."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-titles" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L843> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L1007> ;
@@ -667,7 +667,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play subtitle"@en ;
-    rdfs:comment "Subtitle of the play. Normally, the subtitle is in the language of the corpus. The respective function extracts the text of the first element <tei:title> in <tei:titleStmt> in the <tei:teiHeader> that carries an attribute @type with the value 'sub'."@en ;
+    rdfs:comment """Subtitle of the play. Normally, the subtitle is in the language of the corpus. The respective function extracts the text of the first element <tei:title> in <tei:titleStmt> in the <tei:teiHeader> that carries an attribute @type with the value 'sub'."""@en ;
     :feature_id "P6" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-titles" ;
@@ -683,7 +683,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play title english"@en ;
-    rdfs:comment "English translation of the original main title of the play. Extracts the text of the element <tei:title> with 'eng' as the attribute's @xml:lang value."@en ;
+    rdfs:comment """English translation of the original main title of the play. Extracts the text of the element <tei:title> with 'eng' as the attribute's @xml:lang value."""@en ;
     :feature_id "P7" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-titles" ;
@@ -699,7 +699,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play subtitle english"@en ;
-    rdfs:comment "English translation of the original subtitle of the play. Extracts the text of the element <tei:title> with the value of the attribute @type being 'sub' and 'eng' as the attribute's @xml:lang value."@en ;
+    rdfs:comment """English translation of the original subtitle of the play. Extracts the text of the element <tei:title> with the value of the attribute @type being 'sub' and 'eng' as the attribute's @xml:lang value."""@en ;
     :feature_id "P8" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-titles" ;
@@ -715,7 +715,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play author name"@en;
-    rdfs:comment "Name of the author of the play in the format '{surname}, {forename}', e.g. 'Shakespeare, William', 'Гоголь, Николай Васильевич'. The value can be used for sorting. The function takes the contents of the elements <tei:persName> or <tei:name> from the element <tei:author> in the <tei:titleStmt> and applies some processing logic: If the constituents are marked up with the special elements <tei:surname> and <tei:forname>, they are arranged in the order surname, forname. The optional attribute @sort on the element <tei:surname> is evaluated as well to distinguish the order of <tei:surname> elements. If no additional markup is present, the contents of the <tei:name> or <tei:persName> element is used."@en ;
+    rdfs:comment """Name of the author of the play in the format '{surname}, {forename}', e.g. 'Shakespeare, William', 'Гоголь, Николай Васильевич'. The value can be used for sorting. The function takes the contents of the elements <tei:persName> or <tei:name> from the element <tei:author> in the <tei:titleStmt> and applies some processing logic: If the constituents are marked up with the special elements <tei:surname> and <tei:forname>, they are arranged in the order surname, forname. The optional attribute @sort on the element <tei:surname> is evaluated as well to distinguish the order of <tei:surname> elements. If no additional markup is present, the contents of the <tei:name> or <tei:persName> element is used."""@en ;
     :feature_id "P9" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-sort-name", "local:build-sort-name" ;
@@ -731,7 +731,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play author name english"@en ;
-    rdfs:comment "English name of the author of a play in the format '{surname}, {forename}', e.g. 'Gogol, Nikolai' (in this case the value of 'author_name' is Гоголь, Николай Васильевич' including the patronym). "@en ;
+    rdfs:comment """English name of the author of a play in the format '{surname}, {forename}', e.g. 'Gogol, Nikolai' (in this case the value of 'author_name' is Гоголь, Николай Васильевич' including the patronym). """@en ;
     :feature_id "P10" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-sort-name", "local:build-sort-name" ;
@@ -746,7 +746,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "play author fullname"@en ;
-    rdfs:comment "Full name of the author of the play including patronyms and other name constituents as encoded in the TEI source file in the element <tei:persName> or <tei:name> in <tei:author>. E.g. 'Николай Васильевич Гоголь', 'William Shakespeare'."@en ;
+    rdfs:comment """Full name of the author of the play including patronyms and other name constituents as encoded in the TEI source file in the element <tei:persName> or <tei:name> in <tei:author>. E.g. 'Николай Васильевич Гоголь', 'William Shakespeare'."""@en ;
     :feature_id "P11" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-full-name" ;
@@ -776,7 +776,7 @@
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal;
     rdfs:label "play author shortname"@en ;
-    rdfs:comment "Short name of the author of a play. Normally, the value is the author's surname only, e.g. 'Shakespeare' ,'Гоголь'."@en ;
+    rdfs:comment """Short name of the author of a play. Normally, the value is the author's surname only, e.g. 'Shakespeare' ,'Гоголь'."""@en ;
     :feature_id "P13" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-short-name" , "local:build-short-name" ;
@@ -819,7 +819,7 @@
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
-    rdfs:comment "Alternative name of the author of a play, e.g. 'Titus Maccius Plautus' in case of the author 'Plautus'. In the source TEI file alternative names are encoded as additional elements <tei:persName>."@en ;
+    rdfs:comment """Alternative name of the author of a play, e.g. 'Titus Maccius Plautus' in case of the author 'Plautus'. In the source TEI file alternative names are encoded as additional elements <tei:persName>."""@en ;
     :feature_id "P18" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-authors" ;
@@ -835,7 +835,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "external reference resource id"@en ;
-    rdfs:comment "ID of the author in an external reference resource. This for example can be the 'Q-Number' of Wikidata."@en ;
+    rdfs:comment """ID of the author in an external reference resource. This for example can be the 'Q-Number' of Wikidata."""@en ;
     :feature_id "P19" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-authors" ;
@@ -880,7 +880,7 @@
     rdfs:domain :Play ;
     rdfs:range  rdfs:Literal;
     rdfs:label "normalized genre"@en ;
-    rdfs:comment "Normalized genre of a play. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. The normalized values can be 'Comedy', 'Tagedy', 'Tragicomedy', 'Satyr play'."@en ;
+    rdfs:comment """Normalized genre of a play. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. The normalized values can be 'Comedy', 'Tagedy', 'Tragicomedy', 'Satyr play'."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-text-classes" , "dutil:get-genre" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L568> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L617> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L516-L529> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/config.xqm#L79-L89> ;
@@ -896,7 +896,7 @@
     rdfs:domain :Play ;
     rdfs:range  xsd:boolean;
     rdfs:label "play is libretto"@en ;
-    rdfs:comment "Indicates if a play is a libretto. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. If the returned value is 'Libretto' the value of this property is 'true', otherwise 'false'."@en;
+    rdfs:comment """Indicates if a play is a libretto. The function performs a lookup using a Wikidata identifier provided in the element <tei:classCode> in <tei:textClass>. If the returned value is 'Libretto' the value of this property is 'true', otherwise 'false'."""@en;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-text-classes", "dutil:get-corpus-meta-data" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L618> ;
@@ -983,10 +983,10 @@
     rdfs:label "year normalized"@en ;
     rdfs:label "Normalisierte Jahresangabe"@de ;
     rdfs:label "Нормализованный год"@ru ;
-    rdfs:comment "Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird
+    rdfs:comment """Aus allen vorhandenen Datumsangaben (Entstehung, Veröffentlichung, Erstaufführung) wird
     ein normalisiertes Jahr ausgewählt; entweder das jüngere Datum von Veröffentlichung und Erstaufführung oder das Jahr
-    der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat."@de ;
-    rdfs:comment "Normalized Year. Of all avaliable years (written, printed, premiered) a so-called 'normalized year' is selected; It is either the earlier on of printing or premiered or, if a work was published or performed much later (more than 10 years) after its creation, the year of its creation is taken as »Normalized Year« (if it is a range of years, the last of them is taken)."@en ;
+    der Entstehung, wenn die Veröffentlichung mehr als 10 Jahre danach stattgefunden hat."""@de ;
+    rdfs:comment """Normalized Year. Of all avaliable years (written, printed, premiered) a so-called 'normalized year' is selected; It is either the earlier on of printing or premiered or, if a work was published or performed much later (more than 10 years) after its creation, the year of its creation is taken as »Normalized Year« (if it is a range of years, the last of them is taken)."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-normalized-year" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L377-L410> ;
@@ -1002,7 +1002,7 @@
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal;
     rdfs:label "digital source name"@en ;
-    rdfs:comment "Name of the digital source of a play. Normally it is the name of the repository or project that provides a digital version of the play, e.g. 'Google Books', 'Wikisource', 'TextGrid Repository'."@en ;
+    rdfs:comment """Name of the digital source of a play. Normally it is the name of the repository or project that provides a digital version of the play, e.g. 'Google Books', 'Wikisource', 'TextGrid Repository'."""@en ;
     :feature_id "P28" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-source" ;
@@ -1034,7 +1034,7 @@
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal;
     rdfs:label "original source full citation"@en ;
-    rdfs:comment "Full citation of the play's original (print publication) source. In the TEI file the citation is contained in the element <tei:bibl> with the value 'originalSource' of the attribute @type inside the <tei:sourceDesc>."@en ;
+    rdfs:comment """Full citation of the play's original (print publication) source. In the TEI file the citation is contained in the element <tei:bibl> with the value 'originalSource' of the attribute @type inside the <tei:sourceDesc>."""@en ;
     :feature_id "P30" ;
     :feature_name "play_original_source_full_citation" ;
     :extractor_in_api_module "util.xqm" ;
@@ -1050,7 +1050,7 @@
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal ;
     rdfs:label "original source publisher"@en ;
-    rdfs:comment "Publisher of the print publication that was used as the original source. In the TEI data the content of the element <tei:publisher> in the <tei:bibl> representing the original source is extracted."@en ;
+    rdfs:comment """Publisher of the print publication that was used as the original source. In the TEI data the content of the element <tei:publisher> in the <tei:bibl> representing the original source is extracted."""@en ;
     :feature_id "P31" ;
     :feature_name "play_original_source_publisher" ;
     :extractor_in_api_module "util.xqm" ;
@@ -1066,7 +1066,7 @@
     rdfs:domain :Play ;
     rdfs:range rdfs:Literal ;
     rdfs:label "original source publication place"@en ;
-    rdfs:comment "Place of publication of the print publication that was used as the original source. In the TEI data the content of the element <tei:pubPlace> in the <tei:bibl> representing the original source is extracted. If there are multiple places annotated, they are joined to a single string separated by ','."@en ;
+    rdfs:comment """Place of publication of the print publication that was used as the original source. In the TEI data the content of the element <tei:pubPlace> in the <tei:bibl> representing the original source is extracted. If there are multiple places annotated, they are joined to a single string separated by ','."""@en ;
     :feature_id "P32" ;
     :feature_name "play_original_source_publication_place" ;
     :extractor_in_api_module "util.xqm" ;
@@ -1098,7 +1098,7 @@
     rdfs:domain :Play ;
     rdfs:range xsd:integer ;
     rdfs:label "original source number of pages"@en ;
-    rdfs:comment "Extent of the original source in number of pages derived from the bibliographic reference. In the TEI file the element <tei:biblScope> holds a page range encoded in the attribute @from and @to. The value is calculated by taking the value of @to and substracting the value of @from and adding 1."@en ;
+    rdfs:comment """Extent of the original source in number of pages derived from the bibliographic reference. In the TEI file the element <tei:biblScope> holds a page range encoded in the attribute @from and @to. The value is calculated by taking the value of @to and substracting the value of @from and adding 1."""@en ;
     :feature_id "P34" ;
     :feature_name "play_original_source_num_of_pages" ;
     :operation_id "corpus-metadata",  "corpus-metadata-csv-endpoint" ;
@@ -1114,7 +1114,7 @@
     rdfs:domain :Play ;
     rdfs:range xsd:integer ;
     rdfs:label "number of wikipedia links"@en ;
-    rdfs:comment "Number of Wikipedia links of a play. The links are counted upon ingest of the TEI file into the system using the Wikidata Query Service. The query looks for connections based on the property 'schema:about' (?sitelink schema:about wd:' || $id || ' .) and filters the results with the regular expression '[.]wikipedia[.]org'."@en ;
+    rdfs:comment """Number of Wikipedia links of a play. The links are counted upon ingest of the TEI file into the system using the Wikidata Query Service. The query looks for connections based on the property 'schema:about' (?sitelink schema:about wd:' || $id || ' .) and filters the results with the regular expression '[.]wikipedia[.]org'."""@en ;
     :feature_id "P35" ;
     :feature_name "play_num_of_wikipedia_links" ;
     :extractor_in_api_module "util.xqm" , "wikidata.xqm" ;
@@ -1129,7 +1129,7 @@
     rdfs:domain :Play ;
     rdfs:range xsd:integer ;
     rdfs:label "number of segments"@en ;
-    rdfs:comment "Number of segments (e.g. scenes) of a play. Usually <tei:div> elements inside <tei:body> are considered a segment if they contain a speech marked up by an element <tei:sp>. However, also 'empty scenes' with no speaking characters are considered a segment, e.g. elements <tei:div> that consist of stage directions (<tei:stage>) only."@en ;
+    rdfs:comment """Number of segments (e.g. scenes) of a play. Usually <tei:div> elements inside <tei:body> are considered a segment if they contain a speech marked up by an element <tei:sp>. However, also 'empty scenes' with no speaking characters are considered a segment, e.g. elements <tei:div> that consist of stage directions (<tei:stage>) only."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-meta-data" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L627> , <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L262-L285> ;
@@ -1146,7 +1146,7 @@
     rdfs:label "number of acts"@en ;
     rdfs:label "Anzahl Akte"@de ;
     rdfs:label "Количество актов"@ru ;
-    rdfs:comment "Number of acts of a play. In the TEI file acts are elements <tei:div> with an attribute @type value of 'act'. The function extracting the information returns the number of such <tei:div> elements."@en ;
+    rdfs:comment """Number of acts of a play. In the TEI file acts are elements <tei:div> with an attribute @type value of 'act'. The function extracting the information returns the number of such <tei:div> elements."""@en ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-meta-data";
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L628> ;
@@ -1443,8 +1443,8 @@
     rdfs:domain :Play ;
     rdfs:range :Segment ;
     rdfs:label "Segment data of a Play"@en ;
-    rdfs:comment "Links a play to the data on a segments. In the Report 'On Programmable Corpora' this is
-    feature 'P36'."@en .
+    rdfs:comment """Links a play to the data on a segments. In the Report 'On Programmable Corpora' this is
+    feature 'P36'."""@en .
 
 
 :segment_type
@@ -1684,8 +1684,8 @@
     a owl:ObjectProperty, rdf:Property ;
     rdfs:domain :Play ;
     rdfs:range :Relation ;
-    rdfs:comment "Links to a character relation data of a Play. In the report 'On Programmable Corpora' this is
-    feature 'P52'."@en ;
+    rdfs:comment """Links to a character relation data of a Play. In the report 'On Programmable Corpora' this is
+    feature 'P52'."""@en ;
     rdfs:subPropertyOf :contains_data .
 
 
@@ -1735,8 +1735,8 @@
 :contains_play_network_node_data
     a owl:ObjectProperty, rdf:Property ;
     rdfs:domain :Play ;
-    rdfs:label "Nodes of a Play represented as Network. In the report 'On Programmable Corpora' this is
-    feature 'P54'"@en ;
+    rdfs:label """Nodes of a Play represented as Network. In the report 'On Programmable Corpora' this is
+    feature 'P54'"""@en ;
     rdfs:subPropertyOf :contains_data .
 
 
@@ -1807,13 +1807,13 @@
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Service ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Stage of development in the service development life cicle, e.g. 'alpha', 'beta'."@en .
+    rdfs:comment """Stage of development in the service development life cicle, e.g. 'alpha', 'beta'."""@en .
 
 
 :service_dependency_is_existdb_version
     a owl:DatatypeProperty, rdf:Property ;
     rdfs:domain :Service ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Version Number of eXist-DB that the service is developed for. Specific to the response of the
-    /info endpoint of the DraCor API."@en .
+    rdfs:comment """Version Number of eXist-DB that the service is developed for. Specific to the response of the
+    /info endpoint of the DraCor API."""@en .
 
