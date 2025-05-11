@@ -42,16 +42,16 @@
 :feature_id
     a owl:AnnotationProperty ;
     rdfs:label "Feature ID"@en;
-    rdfs:comment "ID of the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
-    See column 'No.' in Tab. 01, 02, 03, 04.";
+    rdfs:comment """ID of the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
+    See column 'No.' in Tab. 01, 02, 03, 04.""";
     rdfs:range rdfs:Literal .
 
 
 :feature_name
     a owl:AnnotationProperty ;
     rdfs:label "Feature Slug"@en;
-    rdfs:comment "Slug used to identify the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
-    See column 'Feature' in Tab. 01, 02, 03, 04.";
+    rdfs:comment """Slug used to identify the feature in the report 'On Programmable Corpora' (https://doi.org/10.5281/zenodo.7664964).
+    See column 'Feature' in Tab. 01, 02, 03, 04.""";
     rdfs:range rdfs:Literal .
 
 
@@ -70,29 +70,29 @@
 :extractor_in_api_module
     a owl:AnnotationProperty ;
     rdfs:label "api module"@en ;
-    rdfs:comment "Name of the xQuery module of the DraCor API eXist-DB application that contains the function(s) which extract the information from the
-    source document."@en ;
+    rdfs:comment """Name of the xQuery module of the DraCor API eXist-DB application that contains the function(s) which extract the information from the
+    source document."""@en ;
     rdfs:range rdfs:Literal .
 
 
 :extractor_in_api_function
     a owl:AnnotationProperty ;
     rdfs:label "extractor in api function"@en ;
-    rdfs:comment "Name of the xQuery function that contains the code that is used to extract the information from the source document ."@en ;
+    rdfs:comment """Name of the xQuery function that contains the code that is used to extract the information from the source document ."""@en ;
     rdfs:range rdfs:Literal . 
 
 
 :code_ref
     a owl:AnnotationProperty ;
     rdfs:label "code reference"@en ;
-    rdfs:comment "Reference to code lines that contain the relevant code." ;
+    rdfs:comment """Reference to code lines that contain the relevant code.""" ;
     rdfs:range xsd:anyURI .
 
 
 :operation_id
     a owl:AnnotationProperty ;
     rdfs:label "operation id"@en ;
-    rdfs:comment "Operation ID ('operationId') in Open-API Specification Document of the DraCor API."@en ;
+    rdfs:comment """Operation ID ('operationId') in Open-API Specification Document of the DraCor API."""@en ;
     rdfs:range rdfs:Literal .
 
 
@@ -107,7 +107,7 @@
 :documentation
     a owl:AnnotationProperty ;
     rdfs:label "see other documentation at" ;
-    rdfs:comment "Links to the HTML rendering of the DraCor ODD which also documents the features" ;
+    rdfs:comment """Links to the HTML rendering of the DraCor ODD which also documents the features""" ;
     rdfs:range xsd:anyURI .
 
 
@@ -301,7 +301,7 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:anyURI ;
     rdfs:label "corpus licence URL"@en ;
-    rdfs:comment "Identifier/URL of a licence. The value is extracted from the attribute @target of the element <tei:licence> in the 'corpus.xml' file." ;
+    rdfs:comment """Identifier/URL of a licence. The value is extracted from the attribute @target of the element <tei:licence> in the 'corpus.xml' file.""" ;
     :extractor_in_api_module "util.xqm" ;
     :extractor_in_api_function "dutil:get-corpus-info" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/util.xqm#L479> ,
@@ -419,7 +419,7 @@
     rdfs:range xsd:integer ;
     rdfs:label "number of stage directions in a corpus"@en ;
     rdfs:label "Anzahl Regieanweisungen (in einem Korpus)"@de ;
-    rdfs:comment "Number of stage directions in a corpus. The value is the number of <tei:stage> elements in a collection representing a corpus in the underlying eXist database."@en;
+    rdfs:comment """Number of stage directions in a corpus. The value is the number of <tei:stage> elements in a collection representing a corpus in the underlying eXist database."""@en;
     :extractor_in_api_module "api.xqm" ;
     :extractor_in_api_function "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L208> ;
