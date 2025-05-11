@@ -434,7 +434,7 @@
     rdfs:domain :Corpus ;
     rdfs:range xsd:integer ;
     rdfs:label "number of word tokens in text elements"@en ;
-    rdfs:comment """Number of word tokens in <tei:text> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression '\\W+' is used as separator. The values of all documents in a corpus collection are summed up."""@en  ;
+    rdfs:comment """Number of word tokens in <tei:text> elements in the corpus. The number of tokens for each TEI file is pre-calculated upon ingest into the eXist database by tokenizing the contents of the elements tei:text with the the built-in xPath function 'tokenize()'. The regular expression '\W+' is used as separator. The values of all documents in a corpus collection are summed up."""@en  ;
     :extractor_in_api_module "metrics.xqm", "api.xqm" ;
     :extractor_in_api_function "metrics:calculate" , "local:get-corpus-metrics" ;
     :code_ref <https://github.com/dracor-org/dracor-api/blob/665ea3f07c3f0ab83566440436691ed73957b263/modules/api.xqm#L219> ,
